@@ -4,102 +4,76 @@ package no.uio.ifi.pascal2100.scanner;
 // have been commented out.
 
 public enum TokenKind {
-    nameToken("name"),
-    intValToken("number"),
-    stringValToken("text string"),
+	nameToken("name"), intValToken("number"), stringValToken("text string"),
 
-    addToken("+"),
-    assignToken(":="),
-    colonToken(":"),
-    commaToken(","),
- /* divideToken("/"), */
-    dotToken("."),
-    equalToken("="),
-    greaterToken(">"),
-    greaterEqualToken(">="),
-    leftBracketToken("["),
-    leftParToken("("),
-    lessToken("<"),
-    lessEqualToken("<="),
-    multiplyToken("*"),
-    notEqualToken("<>"),
-    rangeToken(".."),
-    rightBracketToken("]"),
-    rightParToken(")"),
-    semicolonToken(";"),
-    subtractToken("-"),
- /* upArrowToken("^"), */
+	addToken("+"), assignToken(":="), colonToken(":"), commaToken(","),
+	/* divideToken("/"), */
+	dotToken("."), equalToken("="), greaterToken(">"), greaterEqualToken(">="), leftBracketToken(
+			"["), leftParToken("("), lessToken("<"), lessEqualToken("<="), multiplyToken(
+			"*"), notEqualToken("<>"), rangeToken(".."), rightBracketToken("]"), rightParToken(
+			")"), semicolonToken(";"), subtractToken("-"),
+	/* upArrowToken("^"), */
 
-    andToken("and"), 
-    arrayToken("array"),
-    beginToken("begin"), 
- /* caseToken("case"), */ 
-    constToken("const"),
-    divToken("div"), 
-    doToken("do"), 
- /* downtoToken("downto"), */
-    elseToken("else"), 
-    endToken("end"),
- /* fileToken("file"), */
- /* forToken("for"), */ 
-    functionToken("function"),
- /* gotoToken("goto"), */
-    ifToken("if"), 
- /* inToken("in"), */
- /* labelToken("label"), */
-    modToken("mod"),
- /* nilToken("nil"), */ 
-    notToken("not"),
-    ofToken("of"), 
-    orToken("or"),
- /* packedToken("packed"), */ 
-    procedureToken("procedure"), 
-    programToken("program"),
- /* recordToken("record"), */ 
- /* repeatToken("repeat"), */
- /* setToken("set"), */
-    thenToken("then"), 
- /* toToken("to"), */
-    typeToken("type"),
- /* untilToken("until"), */
-    varToken("var"),
-    whileToken("while"), 
- /* withToken("with"), */
+	andToken("and"), arrayToken("array"), beginToken("begin"),
+	/* caseToken("case"), */
+	constToken("const"), divToken("div"), doToken("do"),
+	/* downtoToken("downto"), */
+	elseToken("else"), endToken("end"),
+	/* fileToken("file"), */
+	/* forToken("for"), */
+	functionToken("function"),
+	/* gotoToken("goto"), */
+	ifToken("if"),
+	/* inToken("in"), */
+	/* labelToken("label"), */
+	modToken("mod"),
+	/* nilToken("nil"), */
+	notToken("not"), ofToken("of"), orToken("or"),
+	/* packedToken("packed"), */
+	procedureToken("procedure"), programToken("program"),
+	/* recordToken("record"), */
+	/* repeatToken("repeat"), */
+	/* setToken("set"), */
+	thenToken("then"),
+	/* toToken("to"), */
+	typeToken("type"),
+	/* untilToken("until"), */
+	varToken("var"), whileToken("while"),
+	/* withToken("with"), */
 
-    eofToken("e-o-f");
+	eofToken("e-o-f");
 
-    private String image;
+	private String image;
 
-    TokenKind(String im) {
-	image = im;
-    }
+	TokenKind(String im) {
+		image = im;
+	}
 
+	public String identify() {
+		return image + " token";
+	}
 
-    public String identify() {
-	return image + " token";
-    }
+	@Override
+	public String toString() {
+		return image;
+	}
 
-    @Override public String toString() {
-	return image;
-    }
+	public boolean isFactorOpr() {
+		return this == multiplyToken || this == divToken || this == modToken
+				|| this == andToken;
+	}
 
+	public boolean isPrefixOpr() {
+		return this == addToken || this == subtractToken;
+	}
 
-    public boolean isFactorOpr() {
-	return this==multiplyToken || this==divToken ||
-	    this==modToken || this==andToken;
-    }
+	public boolean isRelOpr() {
+		return this == equalToken || this == notEqualToken || this == lessToken
+				|| this == lessEqualToken || this == greaterToken
+				|| this == greaterEqualToken;
+	}
 
-    public boolean isPrefixOpr() {
-	return this==addToken || this==subtractToken;
-    }
-
-    public boolean isRelOpr() {
-	return this==equalToken || this==notEqualToken ||
-	    this==lessToken || this==lessEqualToken ||
-	    this==greaterToken || this==greaterEqualToken;
-    }
-
-    public boolean isTermOpr() {
-	return isPrefixOpr() || this==orToken;
-    }
+	public boolean isTermOpr() {
+		return isPrefixOpr() || this == orToken;
+	}
 }
