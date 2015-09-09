@@ -5,6 +5,8 @@ import static no.uio.ifi.pascal2100.scanner.TokenKind.*;
 
 import java.io.*;
 
+import sun.security.action.GetLongAction;
+
 public class Scanner {
 	public Token curToken = null, nextToken = null;
 
@@ -38,70 +40,121 @@ public class Scanner {
 
 	public void readNextToken() {
 		curToken = nextToken;
+		nextToken = null;
 		while (nextToken == null) {
 			if (sourcePos >= sourceLine.length()) {
 				readNextLine();
+			}
+			System.out.println(sourceLine);
+			/* TODO: Fix getChar and curC, fix skip blanks.*/
+			char curC = getChar();
+			while (isBlank(getChar())) {
+				
+				if (sourcePos < sourceLine.length()) {
+					curC = getChar();
+					sourcePos++;
+				} else {
+					readNextLine();
+					curC = getChar();
+				}
+			}
+			//curC = getChar();
+			String doubleTok = getDoubleChar();
+			System.out.println("curC is " + curC + " getchar is " + getChar());
+			if (curC == '{') {
+				skipComment("{");
+				curC = getChar();
+			} else if (doubleTok.equals("/*")) {
+				skipComment("/*");
+				curC = getChar();
 			}
 			if (sourceLine.equals("")) {
 				nextToken = new Token(eofToken, getFileLineNum());
 				break;
 			}
-			char curC = getChar();
-			String doubleTok = getDoubleChar();
-			
-			TokenKind curTokenType = checkSingleTokenType(curC);
-			if (curC == '{') {
-				skipComment("{");
-			} else if(doubleTok.equals("/*")) {
-				skipComment("/*");
-			}
-				
-			if (curC == '\'') {
-				// string literal
-			} //else if() {
-				// check double tokens
-			// }
-			else if (curTokenType != null) { // Check if single character is token
-				nextToken = new Token(curTokenType, getFileLineNum());
-				break;
-			} else { // read name
-				String name = "";
-				while (sourcePos < sourceLine.length()) {
-
-					char c = getChar();
-					if (isLetterAZ(c) || isDigit(sourceLine.charAt(c))) {
-						name += c;
+			doubleTok = getDoubleChar();
+			if (isDelim(curC)) {
+				System.out.println(curC + " is delim");
+				TokenKind tokTypeDouble = checkTokenType(doubleTok);
+				TokenKind tokTypeSingle;
+				if (curC == '\'') {
+					System.out.println("Start of string literal");
+					String stringVal = "";
+					sourcePos++;
+					while (sourcePos < sourceLine.length() && getChar() != '\'') {
+						char c = getChar();
+						System.out.println(""+c);
+						stringVal += c;
 						sourcePos++;
-					} else if (isBlank(c)) {
-						break;
+					}
+					nextToken = new Token(null,stringVal,getFileLineNum());
+					break;
+
+				} else if (tokTypeDouble != null) {
+					nextToken = new Token(tokTypeDouble, getFileLineNum());
+					break;
+				} else if ((tokTypeSingle = checkSingleTokenType(curC)) != null) {
+					nextToken = new Token(tokTypeSingle, getFileLineNum());
+					System.out.println(nextToken.identify());
+					break;
+				}
+			} else { // read word
+				System.out.println("getchar is " + getChar());
+				String word = "";
+				while (sourcePos < sourceLine.length() && !isDelim(getChar())) {
+					char c = getChar();
+					
+					if (isLetterAZ(c) || isDigit(c)) {
+						word += c;
+						sourcePos++;
 					}
 				}
-				nextToken = new Token(name, getFileLineNum());
+				sourcePos--;
+				nextToken = new Token(word, getFileLineNum());
+				System.out.println(nextToken.identify());
 				break;
 			}
-
 		}
-
+		sourcePos++;
 		Main.log.noteToken(nextToken);
 	}
-	
-	private char getChar() {
-		return sourceLine.charAt(sourcePos);
+
+	private char readNextChar() {
+		char c = sourceLine.charAt(sourcePos);
+		int pos = 0;
+		while (c == ' ') {
+			if (sourcePos >= sourceLine.length()) {
+				readNextLine();
+				pos = 0;
+			} else {
+				c = sourceLine.charAt(pos++);
+			}
+		}
+		return c;
 	}
-	
+
+	private char getChar() {
+		if(sourcePos < sourceLine.length()) {
+			return sourceLine.charAt(sourcePos);
+		}
+		return 0;
+	}
+
 	private String getDoubleChar() {
 		if (sourcePos + 1 < sourceLine.length()) {
-			return ""+sourceLine.charAt(sourcePos)+sourceLine.charAt(sourcePos+1);
-		} else {
+			return "" + sourceLine.charAt(sourcePos)
+					+ sourceLine.charAt(sourcePos + 1);
+		} else if(sourcePos < sourceLine.length()) {
 			return ""+sourceLine.charAt(sourcePos);
-		}
-		
+		} else return "";
+
 	}
-	
+
 	private void skipComment(String commentType) {
 		while (sourceLine.contains("}") || sourceLine.contains("*/")) {
+			System.out.println(" skip");
 			readNextLine();
-			//sourcePos = sourceLine.indexOf(ch)
+			// sourcePos = sourceLine.indexOf(ch)
 		}
 	}
 
@@ -164,8 +217,19 @@ public class Scanner {
 		return true;
 	}
 
+	private boolean isDelim(char c) {
+		char delims[] = { ';', ':', '(', ')', '[', ']', '<', '>', ' ', ',',
+				'=', '+', '-', '*', '"', '\'','.' };
+		for (char del : delims) {
+			if (c == del) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private boolean isBlank(char c) {
-		return c == ' ';
+		return c == ' ' || c == '\t';
 	}
 
 	// Parser tests:
