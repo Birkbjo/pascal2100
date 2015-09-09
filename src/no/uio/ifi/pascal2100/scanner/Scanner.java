@@ -5,8 +5,6 @@ import static no.uio.ifi.pascal2100.scanner.TokenKind.*;
 
 import java.io.*;
 
-import sun.security.action.GetLongAction;
-
 public class Scanner {
 	public Token curToken = null, nextToken = null;
 
