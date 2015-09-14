@@ -157,13 +157,20 @@ public class Scanner {
 	}
 
 	private void skipComment(String commentType) {
+		int commentLineNr = getFileLineNum();
 		if(commentType.equals("/*")) {
 			while (!sourceLine.contains("*/")) {
+				if(sourceLine.equals("")) {
+					error("No end for comment starting on line " + commentLineNr);
+				}
 				readNextLine();
 				// sourcePos = sourceLine.indexOf(ch)
 			}
 		} else if(commentType.equals("{")) {
 			while (!sourceLine.contains("}")) {
+				if(sourceLine.equals("")) {
+					error("No end for comment starting on line " + commentLineNr);
+				}
 				readNextLine();
 				// sourcePos = sourceLine.indexOf(ch)
 			}
