@@ -45,18 +45,15 @@ public class Scanner {
 			}
 			System.out.println(sourceLine);
 			/* TODO: Fix getChar and curC, fix skip blanks.*/
-			char curC = getChar();
 			while (isBlank(getChar())) {
-				
-				if (sourcePos < sourceLine.length()) {
-					curC = getChar();
-					sourcePos++;
+				System.out.println(getChar() + " is blank");
+				if (sourcePos+1 < sourceLine.length()) {
+					sourcePos++;										
 				} else {
 					readNextLine();
-					curC = getChar();
 				}
 			}
-			//curC = getChar();
+			char curC = getChar();
 			String doubleTok = getDoubleChar();
 			System.out.println("curC is " + curC + " getchar is " + getChar());
 			if (curC == '{') {
