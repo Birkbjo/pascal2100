@@ -83,7 +83,7 @@ public class Scanner {
 						stringVal += c;
 						sourcePos++;
 					}
-					if(sourcePos == sourceLine.length() && getChar() != '\'') {
+					if(sourcePos == sourceLine.length()) { //out of bounds, not seen a "'" yet.
 						error("Text string without end!");
 					}
 					nextToken = new Token(null,stringVal,getFileLineNum());
@@ -115,7 +115,7 @@ public class Scanner {
 						error("Illegal character: '" + c +"'");
 					}
 				}
-				sourcePos--;
+				sourcePos--; //sourcePos is +1 what it should be the last time in the loop.
 				nextToken = new Token(word, getFileLineNum());
 				System.out.println(nextToken.identify());
 				break;
