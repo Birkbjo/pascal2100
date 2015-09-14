@@ -80,10 +80,14 @@ public class Scanner {
 					String stringVal = "";
 					sourcePos++;
 					while (sourcePos < sourceLine.length() && getChar() != '\'') {
+						
 						char c = getChar();
 						System.out.println(""+c);
 						stringVal += c;
 						sourcePos++;
+					}
+					if(sourcePos == sourceLine.length() && getChar() != '\'') {
+						error("Text string without end!");
 					}
 					nextToken = new Token(null,stringVal,getFileLineNum());
 					break;
@@ -110,6 +114,8 @@ public class Scanner {
 					if (isLetterAZ(c) || isDigit(c)) {
 						word += c;
 						sourcePos++;
+					} else {
+						error("Illegal character: '" + c +"'");
 					}
 				}
 				sourcePos--;
