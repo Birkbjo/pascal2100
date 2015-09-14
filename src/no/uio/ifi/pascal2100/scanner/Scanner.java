@@ -89,6 +89,8 @@ public class Scanner {
 					break;
 
 				} else if (tokTypeDouble != null) {
+					System.out.println("DOUBLETOKEN: " + tokTypeDouble);
+					sourcePos++;
 					nextToken = new Token(tokTypeDouble, getFileLineNum());
 					break;
 				} else if ((tokTypeSingle = checkSingleTokenType(curC)) != null) {
@@ -96,6 +98,9 @@ public class Scanner {
 					System.out.println(nextToken.identify());
 					break;
 				}
+			} else if(isDigit(curC)) {
+				String num = readNumber();
+				nextToken = new Token(Integer.parseInt(num),getFileLineNum());
 			} else { // read word
 				System.out.println("getchar is " + getChar());
 				String word = "";
@@ -149,16 +154,24 @@ public class Scanner {
 	}
 
 	private void skipComment(String commentType) {
-		while (sourceLine.contains("}") || sourceLine.contains("*/")) {
-			System.out.println(" skip");
-			readNextLine();
-			// sourcePos = sourceLine.indexOf(ch)
+		if(commentType.equals("/*")) {
+			while (!sourceLine.contains("*/")) {
+				readNextLine();
+				// sourcePos = sourceLine.indexOf(ch)
+			}
+		} else if(commentType.equals("{")) {
+			while (!sourceLine.contains("}")) {
+				readNextLine();
+				// sourcePos = sourceLine.indexOf(ch)
+			}
 		}
+		//jump at start on next line.
+		readNextLine();
 	}
 
 	private TokenKind checkSingleTokenType(char c) {
 		for (TokenKind tk : TokenKind.values()) {
-			if (c == tk.toString().charAt(0)) {
+			if (tk.toString().length() == 1 && c == tk.toString().charAt(0)) {
 				return tk;
 			}
 		}
@@ -168,6 +181,7 @@ public class Scanner {
 	private TokenKind checkTokenType(String s) {
 		for (TokenKind tk : TokenKind.values()) {
 			if (s.equals(tk.toString())) {
+			//	System.out.println(s + " equals: " + tk.toString());
 				return tk;
 			}
 		}
@@ -209,10 +223,22 @@ public class Scanner {
 	}
 
 	private boolean isNumber(String d) {
-		while (isDigit(sourceLine.charAt(sourcePos))) {
-
+		String nr = "";
+		while (isDigit(getChar())) {
+			nr+= getChar();
+			sourcePos++;
 		}
 		return true;
+	}
+	
+	private String readNumber() {
+		String nr = "";
+		while (isDigit(getChar())) {
+			nr+= getChar();
+			sourcePos++;
+		}
+		sourcePos--;
+		return nr;
 	}
 
 	private boolean isDelim(char c) {
