@@ -36,6 +36,7 @@ public class Scanner {
 		Main.error("Scanner error on line " + curLineNum() + ": " + message);
 	}
 
+	/*TODO: FIX sourcepos++ and split into methods.*/
 	public void readNextToken() {
 		curToken = nextToken;
 		nextToken = null;
@@ -43,33 +44,37 @@ public class Scanner {
 			if (sourcePos >= sourceLine.length()) {
 				readNextLine();
 			}
+			if(sourceFile == null) {
+				nextToken = new Token(eofToken, getFileLineNum());
+				break;
+			}
+			
 			System.out.println(sourceLine);
-			/* TODO: Fix getChar and curC, fix skip blanks.*/
+			
 			while (isBlank(getChar())) {
-				System.out.println(getChar() + " is blank");
+				System.out.println(getChar() + " is blank, pos: " + sourcePos);
 				if (sourcePos+1 < sourceLine.length()) {
 					sourcePos++;										
 				} else {
 					readNextLine();
 				}
 			}
+			if (sourceLine.equals("")) {
+				nextToken = new Token(eofToken, getFileLineNum());
+				break;
+			}
 			char curC = getChar();
 			String doubleTok = getDoubleChar();
 			System.out.println("curC is " + curC + " getchar is " + getChar());
 			if (curC == '{') {
 				skipComment("{");
-				curC = getChar();
+				continue;
 			} else if (doubleTok.equals("/*")) {
 				skipComment("/*");
-				curC = getChar();
+				continue;
 			}
-			if (sourceLine.equals("")) {
-				nextToken = new Token(eofToken, getFileLineNum());
-				break;
-			}
-			doubleTok = getDoubleChar();
 			if (isDelim(curC)) {
-				System.out.println(curC + " is delim");
+				System.out.println((int)curC + " is delim " + sourceLine + " sp " + sourcePos);
 				TokenKind tokTypeDouble = checkTokenType(doubleTok);
 				TokenKind tokTypeSingle;
 				if (curC == '\'') {
@@ -98,6 +103,8 @@ public class Scanner {
 					nextToken = new Token(tokTypeSingle, getFileLineNum());
 					System.out.println(nextToken.identify());
 					break;
+				} else {
+					error("Unknown symbol: " + getChar());
 				}
 			} else if(isDigit(curC)) {
 				String num = readNumber();
@@ -115,7 +122,7 @@ public class Scanner {
 						error("Illegal character: '" + c +"'");
 					}
 				}
-				sourcePos--; //sourcePos is +1 what it should be the last time in the loop.
+				sourcePos--; //sourcePos is incremented after loop.
 				nextToken = new Token(word, getFileLineNum());
 				System.out.println(nextToken.identify());
 				break;
@@ -164,19 +171,21 @@ public class Scanner {
 					error("No end for comment starting on line " + commentLineNr);
 				}
 				readNextLine();
-				// sourcePos = sourceLine.indexOf(ch)
 			}
+			sourcePos = sourceLine.indexOf("*/",sourcePos)+2;
 		} else if(commentType.equals("{")) {
 			while (!sourceLine.contains("}")) {
 				if(sourceLine.equals("")) {
 					error("No end for comment starting on line " + commentLineNr);
 				}
-				readNextLine();
-				// sourcePos = sourceLine.indexOf(ch)
+				readNextLine();	
 			}
+			sourcePos = sourceLine.indexOf("}",sourcePos)+1;
+			
 		}
+		
 		//jump at start on next line.
-		readNextLine();
+		//readNextLine();
 	}
 
 	private TokenKind checkSingleTokenType(char c) {
@@ -191,7 +200,6 @@ public class Scanner {
 	private TokenKind checkTokenType(String s) {
 		for (TokenKind tk : TokenKind.values()) {
 			if (s.equals(tk.toString())) {
-			//	System.out.println(s + " equals: " + tk.toString());
 				return tk;
 			}
 		}
