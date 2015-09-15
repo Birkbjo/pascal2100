@@ -3,4 +3,4 @@ A compilator for Pascal2100.
 
 Course INF2100 at University of Oslo.
 
-Odd-Tørres og Birk
+By Odd-Tørres og Birk
