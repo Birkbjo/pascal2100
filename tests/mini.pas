@@ -1,6 +1,6 @@
 
 /* Et minimalt Pascal-program */
-program Mini;
-begin 
+{kommentar} program Mini; {lala}
+begin
 	write('x');
 end.

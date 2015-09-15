@@ -36,7 +36,11 @@ public class Scanner {
 		Main.error("Scanner error on line " + curLineNum() + ": " + message);
 	}
 
-	/*TODO: FIX sourcepos++ and split into methods.*/
+	/**
+	 * Reads the next token, and set nextToken pointer
+	 * to this token. Breaks out of the while-loop as soon as a
+	 * token is identified.
+	 */
 	public void readNextToken() {
 		curToken = nextToken;
 		nextToken = null;
@@ -48,60 +52,39 @@ public class Scanner {
 				nextToken = new Token(eofToken, getFileLineNum());
 				break;
 			}
-			
-			System.out.println(sourceLine);
-			
-			while (isBlank(getChar())) {
-				System.out.println(getChar() + " is blank, pos: " + sourcePos);
-				if (sourcePos+1 < sourceLine.length()) {
-					sourcePos++;										
-				} else {
-					readNextLine();
-				}
-			}
-			if (sourceLine.equals("")) {
+			whileBlank(); //skip blanks.
+
+			if (sourceLine.equals("")) { //Check for eof here, as whileBlank() reads new lines.
 				nextToken = new Token(eofToken, getFileLineNum());
 				break;
 			}
+		
 			char curC = getChar();
 			String doubleTok = getDoubleChar();
-			System.out.println("curC is " + curC + " getchar is " + getChar());
 			if (curC == '{') {
 				skipComment("{");
-				continue;
+				continue; //go to start of while, as we need to check for blanks. etc.
 			} else if (doubleTok.equals("/*")) {
 				skipComment("/*");
 				continue;
 			}
-			if (isDelim(curC)) {
-				System.out.println((int)curC + " is delim " + sourceLine + " sp " + sourcePos);
+			if (isSymbol(curC)) {
 				TokenKind tokTypeDouble = checkTokenType(doubleTok);
 				TokenKind tokTypeSingle;
 				if (curC == '\'') {
-					System.out.println("Start of string literal");
-					String stringVal = "";
-					sourcePos++;
-					while (sourcePos < sourceLine.length() && getChar() != '\'') {
-						
-						char c = getChar();
-						System.out.println(""+c);
-						stringVal += c;
-						sourcePos++;
-					}
-					if(sourcePos == sourceLine.length()) { //out of bounds, not seen a "'" yet.
-						error("Text string without end!");
-					}
+					sourcePos++; //skip to start of String literal
+					
+					String stringVal = readStringLiteral();
+					
 					nextToken = new Token(null,stringVal,getFileLineNum());
 					break;
 
 				} else if (tokTypeDouble != null) {
-					System.out.println("DOUBLETOKEN: " + tokTypeDouble);
-					sourcePos++;
+					sourcePos++; //two chars - skip one extra
 					nextToken = new Token(tokTypeDouble, getFileLineNum());
 					break;
 				} else if ((tokTypeSingle = checkSingleTokenType(curC)) != null) {
 					nextToken = new Token(tokTypeSingle, getFileLineNum());
-					System.out.println(nextToken.identify());
 					break;
 				} else {
 					error("Unknown symbol: " + getChar());
@@ -109,43 +92,75 @@ public class Scanner {
 			} else if(isDigit(curC)) {
 				String num = readNumber();
 				nextToken = new Token(Integer.parseInt(num),getFileLineNum());
-			} else { // read word
-				System.out.println("getchar is " + getChar());
-				String word = "";
-				while (sourcePos < sourceLine.length() && !isDelim(getChar())) {
-					char c = getChar();
-					
-					if (isLetterAZ(c) || isDigit(c)) {
-						word += c;
-						sourcePos++;
-					} else {
-						error("Illegal character: '" + c +"'");
-					}
-				}
-				sourcePos--; //sourcePos is incremented after loop.
+			} else if(isDigitOrLetter(curC)) { // read word
+				String word = readName();			
 				nextToken = new Token(word, getFileLineNum());
-				System.out.println(nextToken.identify());
 				break;
+			} else {
+				error("Illegal character: '" + curC +"'");
 			}
 		}
 		sourcePos++;
 		Main.log.noteToken(nextToken);
 	}
-
-	private char readNextChar() {
-		char c = sourceLine.charAt(sourcePos);
-		int pos = 0;
-		while (c == ' ') {
-			if (sourcePos >= sourceLine.length()) {
-				readNextLine();
-				pos = 0;
+	
+	/**
+	 * Reads a name token from current sourcePos,
+	 * stops reading when current char is not a letter nor a digit.
+	 * 
+	 * @return - A string of the token-name.
+	 */
+	private String readName() {
+		String name = "";
+		while (sourcePos < sourceLine.length() && isDigitOrLetter(getChar())) {
+			char c = getChar();				
+			name += c;
+			sourcePos++;
+		}
+		sourcePos--; //sourcePos is incremented after while-loop in readNextToken()
+		return name;
+	}
+	
+	/**
+	 * Skips all blanks, if we are at end of line, we read a new line
+	 * and skip blanks here as well. Updates sourcePos to next char that is not a blank.
+	 */
+	private void whileBlank() {
+		while (isBlank(getChar())) {
+			if (sourcePos+1 < sourceLine.length()) {
+				sourcePos++;										
 			} else {
-				c = sourceLine.charAt(pos++);
+				readNextLine();
 			}
 		}
-		return c;
 	}
-
+	
+	/**
+	 * Reads a string literal. Reads until a ' is found.
+	 * If we go out of bounds of current line, we throw an error.
+	 * Note that the sourcePos should be incremented before this is called,
+	 * so that getChar() returns the char after the start of the string literal, "'".
+	 * @return - The String literal represented by a string.
+	 */
+	private String readStringLiteral() {
+		String stringVal ="";
+		while (sourcePos < sourceLine.length() && getChar() != '\'') {			
+			char c = getChar();
+			stringVal += c;
+			sourcePos++;
+		}
+		
+		if(sourcePos == sourceLine.length()) { //out of bounds, not seen a "'" yet.
+			error("Text string without end!");
+		}
+		return stringVal;
+	}
+	
+	/**
+	 * Gets the current char according to sourcePos and sourceLine.
+	 * Note that sourcePos is not updated.
+	 * @return - the current char.
+	 */
 	private char getChar() {
 		if(sourcePos < sourceLine.length()) {
 			return sourceLine.charAt(sourcePos);
@@ -153,6 +168,15 @@ public class Scanner {
 		return 0;
 	}
 
+	/**
+	 * Attempts to get the currentChar and the character after, in order
+	 * to check for double-tokens.
+	 * If current char is the last of the line, we return an empty string concatenated
+	 * with the current char.
+	 * Not that sourcePos is never updated here.
+	 * @return - A String of currentChar and the character after, or a string with the current char
+	 * if we are at end of line.
+	 */
 	private String getDoubleChar() {
 		if (sourcePos + 1 < sourceLine.length()) {
 			return "" + sourceLine.charAt(sourcePos)
@@ -162,7 +186,14 @@ public class Scanner {
 		} else return "";
 
 	}
-
+	
+	/**
+	 * Attemps to skip comments. A for comment should be done before
+	 * this is called, and called with the start of the commenttype, like /* or {.
+	 * SourcePos is updated so that it points to the next character after the end of comment.
+	 * If we read untill end of file without finding the end of the comment, we throw an error.
+	 * @param commentType - the start of the commenttype that we should skip.
+	 */
 	private void skipComment(String commentType) {
 		int commentLineNr = getFileLineNum();
 		if(commentType.equals("/*")) {
@@ -187,7 +218,14 @@ public class Scanner {
 		//jump at start on next line.
 		//readNextLine();
 	}
-
+	
+	/**
+	 * Loops through the Tokens with length = 1. in order to check
+	 * if given character is equal to any of the tokens.
+	 * @param c - character to check for equality.
+	 * @return - The TokenKind that the current char represents, or null if 
+	 * no TokenKinds are found.
+	 */
 	private TokenKind checkSingleTokenType(char c) {
 		for (TokenKind tk : TokenKind.values()) {
 			if (tk.toString().length() == 1 && c == tk.toString().charAt(0)) {
@@ -196,7 +234,13 @@ public class Scanner {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Same as CheckSingleTokenType, other than this checks for a String to
+	 * see if the given S is equal to any TokenKind.
+	 * @param s - String to check for equality of a TokenKind.
+	 * @return - The TokenKind that String s represents, null if no TokenKinds are equal.
+	 */
 	private TokenKind checkTokenType(String s) {
 		for (TokenKind tk : TokenKind.values()) {
 			if (s.equals(tk.toString())) {
@@ -239,7 +283,11 @@ public class Scanner {
 	private boolean isDigit(char c) {
 		return '0' <= c && c <= '9';
 	}
-
+	
+	private boolean isDigitOrLetter(char c) {
+		return isLetterAZ(c) || isDigit(c);
+	}
+	
 	private boolean isNumber(String d) {
 		String nr = "";
 		while (isDigit(getChar())) {
@@ -249,18 +297,28 @@ public class Scanner {
 		return true;
 	}
 	
+	/**
+	 * Reads a number from current sourcePos, note that a check for 
+	 * isDigit() should be called before this.
+	 * @return - A String representing a number (0-9 chars).
+	 */
 	private String readNumber() {
 		String nr = "";
 		while (isDigit(getChar())) {
 			nr+= getChar();
 			sourcePos++;
 		}
-		sourcePos--;
+		sourcePos--; //sourcePos is incremented after while-loop in readNextToken()
 		return nr;
 	}
 
-	private boolean isDelim(char c) {
-		char delims[] = { ';', ':', '(', ')', '[', ']', '<', '>', ' ', ',',
+	/**
+	 * Check if the char is a symbol in pascal.
+	 * @param c - char to check for.
+	 * @return - True char c is a symbol in pascal, false otherwise.
+	 */
+	private boolean isSymbol(char c) {
+		char delims[] = { ';', ':', '(', ')', '[', ']', '<', '>', ',',
 				'=', '+', '-', '*', '"', '\'','.' };
 		for (char del : delims) {
 			if (c == del) {
@@ -269,7 +327,12 @@ public class Scanner {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Check if current c is blank, that is space or tab.
+	 * @param c - Char to check for blank.
+	 * @return - True if char c is blank, false otherwise.
+	 */
 	private boolean isBlank(char c) {
 		return c == ' ' || c == '\t';
 	}
