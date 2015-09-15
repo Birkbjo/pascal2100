@@ -214,9 +214,6 @@ public class Scanner {
 			sourcePos = sourceLine.indexOf("}",sourcePos)+1;
 			
 		}
-		
-		//jump at start on next line.
-		//readNextLine();
 	}
 	
 	/**
@@ -286,15 +283,6 @@ public class Scanner {
 	
 	private boolean isDigitOrLetter(char c) {
 		return isLetterAZ(c) || isDigit(c);
-	}
-	
-	private boolean isNumber(String d) {
-		String nr = "";
-		while (isDigit(getChar())) {
-			nr+= getChar();
-			sourcePos++;
-		}
-		return true;
 	}
 	
 	/**
