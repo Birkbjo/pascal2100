@@ -1,0 +1,3 @@
+class CompoundStatement extends Statement {
+
+}
