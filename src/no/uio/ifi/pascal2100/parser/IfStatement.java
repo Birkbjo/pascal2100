@@ -1,0 +1,3 @@
+class IfStatement extends Statement {
+    
+}

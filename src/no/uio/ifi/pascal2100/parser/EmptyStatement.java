@@ -1,0 +1,3 @@
+class EmptyStatement extends Statement {
+
+}
