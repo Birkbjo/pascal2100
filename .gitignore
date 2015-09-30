@@ -1,9 +1,5 @@
 /bin/
 /classes/
 /.idea/
-<<<<<<< HEAD
-*.jar
-=======
 *.log
 *.jar
->>>>>>> branch 'Lunde' of git@github.com:Birkbjo/pascal2100.git
