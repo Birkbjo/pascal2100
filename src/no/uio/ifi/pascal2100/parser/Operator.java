@@ -7,10 +7,6 @@ public abstract class Operator extends PascalSyntax {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	abstract public String identify();
 
 }
