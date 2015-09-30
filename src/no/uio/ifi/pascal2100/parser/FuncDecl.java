@@ -1,0 +1,3 @@
+class FuncDecl extends ProcDecl {
+
+}

@@ -1,0 +1,3 @@
+class ConstDecl extends PascalDecl {
+
+}

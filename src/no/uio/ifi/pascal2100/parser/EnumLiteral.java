@@ -1,0 +1,3 @@
+class EnumLiteral extends PascalDecl {
+
+}

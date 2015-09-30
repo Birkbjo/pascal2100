@@ -1,3 +1,3 @@
 class ProcCall extends Statement {
-    
+
 }

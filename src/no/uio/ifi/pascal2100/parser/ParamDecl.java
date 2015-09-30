@@ -1,0 +1,3 @@
+class ParamDecl extends PascalDecl {
+
+}

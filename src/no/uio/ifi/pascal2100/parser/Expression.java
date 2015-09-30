@@ -1,3 +1,3 @@
-class Expression extends Statement {
+class Expression extends PascalSyntax {
 
 }

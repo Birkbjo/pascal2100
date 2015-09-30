@@ -1,3 +1,3 @@
-class StatementList {
+class StatementList extends PascalSyntax {
 
 }
