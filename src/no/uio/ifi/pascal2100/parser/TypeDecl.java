@@ -1,0 +1,3 @@
+class TypeDecl extends PascalDecl {
+
+}

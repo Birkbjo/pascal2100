@@ -1,0 +1,3 @@
+class VarDecl extends PascalDecl {
+
+}
