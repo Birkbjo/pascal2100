@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-class ParamDecl extends PascalDecl {
+public class ProcDecl extends PascalDecl {
 
-	ParamDecl(String id, int lNum) {
+	ProcDecl(String id, int lNum) {
 		super(id, lNum);
 		// TODO Auto-generated constructor stub
 	}
