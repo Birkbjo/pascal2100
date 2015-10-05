@@ -1,9 +1,9 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+class ConstDecl extends PascalDecl {
 
-	Expression(int n) {
-		super(n);
+	ConstDecl(String id, int lNum) {
+		super(id, lNum);
 		// TODO Auto-generated constructor stub
 	}
 
