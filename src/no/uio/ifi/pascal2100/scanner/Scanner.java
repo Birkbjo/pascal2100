@@ -139,12 +139,20 @@ public class Scanner {
 	 * Reads a string literal. Reads until a ' is found.
 	 * If we go out of bounds of current line, we throw an error.
 	 * Note that the sourcePos should be incremented before this is called,
-	 * so that getChar() returns the char after the start of the string literal, "'".
+	 * so that getChar() returns the char after the start of the string literal; "'".
 	 * @return - The String literal represented by a string.
 	 */
 	private String readStringLiteral() {
 		String stringVal ="";
-		while (sourcePos < sourceLine.length() && getChar() != '\'') {			
+		while (sourcePos < sourceLine.length()) {
+			//Support for ' inside a string literal:
+			if(getChar() == '\'' && sourceLine.charAt(sourcePos+1) == '\'') {
+				stringVal += getChar();
+				sourcePos+=2;
+				continue;
+			} else if(getChar() == '\'') { //end of string literal.
+				break;
+			}
 			char c = getChar();
 			stringVal += c;
 			sourcePos++;
@@ -188,10 +196,10 @@ public class Scanner {
 	}
 	
 	/**
-	 * Attemps to skip comments. A for comment should be done before
+	 * Attempts to skip comments. A comment-check should be done before
 	 * this is called, and called with the start of the commenttype, like /* or {.
 	 * SourcePos is updated so that it points to the next character after the end of comment.
-	 * If we read untill end of file without finding the end of the comment, we throw an error.
+	 * If we read until end of file without finding the end of the comment, we throw an error.
 	 * @param commentType - the start of the commenttype that we should skip.
 	 */
 	private void skipComment(String commentType) {
@@ -307,7 +315,7 @@ public class Scanner {
 	 */
 	private boolean isSymbol(char c) {
 		char delims[] = { ';', ':', '(', ')', '[', ']', '<', '>', ',',
-				'=', '+', '-', '*', '"', '\'','.' };
+				'=', '+', '-', '*', '\'','.' };
 		for (char del : delims) {
 			if (c == del) {
 				return true;
