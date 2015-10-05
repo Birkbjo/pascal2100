@@ -81,13 +81,12 @@ public class Main {
 			s.readNextToken();
 	}
 
-	/*
-	 * Del 2: private static void doTestParser(Scanner s) { Program prog =
+/*	private static void doTestParser(Scanner s) { Program prog =
 	 * Program.parse(s); if (s.curToken.kind != eofToken)
 	 * error("Scanner error: Garbage after the program!");
 	 * 
 	 * prog.prettyPrint(); }
-	 */
+	*/ 
 
 	/*
 	 * Del 3 og 4: private static void doRunRealCompiler(Scanner s) {

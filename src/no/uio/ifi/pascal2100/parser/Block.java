@@ -21,4 +21,10 @@ public class Block extends PascalSyntax {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -13,4 +13,10 @@ public class InnerExpr extends Factor {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

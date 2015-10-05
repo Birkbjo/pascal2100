@@ -13,4 +13,10 @@ public class ArrayType extends Type {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

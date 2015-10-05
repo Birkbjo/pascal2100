@@ -13,4 +13,10 @@ class ConstDecl extends PascalDecl {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

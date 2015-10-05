@@ -13,6 +13,12 @@ public class TermOperator extends Operator {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

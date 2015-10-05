@@ -13,4 +13,10 @@ public class Term extends PascalSyntax {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

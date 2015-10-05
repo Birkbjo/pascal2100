@@ -13,4 +13,10 @@ public class RelOperator extends Operator {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

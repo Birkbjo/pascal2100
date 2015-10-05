@@ -1,9 +1,9 @@
 package no.uio.ifi.pascal2100.parser;
 
-class StatementList extends PascalSyntax {
+public class Program extends PascalDecl {
 
-	StatementList(int n) {
-		super(n);
+	public Program(String id, int lNum) {
+		super(id, lNum);
 		// TODO Auto-generated constructor stub
 	}
 
