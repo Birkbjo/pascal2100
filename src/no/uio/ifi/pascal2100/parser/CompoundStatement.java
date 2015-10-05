@@ -13,4 +13,10 @@ class CompoundStatement extends Statement {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

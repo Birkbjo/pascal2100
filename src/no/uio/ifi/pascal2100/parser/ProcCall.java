@@ -13,4 +13,10 @@ class ProcCall extends Statement {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

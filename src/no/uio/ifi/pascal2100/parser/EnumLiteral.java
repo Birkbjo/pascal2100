@@ -13,5 +13,11 @@ public class EnumLiteral extends PascalDecl {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 

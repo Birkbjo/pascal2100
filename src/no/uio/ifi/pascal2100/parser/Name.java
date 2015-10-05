@@ -13,4 +13,10 @@ public class Name extends Constant {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

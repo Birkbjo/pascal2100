@@ -13,4 +13,10 @@ public class PrefixOperator extends Operator {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

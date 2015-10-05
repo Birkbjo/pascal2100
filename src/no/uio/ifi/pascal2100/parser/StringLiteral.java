@@ -13,4 +13,10 @@ public class StringLiteral extends Constant {
 		return null;
 	}
 
+	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

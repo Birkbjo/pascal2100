@@ -8,6 +8,12 @@ public class CharLiteral extends Constant {
 	}
 
 	@Override
+	void prettyPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public String identify() {
 		// TODO Auto-generated method stub
 		return null;

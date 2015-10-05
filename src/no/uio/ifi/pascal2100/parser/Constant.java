@@ -7,6 +7,4 @@ abstract public class Constant extends Factor{
 		// TODO Auto-generated constructor stub
 	}
 
-	abstract public String identify();
-
 }
