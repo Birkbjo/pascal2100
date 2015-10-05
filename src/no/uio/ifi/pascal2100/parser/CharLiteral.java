@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+public class CharLiteral extends Constant {
 
-	Expression(int n) {
+	public CharLiteral(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}

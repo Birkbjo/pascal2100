@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+public class TypeName extends Type {
 
-	Expression(int n) {
+	public TypeName(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}

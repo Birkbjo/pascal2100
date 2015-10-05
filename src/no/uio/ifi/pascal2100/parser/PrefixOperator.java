@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+public class PrefixOperator extends Operator {
 
-	Expression(int n) {
+	public PrefixOperator(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}

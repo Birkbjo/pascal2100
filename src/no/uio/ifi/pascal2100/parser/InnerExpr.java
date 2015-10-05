@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+public class InnerExpr extends Factor {
 
-	Expression(int n) {
+	public InnerExpr(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}

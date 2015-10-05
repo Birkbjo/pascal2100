@@ -1,9 +1,9 @@
 package no.uio.ifi.pascal2100.parser;
 
-class EnumLiteral extends PascalDecl {
+public class EnumLiteral extends PascalDecl {
 
-	EnumLiteral(String id, int lNum) {
-		super(id, lNum);
+	EnumLiteral(String id, int n) {
+		super(id,n);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -14,3 +14,4 @@ class EnumLiteral extends PascalDecl {
 	}
 
 }
+

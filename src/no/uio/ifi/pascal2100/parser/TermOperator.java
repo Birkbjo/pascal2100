@@ -1,8 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Expression extends PascalSyntax {
+public class TermOperator extends Operator {
 
-	Expression(int n) {
+	TermOperator(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
@@ -12,5 +12,7 @@ public class Expression extends PascalSyntax {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
