@@ -1,17 +1,16 @@
 package no.uio.ifi.pascal2100.parser;
 
-import no.uio.ifi.pascal2100.scanner.Scanner;
+public class ConstDeclPart extends PascalSyntax{
 
-public class Name extends Constant {
-
-	Name(int n) {
+	ConstDeclPart(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		return "<name> on line " + lineNum;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -19,6 +18,5 @@ public class Name extends Constant {
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }

@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 public class Block extends PascalSyntax {
 	/*
 	 * constdeclpart
@@ -10,6 +12,8 @@ public class Block extends PascalSyntax {
 	 * statmlist
 	 * 
 	 */
+	public PascalSyntax context = null;
+	
 	public Block(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -17,7 +21,6 @@ public class Block extends PascalSyntax {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -25,6 +28,10 @@ public class Block extends PascalSyntax {
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	static Block parse(Scanner s) {
+		return null;
 	}
 
 }
