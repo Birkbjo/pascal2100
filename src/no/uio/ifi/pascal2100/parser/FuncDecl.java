@@ -1,5 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.TokenKind;
+
 class FuncDecl extends ProcDecl {
 
 	FuncDecl(String id, int lNum) {
@@ -10,6 +13,22 @@ class FuncDecl extends ProcDecl {
 	@Override
 	public String identify() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/**
+	 * TODO funcdecl implementation.
+	 * @param s
+	 * @return
+	 */
+	public static FuncDecl parse(Scanner s) {
+		
+		enterParser("func-decl");
+		
+		s.test(TokenKind.nameToken);
+		FuncDecl fd = new FuncDecl(s.curToken.id,s.curLineNum());
+		
+		leaveParser("func-decl");
 		return null;
 	}
 }

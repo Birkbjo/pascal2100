@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 public class Expression extends PascalSyntax {
 
 	Expression(int n) {
@@ -17,6 +19,11 @@ public class Expression extends PascalSyntax {
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static Expression parse(Scanner s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -16,12 +16,12 @@ public class Program extends PascalDecl {
 	}
 
 	@Override
-	void prettyPrint() {
+	public void prettyPrint() {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	static Program parse(Scanner s) {
+	public static Program parse(Scanner s) {
 		enterParser("program");
 		s.skip(TokenKind.programToken);
 		//Name only contains letters (handled by scanner), so we can skip this.
