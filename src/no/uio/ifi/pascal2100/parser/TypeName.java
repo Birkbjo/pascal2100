@@ -26,7 +26,7 @@ public class TypeName extends Type {
 		s.test(TokenKind.nameToken);
 		TypeName tn = new TypeName(s.curLineNum());
 		tn.name = Name.parse(s);
-		
+		s.readNextToken();
 		leaveParser("type-name");
 		return tn;
 	}

@@ -4,7 +4,9 @@ import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class ProcDecl extends PascalDecl {
-
+	ParamDeclList paramList;
+	TypeName typeName;
+	Block block;
 	ProcDecl(String id, int lNum) {
 		super(id, lNum);
 		// TODO Auto-generated constructor stub
@@ -29,11 +31,19 @@ public class ProcDecl extends PascalDecl {
 		ProcDecl pc = null;
 		if(s.curToken.kind == TokenKind.functionToken) {
 			pc = FuncDecl.parse(s);
-		} else {
+		} else { //Its a procedure, parse this.
 			s.skip(TokenKind.procedureToken);
 			s.test(TokenKind.nameToken);
 			pc = new ProcDecl(s.curToken.id,s.curLineNum());
-			//TODO: procdecl implementation.
+			s.readNextToken();
+			if(s.curToken.kind == TokenKind.leftParToken) {
+				pc.paramList = ParamDeclList.parse(s);
+			}
+			s.skip(TokenKind.colonToken);
+			pc.typeName = TypeName.parse(s);
+			s.skip(TokenKind.semicolonToken);
+			pc.block = Block.parse(s);
+			s.skip(TokenKind.semicolonToken);
 		}
 		
 		leaveParser("proc-decl");
