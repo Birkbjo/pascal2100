@@ -15,7 +15,7 @@ abstract public class Type extends PascalSyntax {
 		enterParser("type");
 		Type t = null;
 		switch(s.curToken.kind) {
-		case leftBracketToken:
+		case leftParToken:
 			t = EnumType.parse(s);
 			break;
 		case arrayToken:
