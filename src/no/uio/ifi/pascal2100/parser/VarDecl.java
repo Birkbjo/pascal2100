@@ -1,7 +1,10 @@
 package no.uio.ifi.pascal2100.parser;
 
-class VarDecl extends PascalDecl {
+import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.TokenKind;
 
+class VarDecl extends PascalDecl {
+	Type type;
 	VarDecl(String id, int lNum) {
 		super(id, lNum);
 		// TODO Auto-generated constructor stub
@@ -17,6 +20,18 @@ class VarDecl extends PascalDecl {
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static VarDecl parse(Scanner s) {
+		enterParser("var-decl");
+		s.test(TokenKind.nameToken);
+		VarDecl vd = new VarDecl(s.curToken.id,s.curLineNum());
+		s.readNextToken();
+		s.skip(TokenKind.colonToken);
+		vd.type = Type.parse(s);
+		s.skip(TokenKind.semicolonToken);
+		leaveParser("var-decl");
+		return null;
 	}
 
 }
