@@ -2,9 +2,9 @@ package no.uio.ifi.pascal2100.parser;
 
 import no.uio.ifi.pascal2100.scanner.Scanner;
 
-class StatementList extends PascalSyntax {
+public class VarDeclPart extends PascalSyntax {
 
-	StatementList(int n) {
+	public VarDeclPart(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,10 +18,10 @@ class StatementList extends PascalSyntax {
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public static StatementList parse(Scanner s) {
+	public static VarDeclPart parse(Scanner s) {
 		// TODO Auto-generated method stub
 		return null;
 	}

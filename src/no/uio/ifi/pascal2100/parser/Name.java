@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 public class Name extends Constant {
 
 	Name(int n) {
@@ -9,8 +11,7 @@ public class Name extends Constant {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<name> on line " + lineNum;
 	}
 
 	@Override
@@ -18,5 +19,6 @@ public class Name extends Constant {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

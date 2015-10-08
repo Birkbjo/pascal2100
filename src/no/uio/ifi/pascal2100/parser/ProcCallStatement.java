@@ -1,10 +1,8 @@
 package no.uio.ifi.pascal2100.parser;
 
-import no.uio.ifi.pascal2100.scanner.Scanner;
+public class ProcCallStatement extends Statement {
 
-class StatementList extends PascalSyntax {
-
-	StatementList(int n) {
+	public ProcCallStatement(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,12 +16,7 @@ class StatementList extends PascalSyntax {
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	public static StatementList parse(Scanner s) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
