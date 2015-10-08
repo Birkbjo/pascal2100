@@ -12,8 +12,7 @@ public class StringLiteral extends Constant {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<string-literal> on line " + lineNum;
 	}
 
 	@Override
