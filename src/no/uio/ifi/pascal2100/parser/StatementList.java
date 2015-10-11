@@ -26,10 +26,9 @@ class StatementList extends PascalSyntax {
 
 	public static StatementList parse(Scanner s) {
 		enterParser("statement-list");
-
 		StatementList sl = new StatementList(s.curLineNum());
 		sl.statmList.add(Statement.parse(s));
-		while(s.curToken.kind == TokenKind.semicolonToken) {
+		while(s.curToken.kind == TokenKind.semicolonToken) {	
 			s.skip(TokenKind.semicolonToken);
 			sl.statmList.add(Statement.parse(s));
 		}
