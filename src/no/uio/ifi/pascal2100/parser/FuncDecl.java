@@ -29,6 +29,6 @@ class FuncDecl extends ProcDecl {
 		FuncDecl fd = new FuncDecl(s.curToken.id,s.curLineNum());
 		
 		leaveParser("func-decl");
-		return null;
+		return fd;
 	}
 }
