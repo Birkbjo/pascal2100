@@ -19,16 +19,17 @@ abstract class Statement extends PascalSyntax {
 		Statement st = null;
 		switch (s.curToken.kind) {
 		case beginToken:
+			System.out.println("comp");
 			st = CompoundStatement.parse(s); break;
 		case ifToken:
 			st = IfStatement.parse(s); break;
 		case nameToken:
 			switch (s.nextToken.kind) {
-			case assignToken:
+			case assignToken: break;
 			case leftBracketToken:
 				st = AssignStatement.parse(s); break;
 			default:
-				st = EmptyStatement.parse(s); break;
+				st = ProcCallStatement.parse(s); break;
 			} break;
 		case whileToken:
 			st = WhileStatement.parse(s); break;

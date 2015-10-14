@@ -27,10 +27,10 @@ public class Program extends PascalDecl {
 		//Name only contains letters (handled by scanner), so we can skip this.
 		s.test(TokenKind.nameToken);
 		Program p = new Program(s.curToken.id,s.curLineNum());
-		p.block.context = p;
 		s.readNextToken();
 		s.skip(TokenKind.semicolonToken);
 		p.block = Block.parse(s);
+		p.block.context = p;
 		s.skip(TokenKind.dotToken);
 		
 		leaveParser("program");

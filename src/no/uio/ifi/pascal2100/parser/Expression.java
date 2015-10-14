@@ -1,6 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
 import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class Expression extends PascalSyntax {
 
@@ -22,8 +23,14 @@ public class Expression extends PascalSyntax {
 	}
 
 	public static Expression parse(Scanner s) {
-		// TODO Auto-generated method stub
-		return null;
+		enterParser("expression");
+		Expression expr = new Expression(s.curLineNum());
+		//TODO: implement expressions, quick fix for mini.pas.
+		if(s.curToken.kind == TokenKind.stringValToken) {
+			s.readNextToken();
+		}
+		leaveParser("expression");
+		return expr;
 	}
 
 }

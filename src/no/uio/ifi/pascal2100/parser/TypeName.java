@@ -1,7 +1,10 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class TypeName extends Type {
+import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.TokenKind;
 
+public class TypeName extends Type {
+	Name name;
 	public TypeName(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -9,14 +12,23 @@ public class TypeName extends Type {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<type-name on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+	//TODO: may not need the Name class.
+	public static TypeName parse(Scanner s) {
+		enterParser("type-name");
+		s.test(TokenKind.nameToken);
+		TypeName tn = new TypeName(s.curLineNum());
+		tn.name = Name.parse(s);
+		s.readNextToken();
+		leaveParser("type-name");
+		return tn;
 	}
 
 }
