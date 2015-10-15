@@ -4,7 +4,9 @@ import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class Expression extends PascalSyntax {
-
+	SimpleExpr expr1;
+	RelOperator relopr;
+	SimpleExpr exp2;
 	Expression(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -25,6 +27,7 @@ public class Expression extends PascalSyntax {
 	public static Expression parse(Scanner s) {
 		enterParser("expression");
 		Expression expr = new Expression(s.curLineNum());
+		expr.expr1 = SimpleExpr.parse(s);
 		//TODO: implement expressions, quick fix for mini.pas.
 		if(s.curToken.kind == TokenKind.stringValToken) {
 			s.readNextToken();
