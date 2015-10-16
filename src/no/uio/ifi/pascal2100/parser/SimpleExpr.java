@@ -30,13 +30,15 @@ public class SimpleExpr extends PascalSyntax {
 		enterParser("simple-expr");
 		
 		SimpleExpr se = new SimpleExpr(s.curLineNum());
-		if(s.curToken.kind == TokenKind.addToken || s.curToken.kind == TokenKind.subtractToken) {
+		
+		if(s.curToken.kind.isPrefixOpr()) {
 			se.preOpr = PrefixOperator.parse(s);
 		}
 		se.termList.add(Term.parse(s));
-		while(s.curToken.kind == TokenKind.addToken || s.curToken.kind == TokenKind.subtractToken
-				|| s.curToken.kind == TokenKind.orToken) {
+		
+		while(s.curToken.kind.isTermOpr()) {
 			se.termOprList.add(TermOperator.parse(s));
+			se.termList.add(Term.parse(s));
 		}
 		
 		leaveParser("simple-expr");

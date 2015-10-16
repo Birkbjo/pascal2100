@@ -1,7 +1,12 @@
 package no.uio.ifi.pascal2100.parser;
 
-public class Term extends PascalSyntax {
+import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
+public class Term extends PascalSyntax {
+	ArrayList<Factor> factorList;
+	ArrayList<FactorOperator> facOprList;
 	public Term(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -9,14 +14,27 @@ public class Term extends PascalSyntax {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<term> on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static Term parse(Scanner s) {
+		enterParser("term");
+		
+		Term t = new Term(s.curLineNum());
+		
+		t.factorList.add(Factor.parse(s));
+		while(s.curToken.kind.isFactorOpr()){
+			t.facOprList.add(FactorOperator.parse(s));
+			t.factorList.add(Factor.parse(s));
+		}
+		leaveParser("term");
+		return t;
 	}
 
 }

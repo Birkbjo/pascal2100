@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 public class TermOperator extends Operator {
 
 	TermOperator(int n) {
@@ -9,8 +11,7 @@ public class TermOperator extends Operator {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<term-operator> on line " + lineNum;
 	}
 
 	@Override
@@ -19,6 +20,18 @@ public class TermOperator extends Operator {
 		
 	}
 
-	
+	public static TermOperator parse(Scanner s) {
+	enterParser("term-operator");
+		
+		TermOperator to = new TermOperator(s.curLineNum());
+		if(s.curToken.kind.isTermOpr()) {
+			s.readNextToken();
+		} else {
+			s.testError("term-operator");
+		}
+		leaveParser("term-operator");
+		return to;
+		
+	}
 
 }
