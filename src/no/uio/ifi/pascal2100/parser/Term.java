@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 
 public class Term extends PascalSyntax {
-	ArrayList<Factor> factorList;
-	ArrayList<FactorOperator> facOprList;
+	ArrayList<Factor> factorList = new ArrayList<Factor>();
+	ArrayList<FactorOperator> facOprList = new ArrayList<FactorOperator>();
 	public Term(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
