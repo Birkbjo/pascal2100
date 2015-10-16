@@ -31,7 +31,6 @@ public class VarDeclPart extends PascalSyntax {
 		while(s.curToken.kind == TokenKind.nameToken) {
 			vdp.varDeclList.add(VarDecl.parse(s));
 		}
-		s.readNextToken();
 		leaveParser("var-decl-part");
 		return vdp;
 	}

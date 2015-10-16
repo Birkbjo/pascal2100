@@ -28,7 +28,6 @@ abstract public class Type extends PascalSyntax {
 			t = RangeType.parse(s);
 			break;
 		}
-		s.readNextToken();
 		leaveParser("type");
 		return t;
 	}

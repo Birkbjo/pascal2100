@@ -15,6 +15,7 @@ abstract public class Factor extends PascalSyntax {
 		enterParser("factor");
 		
 		Factor f = null;
+		
 		switch (s.curToken.kind) {
 		case notToken:
 			f = Negation.parse(s);

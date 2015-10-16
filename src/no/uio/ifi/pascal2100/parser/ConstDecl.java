@@ -30,7 +30,7 @@ class ConstDecl extends PascalDecl {
 		s.readNextToken();
 		s.skip(TokenKind.equalToken);
 		cd.con = Constant.parse(s);
-		
+		s.skip(TokenKind.semicolonToken);
 		leaveParser("const-decl");
 		return cd;
 	}
