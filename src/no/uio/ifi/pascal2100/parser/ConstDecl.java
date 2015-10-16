@@ -27,6 +27,7 @@ class ConstDecl extends PascalDecl {
 		
 		s.test(TokenKind.nameToken);
 		ConstDecl cd = new ConstDecl(s.curToken.id,s.curLineNum());
+		s.readNextToken();
 		s.skip(TokenKind.equalToken);
 		cd.con = Constant.parse(s);
 		
