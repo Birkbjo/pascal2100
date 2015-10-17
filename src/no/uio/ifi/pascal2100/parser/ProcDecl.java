@@ -39,8 +39,6 @@ public class ProcDecl extends PascalDecl {
 			if(s.curToken.kind == TokenKind.leftParToken) {
 				pc.paramList = ParamDeclList.parse(s);
 			}
-			s.skip(TokenKind.colonToken);
-			pc.typeName = TypeName.parse(s);
 			s.skip(TokenKind.semicolonToken);
 			pc.block = Block.parse(s);
 			s.skip(TokenKind.semicolonToken);

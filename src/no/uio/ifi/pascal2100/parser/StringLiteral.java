@@ -12,7 +12,7 @@ public class StringLiteral extends Constant {
 
 	@Override
 	public String identify() {
-		return "<string-literal> on line " + lineNum;
+		return "<char-literal> on line " + lineNum;
 	}
 
 	@Override
@@ -22,11 +22,11 @@ public class StringLiteral extends Constant {
 	}
 	
 	public static StringLiteral parse(Scanner s) {
-		enterParser("string-literal");
+		enterParser("char-literal");
 		s.test(TokenKind.stringValToken);
 		StringLiteral sl = new StringLiteral(s.curLineNum());
 		s.readNextToken();
-		leaveParser("string-literal");
+		leaveParser("char-literal");
 		return sl;
 	}
 

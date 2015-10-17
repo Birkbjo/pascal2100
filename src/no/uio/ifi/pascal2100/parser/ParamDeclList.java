@@ -29,10 +29,12 @@ public class ParamDeclList extends PascalSyntax {
 		
 		s.skip(TokenKind.leftParToken);
 		ParamDeclList pdl = new ParamDeclList(s.curLineNum());
-		while(s.curToken.kind == TokenKind.nameToken) {
-			pdl.paramDeclList.add(ParamDecl.parse(s));
+		pdl.paramDeclList.add(ParamDecl.parse(s));
+		while(s.curToken.kind == TokenKind.semicolonToken) {
 			s.skip(TokenKind.semicolonToken);
+			pdl.paramDeclList.add(ParamDecl.parse(s));
 		}
+		
 		s.skip(TokenKind.rightParToken);
 		leaveParser("param-decl-list");
 		return pdl;

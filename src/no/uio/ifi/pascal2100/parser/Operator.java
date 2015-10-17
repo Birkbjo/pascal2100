@@ -8,5 +8,5 @@ public abstract class Operator extends PascalSyntax {
 	}
 
 	abstract public String identify();
-
+	
 }

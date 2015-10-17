@@ -15,7 +15,6 @@ abstract class Statement extends PascalSyntax {
 	public static Statement parse(Scanner s) {
 		// TODO Auto-generated method stub
 		enterParser("statement");
-		
 		Statement st = null;
 		switch (s.curToken.kind) {
 		case beginToken:

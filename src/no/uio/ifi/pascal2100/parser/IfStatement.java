@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 class IfStatement extends Statement {
 
 	IfStatement(int n) {
@@ -16,6 +18,14 @@ class IfStatement extends Statement {
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public static IfStatement parse(Scanner s) {
+		enterParser("if-statement");
+		
+		leaveParser("if-statement");
+		return null;
 		
 	}
 
