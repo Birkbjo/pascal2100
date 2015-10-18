@@ -16,8 +16,7 @@ public class SimpleExpr extends PascalSyntax {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<simple-expr> on line " + lineNum;
 	}
 
 	@Override
@@ -34,8 +33,9 @@ public class SimpleExpr extends PascalSyntax {
 		if(s.curToken.kind.isPrefixOpr()) {
 			se.preOpr = PrefixOperator.parse(s);
 		}
+
 		se.termList.add(Term.parse(s));
-		
+
 		while(s.curToken.kind.isTermOpr()) {
 			se.termOprList.add(TermOperator.parse(s));
 			se.termList.add(Term.parse(s));

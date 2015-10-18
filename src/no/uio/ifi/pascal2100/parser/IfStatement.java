@@ -1,18 +1,20 @@
 package no.uio.ifi.pascal2100.parser;
 
 import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 class IfStatement extends Statement {
-
+	Expression expr;
+	Statement ifstatm;
+	Statement elsestatm;
+	
 	IfStatement(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<if-statement> on line " + lineNum;
 	}
 
 	@Override
@@ -24,8 +26,19 @@ class IfStatement extends Statement {
 	public static IfStatement parse(Scanner s) {
 		enterParser("if-statement");
 		
+		IfStatement ifs = new IfStatement(s.curLineNum());
+		s.skip(TokenKind.ifToken);
+		ifs.expr = Expression.parse(s);
+		s.skip(TokenKind.thenToken);
+		ifs.ifstatm = Statement.parse(s);
+		
+		if(s.curToken.kind == TokenKind.elseToken) {
+			s.skip(TokenKind.elseToken);
+			ifs.elsestatm = Statement.parse(s);
+		}
+		
 		leaveParser("if-statement");
-		return null;
+		return ifs;
 		
 	}
 

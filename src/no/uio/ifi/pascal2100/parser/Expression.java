@@ -14,8 +14,7 @@ public class Expression extends PascalSyntax {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<expression> on line " + lineNum;
 	}
 
 	@Override
@@ -28,10 +27,12 @@ public class Expression extends PascalSyntax {
 		enterParser("expression");
 		Expression expr = new Expression(s.curLineNum());
 		expr.expr1 = SimpleExpr.parse(s);
-		//TODO: implement expressions, quick fix for mini.pas.
-		if(s.curToken.kind == TokenKind.stringValToken) {
-			s.readNextToken();
+
+		if(s.curToken.kind.isRelOpr()) {
+			expr.relopr = RelOperator.parse(s);
+			expr.exp2 = SimpleExpr.parse(s);
 		}
+
 		leaveParser("expression");
 		return expr;
 	}

@@ -27,7 +27,6 @@ public class Term extends PascalSyntax {
 		enterParser("term");
 		
 		Term t = new Term(s.curLineNum());
-		
 		t.factorList.add(Factor.parse(s));
 		while(s.curToken.kind.isFactorOpr()){
 			t.facOprList.add(FactorOperator.parse(s));
