@@ -14,8 +14,7 @@ public class FuncCall extends Factor {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<func-call> on line " + lineNum;
 	}
 
 	@Override
@@ -29,6 +28,7 @@ public class FuncCall extends Factor {
 	
 		s.skip(TokenKind.nameToken);
 		FuncCall fc = new FuncCall(s.curLineNum());
+
 		if(s.curToken.kind == TokenKind.leftParToken) {
 			s.skip(TokenKind.leftParToken);
 			fc.exprList.add(Expression.parse(s));
@@ -37,8 +37,6 @@ public class FuncCall extends Factor {
 				fc.exprList.add(Expression.parse(s));
 			}
 			s.skip(TokenKind.rightParToken);
-		} else {
-			s.readNextToken();
 		}
 		
 		leaveParser("func-call");
