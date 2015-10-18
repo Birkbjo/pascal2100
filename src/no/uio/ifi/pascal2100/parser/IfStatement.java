@@ -35,8 +35,6 @@ class IfStatement extends Statement {
 		if(s.curToken.kind == TokenKind.elseToken) {
 			s.skip(TokenKind.elseToken);
 			ifs.elsestatm = Statement.parse(s);
-		} else {
-			s.readNextToken();
 		}
 		
 		leaveParser("if-statement");

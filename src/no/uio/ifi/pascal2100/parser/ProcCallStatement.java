@@ -38,8 +38,6 @@ public class ProcCallStatement extends Statement {
 				
 			}
 			s.skip(TokenKind.rightParToken);
-		} else {
-			s.readNextToken();
 		}
 		
 		leaveParser("proc-call");
