@@ -1,5 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.scanner.Scanner;
+
 public class RelOperator extends Operator {
 
 	public RelOperator(int n) {
@@ -9,14 +11,27 @@ public class RelOperator extends Operator {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<rel-operator> on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static RelOperator parse(Scanner s) {
+		enterParser("rel-operator");
+		
+		RelOperator ro = new RelOperator(s.curLineNum());
+		if(s.curToken.kind.isRelOpr()) {
+			s.readNextToken();
+		} else {
+			s.testError("rel-operator");
+		}
+		
+		leaveParser("rel-operator");
+		return ro;
 	}
 
 }

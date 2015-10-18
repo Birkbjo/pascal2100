@@ -30,12 +30,12 @@ abstract public class Factor extends PascalSyntax {
 			
 		default: // should be a nametoken
 			s.test(TokenKind.nameToken);
-			
+
 			switch (s.nextToken.kind) {
-			case rightBracketToken:
+			case leftBracketToken:
 				f =  Variable.parse(s);
 				break;
-			case rightParToken:
+			case leftParToken:
 				f = FuncCall.parse(s);
 				break;
 			default:

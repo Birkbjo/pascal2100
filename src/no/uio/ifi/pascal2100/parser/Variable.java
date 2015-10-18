@@ -12,8 +12,7 @@ public class Variable extends Factor {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<variable> on line " + lineNum;
 	}
 
 	@Override
@@ -31,10 +30,8 @@ public class Variable extends Factor {
 			s.readNextToken();
 			v.expr = Expression.parse(s);
 			s.skip(TokenKind.rightBracketToken);
-		} else {
-			s.readNextToken();
 		}
-		
+
 		leaveParser("variable");
 		return v;
 	}
