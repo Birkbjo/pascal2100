@@ -9,7 +9,6 @@ public class ProcDecl extends PascalDecl {
 	Block block;
 	ProcDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -7,7 +7,6 @@ public class InnerExpr extends Factor {
 	Expression expr;
 	public InnerExpr(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

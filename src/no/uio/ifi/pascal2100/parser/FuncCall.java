@@ -10,7 +10,6 @@ public class FuncCall extends Factor {
 	String name;
 	public FuncCall(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

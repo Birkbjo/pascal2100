@@ -8,7 +8,6 @@ public class RangeType extends Type {
 	Constant c2;
 	public RangeType(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

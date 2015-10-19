@@ -7,13 +7,11 @@ public class NumericLiteral extends Constant {
 
 	public NumericLiteral(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<numeric-literal> on line " + lineNum;
 	}
 
 	@Override

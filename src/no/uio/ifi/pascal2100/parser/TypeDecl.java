@@ -7,7 +7,6 @@ class TypeDecl extends PascalDecl {
 	Type type;
 	TypeDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
