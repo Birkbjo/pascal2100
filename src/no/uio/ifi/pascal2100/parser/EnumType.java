@@ -9,13 +9,11 @@ public class EnumType extends Type {
 	ArrayList<EnumLiteral> eLiteral = new ArrayList<EnumLiteral>();
 	public EnumType(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<enum-type> on line " + lineNum;
 	}
 
 	@Override

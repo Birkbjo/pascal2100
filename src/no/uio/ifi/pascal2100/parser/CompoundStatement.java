@@ -7,7 +7,6 @@ class CompoundStatement extends Statement {
 	StatementList statmList;
 	CompoundStatement(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -9,7 +9,6 @@ public class Expression extends PascalSyntax {
 	SimpleExpr exp2;
 	Expression(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

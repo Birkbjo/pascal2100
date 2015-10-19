@@ -7,13 +7,11 @@ class ConstDecl extends PascalDecl {
 	Constant con;
 	ConstDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<const-decl> " + name + " on line " + lineNum;
 	}
 
 	@Override

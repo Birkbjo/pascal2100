@@ -8,13 +8,12 @@ public class ArrayType extends Type {
 	Type t2;
 	public ArrayType(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<array-type> on line " + lineNum;
 	}
 
 	@Override

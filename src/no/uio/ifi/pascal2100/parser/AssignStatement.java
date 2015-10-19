@@ -8,7 +8,6 @@ class AssignStatement extends Statement {
 	Expression expr;
 	AssignStatement(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -9,13 +9,11 @@ public class ConstDeclPart extends PascalSyntax{
 	ArrayList<ConstDecl> constDecl = new ArrayList<ConstDecl>();
 	ConstDeclPart(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<const-decl-part> on line " + lineNum;
 	}
 
 	@Override
@@ -30,8 +28,7 @@ public class ConstDeclPart extends PascalSyntax{
 		s.skip(TokenKind.constToken);
 		ConstDeclPart c = new ConstDeclPart(s.curLineNum());
 		while(s.curToken.kind == TokenKind.nameToken) {
-			c.constDecl.add(ConstDecl.parse(s));
-			
+			c.constDecl.add(ConstDecl.parse(s));	
 		}
 		
 		leaveParser("const-decl-part");
