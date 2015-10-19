@@ -17,7 +17,6 @@ class FuncDecl extends ProcDecl {
 	}
 	
 	/**
-	 * TODO funcdecl implementation.
 	 * @param s
 	 * @return
 	 */

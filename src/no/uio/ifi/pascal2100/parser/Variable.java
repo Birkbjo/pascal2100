@@ -5,6 +5,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class Variable extends Factor {
 	Expression expr;
+	String name;
 	public Variable(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -25,7 +26,10 @@ public class Variable extends Factor {
 		enterParser("variable");
 		
 		Variable v = new Variable(s.curLineNum());
-		s.skip(TokenKind.nameToken);
+		s.test(TokenKind.nameToken);
+		v.name = s.curToken.id;
+		s.readNextToken();
+		
 		if(s.curToken.kind == TokenKind.leftBracketToken) {
 			s.readNextToken();
 			v.expr = Expression.parse(s);

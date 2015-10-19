@@ -25,9 +25,9 @@ public class InnerExpr extends Factor {
 		enterParser("inner-expr");
 		
 		InnerExpr ie = new InnerExpr(s.curLineNum());
-		s.skip(TokenKind.rightParToken);
-		ie.expr = Expression.parse(s);
 		s.skip(TokenKind.leftParToken);
+		ie.expr = Expression.parse(s);
+		s.skip(TokenKind.rightParToken);
 		leaveParser("inner-expr");
 		return ie;
 	}
