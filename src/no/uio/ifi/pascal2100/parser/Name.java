@@ -7,7 +7,6 @@ public class Name extends Constant {
 
 	Name(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

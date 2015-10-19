@@ -7,7 +7,6 @@ public class FactorOperator extends Operator {
 
 	public FactorOperator(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

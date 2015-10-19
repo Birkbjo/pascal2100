@@ -20,7 +20,7 @@ abstract public class Factor extends PascalSyntax {
 		case notToken:
 			f = Negation.parse(s);
 			break;
-		case rightParToken:
+		case leftParToken:
 			f = InnerExpr.parse(s);
 			break;
 		case stringValToken: // string OR intval is a constant

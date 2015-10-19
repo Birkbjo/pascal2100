@@ -7,13 +7,11 @@ public class Negation extends Factor {
 	Factor factor;
 	public Negation(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<negation> on line " + lineNum;
 	}
 
 	@Override

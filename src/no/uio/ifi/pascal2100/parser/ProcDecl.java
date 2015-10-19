@@ -9,13 +9,11 @@ public class ProcDecl extends PascalDecl {
 	Block block;
 	ProcDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<proc-decl> " + name + " on line " + lineNum;
 	}
 
 	@Override
@@ -26,12 +24,13 @@ public class ProcDecl extends PascalDecl {
 
 	
 	public static ProcDecl parse(Scanner s) {
-		enterParser("proc-decl");
+		
 		
 		ProcDecl pc = null;
 		if(s.curToken.kind == TokenKind.functionToken) {
 			pc = FuncDecl.parse(s);
 		} else { //Its a procedure, parse this.
+			enterParser("proc-decl");
 			s.skip(TokenKind.procedureToken);
 			s.test(TokenKind.nameToken);
 			pc = new ProcDecl(s.curToken.id,s.curLineNum());
@@ -42,9 +41,9 @@ public class ProcDecl extends PascalDecl {
 			s.skip(TokenKind.semicolonToken);
 			pc.block = Block.parse(s);
 			s.skip(TokenKind.semicolonToken);
+			leaveParser("proc-decl");
 		}
 		
-		leaveParser("proc-decl");
 		return pc;
 	}
 

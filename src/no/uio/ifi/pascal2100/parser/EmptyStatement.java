@@ -11,8 +11,7 @@ class EmptyStatement extends Statement {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<empty-statm> on line " + lineNum;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ public class ProcCallStatement extends Statement {
 	
 	public ProcCallStatement(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

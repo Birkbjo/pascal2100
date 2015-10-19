@@ -7,7 +7,6 @@ public class StringLiteral extends Constant {
 
 	public StringLiteral(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

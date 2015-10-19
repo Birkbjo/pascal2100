@@ -7,7 +7,6 @@ public class InnerExpr extends Factor {
 	Expression expr;
 	public InnerExpr(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -25,9 +24,9 @@ public class InnerExpr extends Factor {
 		enterParser("inner-expr");
 		
 		InnerExpr ie = new InnerExpr(s.curLineNum());
-		s.skip(TokenKind.rightParToken);
-		ie.expr = Expression.parse(s);
 		s.skip(TokenKind.leftParToken);
+		ie.expr = Expression.parse(s);
+		s.skip(TokenKind.rightParToken);
 		leaveParser("inner-expr");
 		return ie;
 	}

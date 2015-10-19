@@ -16,7 +16,6 @@ public class Block extends PascalSyntax {
 
 	public Block(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

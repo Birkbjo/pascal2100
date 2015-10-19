@@ -6,7 +6,6 @@ abstract public class Constant extends Factor{
 
 	Constant(int lnum) {
 		super(lnum);
-		// TODO Auto-generated constructor stub
 	}
 
 	public static Constant parse(Scanner s) {

@@ -9,13 +9,11 @@ public class ParamDeclList extends PascalSyntax {
 	ArrayList<ParamDecl> paramDeclList = new ArrayList<ParamDecl>();
 	public ParamDeclList(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<param-decl-list> on line " + lineNum;
 	}
 
 	@Override
