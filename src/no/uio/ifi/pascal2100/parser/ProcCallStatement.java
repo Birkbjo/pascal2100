@@ -3,11 +3,10 @@ package no.uio.ifi.pascal2100.parser;
 import java.util.ArrayList;
 
 import no.uio.ifi.pascal2100.main.Main;
-import no.uio.ifi.pascal2100.scanner.Scanner;
-import no.uio.ifi.pascal2100.scanner.TokenKind;
+import no.uio.ifi.pascal2100.scanner.*;
 
 public class ProcCallStatement extends Statement {
-	String name;
+	Token name;
 	ArrayList<Expression> exprList = new ArrayList<Expression>();
 	
 	public ProcCallStatement(int n) {
@@ -21,7 +20,7 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(name);
+		Main.log.prettyPrint(name.id);
 		if(exprList.size() > 0) {
 			Main.log.prettyPrint("(");
 			for(int i = 0;i<exprList.size();i++) {
@@ -37,7 +36,7 @@ public class ProcCallStatement extends Statement {
 		enterParser("proc call");
 		s.test(TokenKind.nameToken);
 		ProcCallStatement ps = new ProcCallStatement(s.curLineNum());
-		ps.name = s.curToken.id;
+		ps.name = s.curToken;
 		s.readNextToken();
 		if(s.curToken.kind == TokenKind.leftParToken) {
 			s.skip(TokenKind.leftParToken);
