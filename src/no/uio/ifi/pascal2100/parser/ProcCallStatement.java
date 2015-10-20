@@ -2,11 +2,12 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class ProcCallStatement extends Statement {
-	Name name;
+	String name;
 	ArrayList<Expression> exprList = new ArrayList<Expression>();
 	
 	public ProcCallStatement(int n) {
@@ -20,14 +21,24 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-
+		Main.log.prettyPrint(name);
+		if(exprList.size() > 0) {
+			Main.log.prettyPrint("(");
+			for(int i = 0;i<exprList.size();i++) {
+				exprList.get(i).prettyPrint();
+				if(i < exprList.size()-1)
+					Main.log.prettyPrint(", ");
+			}
+			Main.log.prettyPrintLn(")");
+		}
 	}
 
 	public static ProcCallStatement parse(Scanner s) {
 		enterParser("proc-call");
-		s.skip(TokenKind.nameToken);
+		s.test(TokenKind.nameToken);
 		ProcCallStatement ps = new ProcCallStatement(s.curLineNum());
+		ps.name = s.curToken.id;
+		s.readNextToken();
 		if(s.curToken.kind == TokenKind.leftParToken) {
 			s.skip(TokenKind.leftParToken);
 			ps.exprList.add(Expression.parse(s));

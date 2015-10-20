@@ -18,7 +18,7 @@ class StatementList extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
+		for(Statement s: statmList) s.prettyPrint();
 		
 	}
 

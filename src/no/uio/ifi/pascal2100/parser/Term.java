@@ -19,7 +19,7 @@ public class Term extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
+		for(Factor f: factorList) f.prettyPrint();
 		
 	}
 

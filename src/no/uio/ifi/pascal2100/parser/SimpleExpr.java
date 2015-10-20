@@ -21,7 +21,14 @@ public class SimpleExpr extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
+		if(preOpr != null) {
+			preOpr.prettyPrint();
+		}
+		termList.get(0).prettyPrint();
+		for(int i = 0;i<termOprList.size();i++) {
+			termOprList.get(i).prettyPrint();
+			termList.get(i+1);
+		}
 		
 	}
 
