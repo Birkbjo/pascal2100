@@ -26,14 +26,14 @@ class VarDecl extends PascalDecl {
 	}
 
 	public static VarDecl parse(Scanner s) {
-		enterParser("var-decl");
+		enterParser("var decl");
 		s.test(TokenKind.nameToken);
 		VarDecl vd = new VarDecl(s.curToken.id,s.curLineNum());
 		s.readNextToken();
 		s.skip(TokenKind.colonToken);
 		vd.type = Type.parse(s);
 		s.skip(TokenKind.semicolonToken);
-		leaveParser("var-decl");
+		leaveParser("var decl");
 		return vd;
 	}
 

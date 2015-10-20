@@ -20,9 +20,9 @@ class EmptyStatement extends Statement {
 	}
 	
 	public static EmptyStatement parse(Scanner s) {
-		enterParser("empty-statement");
+		enterParser("empty statm");
 		EmptyStatement es = new EmptyStatement(s.curLineNum());
-		leaveParser("empty-statement");
+		leaveParser("empty statm");
 		return es;
 	}
 }

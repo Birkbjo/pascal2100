@@ -23,7 +23,7 @@ public class WhileStatement extends Statement {
 		Main.log.prettyPrint("while ");
 		Main.log.prettyIndent();
 		expr.prettyPrint();
-		Main.log.prettyPrint(" do ");
+		Main.log.prettyPrintLn(" do ");
 		statm.prettyPrint();
 	}
 	

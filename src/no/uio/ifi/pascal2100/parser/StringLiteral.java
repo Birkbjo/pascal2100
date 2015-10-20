@@ -22,12 +22,12 @@ public class StringLiteral extends Constant {
 	}
 	
 	public static StringLiteral parse(Scanner s) {
-		enterParser("char-literal");
+		enterParser("char literal");
 		s.test(TokenKind.stringValToken);
 		StringLiteral sl = new StringLiteral(s.curLineNum());
 		sl.slit = s.curToken.strVal;
 		s.readNextToken();
-		leaveParser("char-literal");
+		leaveParser("char literal");
 		return sl;
 	}
 

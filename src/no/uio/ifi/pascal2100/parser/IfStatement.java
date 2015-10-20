@@ -31,7 +31,7 @@ class IfStatement extends Statement {
 	}
 	
 	public static IfStatement parse(Scanner s) {
-		enterParser("if-statement");
+		enterParser("if-statm");
 		
 		IfStatement ifs = new IfStatement(s.curLineNum());
 		s.skip(TokenKind.ifToken);
@@ -44,7 +44,7 @@ class IfStatement extends Statement {
 			ifs.elsestatm = Statement.parse(s);
 		}
 		
-		leaveParser("if-statement");
+		leaveParser("if-statm");
 		return ifs;
 		
 	}

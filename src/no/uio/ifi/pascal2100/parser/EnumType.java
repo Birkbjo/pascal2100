@@ -31,7 +31,7 @@ public class EnumType extends Type {
 	}
 	
 	public static EnumType parse(Scanner s) {
-		enterParser("enum-type");
+		enterParser("enum type");
 		s.skip(TokenKind.leftParToken);
 		EnumType et = new EnumType(s.curLineNum());
 		while(s.curToken.kind == TokenKind.nameToken) {
@@ -39,7 +39,7 @@ public class EnumType extends Type {
 			s.skip(TokenKind.commaToken);
 		}
 		s.skip(TokenKind.rightParToken);
-		leaveParser("enum-type");
+		leaveParser("enum type");
 		return et;
 	}
 }
