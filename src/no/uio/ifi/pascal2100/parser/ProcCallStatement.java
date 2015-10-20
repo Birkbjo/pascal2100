@@ -27,9 +27,9 @@ public class ProcCallStatement extends Statement {
 			for(int i = 0;i<exprList.size();i++) {
 				exprList.get(i).prettyPrint();
 				if(i < exprList.size()-1)
-					Main.log.prettyPrint(", ");
+					Main.log.prettyPrint(",");
 			}
-			Main.log.prettyPrintLn(")");
+			Main.log.prettyPrint(")");
 		}
 	}
 

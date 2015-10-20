@@ -27,7 +27,7 @@ public class SimpleExpr extends PascalSyntax {
 		termList.get(0).prettyPrint();
 		for(int i = 0;i<termOprList.size();i++) {
 			termOprList.get(i).prettyPrint();
-			termList.get(i+1);
+			termList.get(i+1).prettyPrint();;
 		}
 		
 	}
