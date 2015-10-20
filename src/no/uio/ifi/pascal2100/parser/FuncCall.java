@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -19,8 +20,16 @@ public class FuncCall extends Factor {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint("name");
+		if(exprList.size() > 0) {
+			Main.log.prettyPrint("(");
+			for(int i = 0;i<exprList.size();i++) {
+				exprList.get(i).prettyPrint();
+				if(i < exprList.size()-1)
+					Main.log.prettyPrint(",");
+			}
+			Main.log.prettyPrint(")");
+		}
 	}
 
 	public static FuncCall parse(Scanner s) {
