@@ -1,13 +1,15 @@
 package no.uio.ifi.pascal2100.parser;
 
+import java.util.ArrayList;
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class TypeDeclPart extends PascalSyntax {
-	TypeDecl typedecl;
+	ArrayList<TypeDecl> typeDeclList = new ArrayList<TypeDecl>();
+	
 	public TypeDeclPart(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -17,8 +19,10 @@ public class TypeDeclPart extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-
+		Main.log.prettyPrint("type");
+		for(TypeDecl td : typeDeclList) {
+			td.prettyPrint();
+		}
 	}
 	
 	public static TypeDeclPart parse(Scanner s) {
@@ -27,10 +31,10 @@ public class TypeDeclPart extends PascalSyntax {
 		TypeDeclPart tdp = new TypeDeclPart(s.curLineNum());
 
 		while(s.curToken.kind == TokenKind.nameToken) {
-			tdp.typedecl = TypeDecl.parse(s);
+			tdp.typeDeclList.add(TypeDecl.parse(s));
 		}
 		leaveParser("type-decl-part");
-		return null;
+		return tdp;
 	}
 
 }

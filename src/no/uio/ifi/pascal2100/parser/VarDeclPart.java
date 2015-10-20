@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -20,8 +21,10 @@ public class VarDeclPart extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-
+		Main.log.prettyPrint("var");
+		for(VarDecl vd : varDeclList) {
+			vd.prettyPrint();
+		}
 	}
 
 	public static VarDeclPart parse(Scanner s) {
