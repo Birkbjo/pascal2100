@@ -17,9 +17,10 @@ class ConstDecl extends PascalDecl {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("constdecl");
+		Main.log.prettyPrint(name);
+		Main.log.prettyPrint(" = ");
 		con.prettyPrint();
-		
+		Main.log.prettyPrint("; ");
 	}
 
 	public static ConstDecl parse(Scanner s) {

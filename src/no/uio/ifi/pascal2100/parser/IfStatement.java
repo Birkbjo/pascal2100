@@ -20,12 +20,12 @@ class IfStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrintLn("if");
+		Main.log.prettyPrint("if ");
 		expr.prettyPrint();
-		Main.log.prettyPrint("then");
+		Main.log.prettyPrintLn(" then");
 		ifstatm.prettyPrint();
 		if(elsestatm != null) {
-			Main.log.prettyPrint("else");
+			Main.log.prettyPrintLn("else");
 			elsestatm.prettyPrint();
 		}
 	}

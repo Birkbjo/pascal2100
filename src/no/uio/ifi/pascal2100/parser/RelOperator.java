@@ -17,7 +17,7 @@ public class RelOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(t.kind.toString());
+		Main.log.prettyPrint(" " + t.kind.toString() + " ");
 	}
 
 	public static RelOperator parse(Scanner s) {

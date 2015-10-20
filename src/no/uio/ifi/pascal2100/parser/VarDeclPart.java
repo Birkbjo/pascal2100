@@ -10,21 +10,20 @@ public class VarDeclPart extends PascalSyntax {
 	ArrayList<VarDecl> varDeclList = new ArrayList<VarDecl>();
 	public VarDeclPart(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<var-decl-part> on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("var");
+		Main.log.prettyPrint("var ");
 		for(VarDecl vd : varDeclList) {
 			vd.prettyPrint();
 		}
+		Main.log.prettyPrintLn();
 	}
 
 	public static VarDeclPart parse(Scanner s) {

@@ -19,7 +19,7 @@ class AssignStatement extends Statement {
 	@Override
 	void prettyPrint() {
 		var.prettyPrint();
-		Main.log.prettyPrint(":=");
+		Main.log.prettyPrint(" := ");
 		expr.prettyPrint();
 		
 	}

@@ -24,9 +24,9 @@ public class ProcDecl extends PascalDecl {
 		if(paramList != null) {
 			paramList.prettyPrint();
 		}
-		Main.log.prettyPrint(";");
+		Main.log.prettyPrintLn(";");
 		block.prettyPrint();
-		Main.log.prettyPrint(";");
+		Main.log.prettyPrintLn(";");
 	}
 
 	

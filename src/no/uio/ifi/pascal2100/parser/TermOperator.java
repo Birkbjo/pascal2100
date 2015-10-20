@@ -16,7 +16,7 @@ public class TermOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(operator);
+		Main.log.prettyPrint(" " + operator + " ");
 		
 	}
 
