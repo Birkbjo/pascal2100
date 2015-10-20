@@ -17,9 +17,9 @@ class CompoundStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("begin"); Main.log.prettyIndent();
+		Main.log.prettyPrint("begin "); Main.log.prettyIndent();
 		statmList.prettyPrint(); Main.log.prettyOutdent();
-		Main.log.prettyPrint("end");
+		Main.log.prettyPrint(" end");
 	}
 	
 	public static CompoundStatement parse(Scanner s) {
