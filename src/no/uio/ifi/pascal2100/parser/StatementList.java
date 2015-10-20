@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -18,7 +19,13 @@ class StatementList extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
+		
+		for(int i = 0;i<statmList.size();i++) {
+			statmList.get(i).prettyPrint();
+			if(i != statmList.size()-1)
+				Main.log.prettyPrintLn(";");
+			else Main.log.prettyPrintLn("");
+		}
 		
 	}
 

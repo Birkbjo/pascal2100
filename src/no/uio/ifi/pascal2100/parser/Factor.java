@@ -11,11 +11,12 @@ abstract public class Factor extends PascalSyntax {
 
 	abstract public String identify();
 
+	
 	public static Factor parse(Scanner s) {
 		enterParser("factor");
-		
+
 		Factor f = null;
-		
+
 		switch (s.curToken.kind) {
 		case notToken:
 			f = Negation.parse(s);
@@ -27,13 +28,13 @@ abstract public class Factor extends PascalSyntax {
 		case intValToken:
 			f = Constant.parse(s);
 			break;
-			
+
 		default: // should be a nametoken
 			s.test(TokenKind.nameToken);
 
 			switch (s.nextToken.kind) {
 			case leftBracketToken:
-				f =  Variable.parse(s);
+				f = Variable.parse(s);
 				break;
 			case leftParToken:
 				f = FuncCall.parse(s);

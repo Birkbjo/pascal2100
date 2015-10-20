@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -7,6 +8,7 @@ public class Expression extends PascalSyntax {
 	SimpleExpr expr1;
 	RelOperator relopr;
 	SimpleExpr exp2;
+
 	Expression(int n) {
 		super(n);
 	}
@@ -18,8 +20,12 @@ public class Expression extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		expr1.prettyPrint();
+		if(relopr != null) {
+			relopr.prettyPrint();
+			exp2.prettyPrint();
+		}
+
 	}
 
 	public static Expression parse(Scanner s) {
@@ -27,7 +33,7 @@ public class Expression extends PascalSyntax {
 		Expression expr = new Expression(s.curLineNum());
 		expr.expr1 = SimpleExpr.parse(s);
 
-		if(s.curToken.kind.isRelOpr()) {
+		if (s.curToken.kind.isRelOpr()) {
 			expr.relopr = RelOperator.parse(s);
 			expr.exp2 = SimpleExpr.parse(s);
 		}
