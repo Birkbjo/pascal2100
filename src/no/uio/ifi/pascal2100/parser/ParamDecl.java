@@ -18,6 +18,8 @@ class ParamDecl extends PascalDecl {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(t.id);
+		Main.log.prettyPrint(": ");
+		typeName.prettyPrint();
 	}
 
 	public static ParamDecl parse(Scanner s) {
