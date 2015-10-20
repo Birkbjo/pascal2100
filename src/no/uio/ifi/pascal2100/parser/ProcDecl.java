@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -18,13 +19,18 @@ public class ProcDecl extends PascalDecl {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint("procedure");
+		Main.log.prettyPrint(name);
+		if(paramList != null) {
+			paramList.prettyPrint();
+		}
+		Main.log.prettyPrint(";");
+		block.prettyPrint();
+		Main.log.prettyPrint(";");
 	}
 
 	
 	public static ProcDecl parse(Scanner s) {
-		
 		
 		ProcDecl pc = null;
 		if(s.curToken.kind == TokenKind.functionToken) {

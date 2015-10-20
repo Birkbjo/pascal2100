@@ -9,8 +9,6 @@ abstract class Statement extends PascalSyntax {
 		
 	}
 
-	
-	
 	public static Statement parse(Scanner s) {
 		enterParser("statement");
 		Statement st = null;
