@@ -1,10 +1,11 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class Name extends Constant {
-
+	String name;
 	Name(int n) {
 		super(n);
 	}
@@ -16,14 +17,14 @@ public class Name extends Constant {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint(name);
 	}
 	
 	public static Name parse(Scanner s) {
 		enterParser("name");
 		s.test(TokenKind.nameToken);
 		Name n = new Name(s.curLineNum());
+		n.name = s.curToken.id;
 		s.readNextToken();
 		leaveParser("name");
 		return n;

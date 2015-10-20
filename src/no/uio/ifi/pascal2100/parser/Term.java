@@ -9,7 +9,6 @@ public class Term extends PascalSyntax {
 	ArrayList<FactorOperator> facOprList = new ArrayList<FactorOperator>();
 	public Term(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
