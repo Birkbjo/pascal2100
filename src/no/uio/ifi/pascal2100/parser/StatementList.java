@@ -23,7 +23,7 @@ class StatementList extends PascalSyntax {
 		for(int i = 0;i<statmList.size();i++) {
 			statmList.get(i).prettyPrint();
 			if(i != statmList.size()-1)
-				Main.log.prettyPrintLn(";");
+				Main.log.prettyPrintLn("; ");
 			else Main.log.prettyPrintLn("");
 		}
 		

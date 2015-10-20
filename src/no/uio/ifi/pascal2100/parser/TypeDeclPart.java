@@ -19,7 +19,7 @@ public class TypeDeclPart extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("type");
+		Main.log.prettyPrint("type ");
 		for(TypeDecl td : typeDeclList) {
 			td.prettyPrint();
 		}

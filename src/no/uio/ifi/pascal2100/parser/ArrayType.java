@@ -19,10 +19,10 @@ public class ArrayType extends Type {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint("array");
-		Main.log.prettyPrint("[");
+		Main.log.prettyPrint(" [");
 		t1.prettyPrint();
-		Main.log.prettyPrint("array");
-		Main.log.prettyPrint("of");
+		Main.log.prettyPrint("] array");
+		Main.log.prettyPrint(" of ");
 		t2.prettyPrint();
 	}
 	

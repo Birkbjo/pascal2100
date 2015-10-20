@@ -24,7 +24,7 @@ public class EnumType extends Type {
 		for(int i = 0;i<eLiteral.size();i++) {
 			eLiteral.get(i).prettyPrint();
 			if(i < eLiteral.size()-1) {
-				Main.log.prettyPrint(",");
+				Main.log.prettyPrint(", ");
 			}
 		}
 		Main.log.prettyPrint(")");
