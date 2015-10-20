@@ -20,7 +20,7 @@ class TypeDecl extends PascalDecl {
 		Main.log.prettyPrint(name);
 		Main.log.prettyPrint(" = ");
 		type.prettyPrint();
-		Main.log.prettyPrint("; ");
+		Main.log.prettyPrint(";");
 	}
 
 	public static TypeDecl parse(Scanner s) {

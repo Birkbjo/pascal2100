@@ -20,7 +20,7 @@ public class FuncCall extends Factor {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("name");
+		Main.log.prettyPrint(name);
 		if(exprList.size() > 0) {
 			Main.log.prettyPrint("(");
 			for(int i = 0;i<exprList.size();i++) {

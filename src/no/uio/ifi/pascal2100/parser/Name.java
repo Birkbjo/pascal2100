@@ -17,7 +17,7 @@ public class Name extends Constant {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrintLn(name);
+		Main.log.prettyPrint(name);
 	}
 	
 	public static Name parse(Scanner s) {
