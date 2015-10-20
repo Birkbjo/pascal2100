@@ -18,8 +18,7 @@ public class NumericLiteral extends Constant {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(Integer.toString(t.intVal));
-		
+		Main.log.prettyPrint(Integer.toString(t.intVal));		
 	}
 	
 	public static NumericLiteral parse(Scanner s) {

@@ -11,7 +11,6 @@ public class SimpleExpr extends PascalSyntax {
 	ArrayList<TermOperator> termOprList = new ArrayList<TermOperator>();
 	public SimpleExpr(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

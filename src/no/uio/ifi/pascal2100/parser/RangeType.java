@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -12,14 +13,14 @@ public class RangeType extends Type {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<range-type> on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		c1.prettyPrint();
+		Main.log.prettyPrint("..");
+		c2.prettyPrint();
 	}
 
 	public static RangeType parse(Scanner s) {

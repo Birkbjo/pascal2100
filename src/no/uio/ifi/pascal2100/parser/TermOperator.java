@@ -7,7 +7,6 @@ public class TermOperator extends Operator {
 	String operator;
 	TermOperator(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
