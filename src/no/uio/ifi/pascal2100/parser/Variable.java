@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -18,8 +19,12 @@ public class Variable extends Factor {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint(name);
+		if(expr != null) {
+			Main.log.prettyPrint("[");
+			expr.prettyPrint();
+			Main.log.prettyPrint("]");
+		}
 	}
 	
 	public static Variable parse(Scanner s) {

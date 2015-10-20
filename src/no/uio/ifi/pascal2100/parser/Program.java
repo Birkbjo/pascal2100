@@ -20,8 +20,6 @@ public class Program extends PascalDecl {
 		Main.log.prettyPrintLn("program " + name + ";");
 		block.prettyPrint();
 		Main.log.prettyPrint(".");
-		
-		
 	}
 	
 	public static Program parse(Scanner s) {

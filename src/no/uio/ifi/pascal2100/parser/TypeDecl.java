@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -11,14 +12,15 @@ class TypeDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<type-decl> " + name +" on line " + lineNum;
 	}
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint("type " + name);
+		Main.log.prettyPrint("=");
+		type.prettyPrint();
+		Main.log.prettyPrint(";");
 	}
 
 	public static TypeDecl parse(Scanner s) {

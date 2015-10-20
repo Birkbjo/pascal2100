@@ -1,12 +1,13 @@
 package no.uio.ifi.pascal2100.parser;
 
-import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.main.Main;
+import no.uio.ifi.pascal2100.scanner.*;
 
 public class RelOperator extends Operator {
-
+	Token t;
+	
 	public RelOperator(int n) {
 		super(n);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -16,8 +17,7 @@ public class RelOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint(t.id);
 	}
 
 	public static RelOperator parse(Scanner s) {
@@ -25,6 +25,7 @@ public class RelOperator extends Operator {
 		
 		RelOperator ro = new RelOperator(s.curLineNum());
 		if(s.curToken.kind.isRelOpr()) {
+			ro.t = s.curToken;
 			s.readNextToken();
 		} else {
 			s.testError("rel-operator");
