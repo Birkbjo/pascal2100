@@ -22,11 +22,15 @@ class IfStatement extends Statement {
 	void prettyPrint() {
 		Main.log.prettyPrint("if ");
 		expr.prettyPrint();
-		Main.log.prettyPrintLn(" then ");
+		Main.log.prettyPrintLn(" then "); Main.log.prettyIndent();
 		ifstatm.prettyPrint();
+		Main.log.prettyPrintLn();
+		Main.log.prettyOutdent();
 		if(elsestatm != null) {
-			Main.log.prettyPrintLn(" else ");
+			Main.log.prettyPrintLn("else "); 
+			Main.log.prettyIndent();
 			elsestatm.prettyPrint();
+			Main.log.prettyOutdent();
 		}
 	}
 	

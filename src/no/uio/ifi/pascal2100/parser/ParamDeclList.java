@@ -24,7 +24,7 @@ public class ParamDeclList extends PascalSyntax {
 		for (int i = 0; i < paramDeclList.size(); i++) {
 			paramDeclList.get(i).prettyPrint();
 			if (i < paramDeclList.size() - 1)
-				Main.log.prettyPrint(";");
+				Main.log.prettyPrint("; ");
 		}
 		Main.log.prettyPrint(")");
 

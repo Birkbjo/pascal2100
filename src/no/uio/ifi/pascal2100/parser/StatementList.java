@@ -19,7 +19,6 @@ class StatementList extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		
 		for(int i = 0;i<statmList.size();i++) {
 			statmList.get(i).prettyPrint();
 			if(i != statmList.size()-1)

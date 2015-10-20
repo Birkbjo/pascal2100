@@ -17,7 +17,7 @@ public class TypeName extends Type {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(" " + name + " ");
+		Main.log.prettyPrint(name);
 	}
 
 	public static TypeName parse(Scanner s) {

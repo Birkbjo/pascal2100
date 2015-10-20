@@ -23,6 +23,7 @@ public class TypeDeclPart extends PascalSyntax {
 		for(TypeDecl td : typeDeclList) {
 			td.prettyPrint();
 		}
+		Main.log.prettyPrintLn();
 	}
 	
 	public static TypeDeclPart parse(Scanner s) {
