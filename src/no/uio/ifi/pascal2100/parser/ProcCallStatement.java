@@ -34,7 +34,7 @@ public class ProcCallStatement extends Statement {
 	}
 
 	public static ProcCallStatement parse(Scanner s) {
-		enterParser("proc-call");
+		enterParser("proc call");
 		s.test(TokenKind.nameToken);
 		ProcCallStatement ps = new ProcCallStatement(s.curLineNum());
 		ps.name = s.curToken.id;
@@ -50,7 +50,7 @@ public class ProcCallStatement extends Statement {
 			s.skip(TokenKind.rightParToken);
 		}
 		
-		leaveParser("proc-call");
+		leaveParser("proc call");
 		return ps;
 	}
 }

@@ -20,7 +20,7 @@ public class RangeType extends Type {
 	void prettyPrint() {
 		Main.log.prettyPrint(" ");
 		c1.prettyPrint();
-		Main.log.prettyPrint(" .. ");
+		Main.log.prettyPrint("..");
 		c2.prettyPrint();
 	}
 

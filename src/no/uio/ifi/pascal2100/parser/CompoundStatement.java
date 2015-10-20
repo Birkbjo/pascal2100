@@ -23,13 +23,13 @@ class CompoundStatement extends Statement {
 	}
 	
 	public static CompoundStatement parse(Scanner s) {
-		enterParser("compound-statement");
+		enterParser("compound statm");
 		s.skip(TokenKind.beginToken);
 		CompoundStatement cs = new CompoundStatement(s.curLineNum());
 		cs.statmList = StatementList.parse(s);
 		s.skip(TokenKind.endToken);
 	
-		leaveParser("compound-statement");
+		leaveParser("compound statm");
 		return cs;
 	}
 

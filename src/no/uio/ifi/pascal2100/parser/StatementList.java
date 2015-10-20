@@ -29,7 +29,7 @@ class StatementList extends PascalSyntax {
 	}
 
 	public static StatementList parse(Scanner s) {
-		enterParser("statement-list");
+		enterParser("statm list");
 		StatementList sl = new StatementList(s.curLineNum());
 		sl.statmList.add(Statement.parse(s));
 		while(s.curToken.kind == TokenKind.semicolonToken) {	
@@ -37,7 +37,7 @@ class StatementList extends PascalSyntax {
 			sl.statmList.add(Statement.parse(s));
 		}
 		
-		leaveParser("statement-list");
+		leaveParser("statm list");
 		
 		return sl;
 	}

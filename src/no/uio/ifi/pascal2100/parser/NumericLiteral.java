@@ -22,13 +22,13 @@ public class NumericLiteral extends Constant {
 	}
 	
 	public static NumericLiteral parse(Scanner s) {
-		enterParser("numeric-literal");
+		enterParser("number literal");
 		s.test(TokenKind.intValToken);
 		NumericLiteral nl = new NumericLiteral(s.curLineNum());
 		nl.t = s.curToken;
 		s.readNextToken();
 		
-		leaveParser("numeric-literal");
+		leaveParser("number literal");
 		return nl;
 	}
 

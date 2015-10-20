@@ -39,7 +39,7 @@ public class ProcDecl extends PascalDecl {
 		if(s.curToken.kind == TokenKind.functionToken) {
 			pc = FuncDecl.parse(s);
 		} else { //Its a procedure, parse this.
-			enterParser("proc-decl");
+			enterParser("proc decl");
 			s.skip(TokenKind.procedureToken);
 			s.test(TokenKind.nameToken);
 			pc = new ProcDecl(s.curToken.id,s.curLineNum());
@@ -50,7 +50,7 @@ public class ProcDecl extends PascalDecl {
 			s.skip(TokenKind.semicolonToken);
 			pc.block = Block.parse(s);
 			s.skip(TokenKind.semicolonToken);
-			leaveParser("proc-decl");
+			leaveParser("proc decl");
 		}
 		
 		return pc;

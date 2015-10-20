@@ -22,7 +22,7 @@ public class FactorOperator extends Operator {
 
 
 	public static FactorOperator parse(Scanner s) {
-		enterParser("factor-operator");
+		enterParser("factor opr");
 		
 		FactorOperator fo = new FactorOperator(s.curLineNum());
 		if(s.curToken.kind.isFactorOpr()) {
@@ -31,7 +31,7 @@ public class FactorOperator extends Operator {
 		} else {
 			s.testError("factor-operator");
 		}
-		leaveParser("factor-operator");
+		leaveParser("factor opr");
 		return fo;
 	}
 

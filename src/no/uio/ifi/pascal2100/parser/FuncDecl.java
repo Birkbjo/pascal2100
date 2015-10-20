@@ -31,7 +31,7 @@ class FuncDecl extends ProcDecl {
 	
 	public static FuncDecl parse(Scanner s) {
 		
-		enterParser("func-decl");
+		enterParser("func decl");
 		s.skip(TokenKind.functionToken);
 		s.test(TokenKind.nameToken);
 		FuncDecl fd = new FuncDecl(s.curToken.id,s.curLineNum());
@@ -45,7 +45,7 @@ class FuncDecl extends ProcDecl {
 		fd.block = Block.parse(s);
 		s.skip(TokenKind.semicolonToken);
 		
-		leaveParser("func-decl");
+		leaveParser("func decl");
 		return fd;
 	}
 }

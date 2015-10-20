@@ -27,13 +27,13 @@ public class VarDeclPart extends PascalSyntax {
 	}
 
 	public static VarDeclPart parse(Scanner s) {
-		enterParser("var-decl-part");
+		enterParser("var decl part");
 		s.skip(TokenKind.varToken);
 		VarDeclPart vdp = new VarDeclPart(s.curLineNum());
 		while(s.curToken.kind == TokenKind.nameToken) {
 			vdp.varDeclList.add(VarDecl.parse(s));
 		}
-		leaveParser("var-decl-part");
+		leaveParser("var decl part");
 		return vdp;
 	}
 
