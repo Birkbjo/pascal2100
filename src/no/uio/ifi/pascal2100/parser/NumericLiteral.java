@@ -16,7 +16,6 @@ public class NumericLiteral extends Constant {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
 		
 	}
 	

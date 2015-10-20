@@ -1,9 +1,10 @@
 package no.uio.ifi.pascal2100.parser;
 
-import no.uio.ifi.pascal2100.scanner.Scanner;
-import no.uio.ifi.pascal2100.scanner.TokenKind;
+import no.uio.ifi.pascal2100.main.Main;
+import no.uio.ifi.pascal2100.scanner.*;
 
 class ParamDecl extends PascalDecl {
+	Token t;
 	TypeName typeName;
 	ParamDecl(String id, int lNum) {
 		super(id, lNum);
@@ -16,15 +17,14 @@ class ParamDecl extends PascalDecl {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint(t.id);
 	}
 
 	public static ParamDecl parse(Scanner s) {
 		enterParser("param-decl");
-		
-		s.test(TokenKind.nameToken);
 		ParamDecl pd = new ParamDecl(s.curToken.id,s.curLineNum());
+		pd.t = s.curToken;
+		s.test(TokenKind.nameToken);
 		s.readNextToken();
 		s.skip(TokenKind.colonToken);
 		pd.typeName = TypeName.parse(s);
