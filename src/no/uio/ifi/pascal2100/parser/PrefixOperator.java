@@ -16,7 +16,7 @@ public class PrefixOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(t.id);
+		Main.log.prettyPrint(t.kind.toString());
 	}
 
 	public static PrefixOperator parse(Scanner s) {
