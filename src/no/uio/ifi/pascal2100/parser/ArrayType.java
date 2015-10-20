@@ -21,7 +21,7 @@ public class ArrayType extends Type {
 		Main.log.prettyPrint("array");
 		Main.log.prettyPrint(" [");
 		t1.prettyPrint();
-		Main.log.prettyPrint("] array");
+		Main.log.prettyPrint("]");
 		Main.log.prettyPrint(" of ");
 		t2.prettyPrint();
 	}
