@@ -1,10 +1,11 @@
 package no.uio.ifi.pascal2100.parser;
 
-import no.uio.ifi.pascal2100.scanner.Scanner;
-import no.uio.ifi.pascal2100.scanner.TokenKind;
+import no.uio.ifi.pascal2100.main.Main;
+import no.uio.ifi.pascal2100.scanner.*;
 
 public class FactorOperator extends Operator {
 
+	Token t;
 	public FactorOperator(int n) {
 		super(n);
 	}
@@ -16,8 +17,7 @@ public class FactorOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint(t.id);		
 	}
 
 
@@ -26,6 +26,7 @@ public class FactorOperator extends Operator {
 		
 		FactorOperator fo = new FactorOperator(s.curLineNum());
 		if(s.curToken.kind.isFactorOpr()) {
+			fo.t = s.curToken;
 			s.readNextToken();
 		} else {
 			s.testError("factor-operator");

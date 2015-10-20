@@ -16,8 +16,7 @@ class EmptyStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		//Do nothing
 	}
 	
 	public static EmptyStatement parse(Scanner s) {
