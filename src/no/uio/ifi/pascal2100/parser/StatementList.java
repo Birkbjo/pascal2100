@@ -19,18 +19,17 @@ class StatementList extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		
 		for(int i = 0;i<statmList.size();i++) {
 			statmList.get(i).prettyPrint();
 			if(i != statmList.size()-1)
-				Main.log.prettyPrintLn(";");
+				Main.log.prettyPrintLn("; ");
 			else Main.log.prettyPrintLn("");
 		}
 		
 	}
 
 	public static StatementList parse(Scanner s) {
-		enterParser("statement-list");
+		enterParser("statm list");
 		StatementList sl = new StatementList(s.curLineNum());
 		sl.statmList.add(Statement.parse(s));
 		while(s.curToken.kind == TokenKind.semicolonToken) {	
@@ -38,7 +37,7 @@ class StatementList extends PascalSyntax {
 			sl.statmList.add(Statement.parse(s));
 		}
 		
-		leaveParser("statement-list");
+		leaveParser("statm list");
 		
 		return sl;
 	}

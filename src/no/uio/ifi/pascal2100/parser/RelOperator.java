@@ -17,11 +17,11 @@ public class RelOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(t.id);
+		Main.log.prettyPrint(" " + t.kind.toString() + " ");
 	}
 
 	public static RelOperator parse(Scanner s) {
-		enterParser("rel-operator");
+		enterParser("rel opr");
 		
 		RelOperator ro = new RelOperator(s.curLineNum());
 		if(s.curToken.kind.isRelOpr()) {
@@ -31,7 +31,7 @@ public class RelOperator extends Operator {
 			s.testError("rel-operator");
 		}
 		
-		leaveParser("rel-operator");
+		leaveParser("rel opr");
 		return ro;
 	}
 

@@ -20,11 +20,12 @@ public class WhileStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("while");
-		Main.log.prettyIndent();
+		Main.log.prettyPrint("while ");
 		expr.prettyPrint();
-		Main.log.prettyPrint("do");
+		Main.log.prettyPrintLn(" do ");
+		Main.log.prettyIndent();
 		statm.prettyPrint();
+		Main.log.prettyOutdent();
 	}
 	
 	public static WhileStatement parse(Scanner s) {

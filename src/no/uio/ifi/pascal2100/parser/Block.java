@@ -26,7 +26,6 @@ public class Block extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrintLn("begin"); Main.log.prettyIndent();
 		if(constDeclPart != null) {
 			constDeclPart.prettyPrint();
 		}
@@ -37,6 +36,7 @@ public class Block extends PascalSyntax {
 			varDeclPart.prettyPrint();
 		}
 		for(ProcDecl p: procOrFunc) p.prettyPrint();
+		Main.log.prettyPrintLn("begin"); Main.log.prettyIndent();
 		statmList.prettyPrint();
 		Main.log.prettyOutdent();
 		Main.log.prettyPrint("end");

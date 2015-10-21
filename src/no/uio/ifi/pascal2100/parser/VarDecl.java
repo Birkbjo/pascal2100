@@ -20,21 +20,21 @@ class VarDecl extends PascalDecl {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(name);
-		Main.log.prettyPrint(":");
+		Main.log.prettyPrint(": ");
 		type.prettyPrint();
-		Main.log.prettyPrint(";");
+		Main.log.prettyPrint("; ");
 	}
 
 	public static VarDecl parse(Scanner s) {
-		enterParser("var-decl");
+		enterParser("var decl");
 		s.test(TokenKind.nameToken);
 		VarDecl vd = new VarDecl(s.curToken.id,s.curLineNum());
 		s.readNextToken();
 		s.skip(TokenKind.colonToken);
 		vd.type = Type.parse(s);
 		s.skip(TokenKind.semicolonToken);
-		leaveParser("var-decl");
-		return null;
+		leaveParser("var decl");
+		return vd;
 	}
 
 }

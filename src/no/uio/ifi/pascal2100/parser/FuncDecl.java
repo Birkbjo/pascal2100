@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -14,13 +15,23 @@ class FuncDecl extends ProcDecl {
 		return "<func-decl> " + name + " on line " + lineNum;
 	}
 	
-	/**
-	 * @param s
-	 * @return
-	 */
+	@Override
+	void prettyPrint() {
+		Main.log.prettyPrint("function ");
+		Main.log.prettyPrint(name + " ");
+		if(paramList != null) {
+			paramList.prettyPrint();
+		}
+		Main.log.prettyPrint(": ");
+		typeName.prettyPrint();
+		Main.log.prettyPrintLn(";");
+		block.prettyPrint();
+		Main.log.prettyPrintLn(";");
+	}
+	
 	public static FuncDecl parse(Scanner s) {
 		
-		enterParser("func-decl");
+		enterParser("func decl");
 		s.skip(TokenKind.functionToken);
 		s.test(TokenKind.nameToken);
 		FuncDecl fd = new FuncDecl(s.curToken.id,s.curLineNum());
@@ -34,7 +45,7 @@ class FuncDecl extends ProcDecl {
 		fd.block = Block.parse(s);
 		s.skip(TokenKind.semicolonToken);
 		
-		leaveParser("func-decl");
+		leaveParser("func decl");
 		return fd;
 	}
 }

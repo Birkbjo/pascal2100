@@ -19,17 +19,18 @@ public class ConstDeclPart extends PascalSyntax{
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("const");
+		Main.log.prettyPrint("const ");
 		
 		for(ConstDecl cd : constDecl) {
 			cd.prettyPrint();
+			
 		}
-		Main.log.prettyPrint("end");
+		Main.log.prettyPrintLn();
 		
 	}
 
 	public static ConstDeclPart parse(Scanner s) {
-		enterParser("const-decl-part");
+		enterParser("const decl part");
 		
 		s.skip(TokenKind.constToken);
 		ConstDeclPart c = new ConstDeclPart(s.curLineNum());
@@ -37,7 +38,7 @@ public class ConstDeclPart extends PascalSyntax{
 			c.constDecl.add(ConstDecl.parse(s));	
 		}
 		
-		leaveParser("const-decl-part");
+		leaveParser("const decl part");
 		return c;
 	}
 	

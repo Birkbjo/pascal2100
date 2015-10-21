@@ -24,14 +24,14 @@ public class EnumType extends Type {
 		for(int i = 0;i<eLiteral.size();i++) {
 			eLiteral.get(i).prettyPrint();
 			if(i < eLiteral.size()-1) {
-				Main.log.prettyPrint(",");
+				Main.log.prettyPrint(", ");
 			}
 		}
 		Main.log.prettyPrint(")");
 	}
 	
 	public static EnumType parse(Scanner s) {
-		enterParser("enum-type");
+		enterParser("enum type");
 		s.skip(TokenKind.leftParToken);
 		EnumType et = new EnumType(s.curLineNum());
 		while(s.curToken.kind == TokenKind.nameToken) {
@@ -39,7 +39,7 @@ public class EnumType extends Type {
 			s.skip(TokenKind.commaToken);
 		}
 		s.skip(TokenKind.rightParToken);
-		leaveParser("enum-type");
+		leaveParser("enum type");
 		return et;
 	}
 }

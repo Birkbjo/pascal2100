@@ -1,10 +1,10 @@
 package no.uio.ifi.pascal2100.parser;
 
 import no.uio.ifi.pascal2100.main.Main;
-import no.uio.ifi.pascal2100.scanner.Scanner;
+import no.uio.ifi.pascal2100.scanner.*;
 
 public class TermOperator extends Operator {
-	String operator;
+	Token operator;
 	TermOperator(int n) {
 		super(n);
 	}
@@ -16,21 +16,21 @@ public class TermOperator extends Operator {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint(operator);
+		Main.log.prettyPrint(" " + operator.kind.toString() + " ");
 		
 	}
 
 	public static TermOperator parse(Scanner s) {
-	enterParser("term-operator");
+	enterParser("term opr");
 		
 		TermOperator to = new TermOperator(s.curLineNum());
 		if(s.curToken.kind.isTermOpr()) {
-			to.operator = s.curToken.id;
+			to.operator = s.curToken;
 			s.readNextToken();
 		} else {
 			s.testError("term-operator");
 		}
-		leaveParser("term-operator");
+		leaveParser("term opr");
 		return to;
 		
 	}

@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -19,12 +20,22 @@ class IfStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		Main.log.prettyPrint("if ");
+		expr.prettyPrint();
+		Main.log.prettyPrintLn(" then "); Main.log.prettyIndent();
+		ifstatm.prettyPrint();
+		Main.log.prettyPrintLn();
+		Main.log.prettyOutdent();
+		if(elsestatm != null) {
+			Main.log.prettyPrintLn("else "); 
+			Main.log.prettyIndent();
+			elsestatm.prettyPrint();
+			Main.log.prettyOutdent();
+		}
 	}
 	
 	public static IfStatement parse(Scanner s) {
-		enterParser("if-statement");
+		enterParser("if-statm");
 		
 		IfStatement ifs = new IfStatement(s.curLineNum());
 		s.skip(TokenKind.ifToken);
@@ -37,7 +48,7 @@ class IfStatement extends Statement {
 			ifs.elsestatm = Statement.parse(s);
 		}
 		
-		leaveParser("if-statement");
+		leaveParser("if-statm");
 		return ifs;
 		
 	}

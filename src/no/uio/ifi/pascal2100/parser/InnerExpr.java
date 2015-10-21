@@ -24,13 +24,13 @@ public class InnerExpr extends Factor {
 	}
 	
 	public static InnerExpr parse(Scanner s) {
-		enterParser("inner-expr");
+		enterParser("inner expr");
 		
 		InnerExpr ie = new InnerExpr(s.curLineNum());
 		s.skip(TokenKind.leftParToken);
 		ie.expr = Expression.parse(s);
 		s.skip(TokenKind.rightParToken);
-		leaveParser("inner-expr");
+		leaveParser("inner expr");
 		return ie;
 	}
 

@@ -20,7 +20,7 @@ public class FuncCall extends Factor {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("name");
+		Main.log.prettyPrint(name);
 		if(exprList.size() > 0) {
 			Main.log.prettyPrint("(");
 			for(int i = 0;i<exprList.size();i++) {
@@ -33,7 +33,7 @@ public class FuncCall extends Factor {
 	}
 
 	public static FuncCall parse(Scanner s) {
-		enterParser("func-call");
+		enterParser("func call");
 		
 		s.test(TokenKind.nameToken);
 		FuncCall fc = new FuncCall(s.curLineNum());
@@ -50,7 +50,7 @@ public class FuncCall extends Factor {
 			s.skip(TokenKind.rightParToken);
 		}
 		
-		leaveParser("func-call");
+		leaveParser("func call");
 		return fc;
 	}
 }

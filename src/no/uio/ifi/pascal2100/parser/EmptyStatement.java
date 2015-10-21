@@ -16,14 +16,13 @@ class EmptyStatement extends Statement {
 
 	@Override
 	void prettyPrint() {
-		// TODO Auto-generated method stub
-		
+		//Do nothing
 	}
 	
 	public static EmptyStatement parse(Scanner s) {
-		enterParser("empty-statement");
+		enterParser("empty statm");
 		EmptyStatement es = new EmptyStatement(s.curLineNum());
-		leaveParser("empty-statement");
+		leaveParser("empty statm");
 		return es;
 	}
 }

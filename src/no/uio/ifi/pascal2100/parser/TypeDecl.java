@@ -17,8 +17,8 @@ class TypeDecl extends PascalDecl {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("type " + name);
-		Main.log.prettyPrint("=");
+		Main.log.prettyPrint(name);
+		Main.log.prettyPrint(" = ");
 		type.prettyPrint();
 		Main.log.prettyPrint(";");
 	}

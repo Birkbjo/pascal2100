@@ -21,12 +21,12 @@ public class Name extends Constant {
 	}
 	
 	public static Name parse(Scanner s) {
-		enterParser("name");
+		enterParser("named constant");
 		s.test(TokenKind.nameToken);
 		Name n = new Name(s.curLineNum());
 		n.name = s.curToken.id;
 		s.readNextToken();
-		leaveParser("name");
+		leaveParser("named constant");
 		return n;
 	}
 	

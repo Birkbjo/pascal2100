@@ -18,10 +18,12 @@ class ParamDecl extends PascalDecl {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(t.id);
+		Main.log.prettyPrint(": ");
+		typeName.prettyPrint();
 	}
 
 	public static ParamDecl parse(Scanner s) {
-		enterParser("param-decl");
+		enterParser("param decl");
 		ParamDecl pd = new ParamDecl(s.curToken.id,s.curLineNum());
 		pd.t = s.curToken;
 		s.test(TokenKind.nameToken);
@@ -29,7 +31,7 @@ class ParamDecl extends PascalDecl {
 		s.skip(TokenKind.colonToken);
 		pd.typeName = TypeName.parse(s);
 		
-		leaveParser("param-decl");
+		leaveParser("param decl");
 		return pd;
 	}
 

@@ -32,7 +32,7 @@ public class SimpleExpr extends PascalSyntax {
 	}
 
 	public static SimpleExpr parse(Scanner s) {
-		enterParser("simple-expr");
+		enterParser("simple expr");
 		
 		SimpleExpr se = new SimpleExpr(s.curLineNum());
 		
@@ -47,7 +47,7 @@ public class SimpleExpr extends PascalSyntax {
 			se.termList.add(Term.parse(s));
 		}
 		
-		leaveParser("simple-expr");
+		leaveParser("simple expr");
 		return se;
 	}
 
