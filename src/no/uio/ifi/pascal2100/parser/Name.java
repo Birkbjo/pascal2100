@@ -6,6 +6,8 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class Name extends Constant {
 	String name;
+	ConstDecl ref;
+	
 	Name(int n) {
 		super(n);
 	}
@@ -18,6 +20,12 @@ public class Name extends Constant {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(name);
+	}
+	
+	void check(Block curScope, Library lib) {
+		PascalDecl d = curScope.findDecl(name, this);
+		ref = (ConstDecl)d;
+		
 	}
 	
 	public static Name parse(Scanner s) {

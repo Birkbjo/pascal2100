@@ -6,6 +6,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 class TypeDecl extends PascalDecl {
 	Type type;
+	
 	TypeDecl(String id, int lNum) {
 		super(id, lNum);
 	}
@@ -21,6 +22,10 @@ class TypeDecl extends PascalDecl {
 		Main.log.prettyPrint(" = ");
 		type.prettyPrint();
 		Main.log.prettyPrint(";");
+	}
+	
+	void check(Block curScope,Library lib) {
+		
 	}
 
 	public static TypeDecl parse(Scanner s) {

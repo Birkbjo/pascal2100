@@ -6,6 +6,8 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 public class TypeName extends Type {
 	String name;
+	TypeDecl ref;
+	
 	public TypeName(int n) {
 		super(n);
 	}
@@ -18,6 +20,11 @@ public class TypeName extends Type {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(name);
+	}
+	
+	void check(Block curScope, Library lib) {
+		PascalDecl d =curScope.findDecl(name, this);
+		ref = (TypeDecl)d;
 	}
 
 	public static TypeName parse(Scanner s) {

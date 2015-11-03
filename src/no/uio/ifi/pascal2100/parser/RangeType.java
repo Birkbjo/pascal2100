@@ -7,6 +7,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 public class RangeType extends Type {
 	Constant c1;
 	Constant c2;
+	
 	public RangeType(int n) {
 		super(n);
 	}
@@ -31,5 +32,11 @@ public class RangeType extends Type {
 		rt.c2 = Constant.parse(s);
 		leaveParser("range-type");
 		return rt;
+	}
+
+	@Override
+	void check(Block curScope, Library lib) {
+		c1.check(curScope,lib);
+		c2.check(curScope,lib);
 	}
 }

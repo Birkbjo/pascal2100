@@ -6,6 +6,8 @@ import no.uio.ifi.pascal2100.scanner.*;
 public class EnumLiteral extends PascalDecl {
 
 	Token t;
+	
+	
 	EnumLiteral(String id, int n) {
 		super(id, n);
 	}
@@ -18,6 +20,9 @@ public class EnumLiteral extends PascalDecl {
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(t.id);
+	}
+	
+	void check(Block curScope, Library lib) {
 	}
 
 	public static EnumLiteral parse(Scanner s) {
