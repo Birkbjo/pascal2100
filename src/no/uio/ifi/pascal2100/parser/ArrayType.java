@@ -7,6 +7,8 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 public class ArrayType extends Type {
 	Type t1;
 	Type t2;
+	
+	
 	public ArrayType(int n) {
 		super(n);
 	}
@@ -39,6 +41,13 @@ public class ArrayType extends Type {
 		
 		leaveParser("array-type");
 		return at;
+	}
+
+	@Override
+	void check(Block curScope, Library lib) {
+		t1.check(curScope, lib);
+		t2.check(curScope, lib);
+		
 	}
 
 }
