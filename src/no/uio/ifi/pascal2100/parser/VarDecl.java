@@ -22,7 +22,7 @@ class VarDecl extends PascalDecl {
 		Main.log.prettyPrint(name);
 		Main.log.prettyPrint(": ");
 		type.prettyPrint();
-		Main.log.prettyPrint("; ");
+		Main.log.prettyPrintLn("; ");
 	}
 
 	public static VarDecl parse(Scanner s) {
