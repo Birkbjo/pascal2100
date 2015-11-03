@@ -34,4 +34,10 @@ public class InnerExpr extends Factor {
 		return ie;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		expr.check(curScope,lib);
+		
+	}
+
 }

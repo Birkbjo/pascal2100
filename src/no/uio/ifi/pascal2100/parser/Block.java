@@ -73,13 +73,30 @@ public class Block extends PascalSyntax {
 	}
 
 	void check(Block curScope, Library lib) {
-		outerScope = lib;
+		outerScope = curScope;
 		if(constDeclPart != null) {
-			
+			for(ConstDecl cd:  constDeclPart.constDecl) {
+				addDecl(cd.name,cd);
+			}
 		}
+		if(typeDeclPart != null) {
+			for(TypeDecl td: typeDeclPart.typeDeclList) {
+				addDecl(td.name,td);
+			}
+		}
+		if(varDeclPart != null) {
+			for(VarDecl vd: varDeclPart.varDeclList) {
+				addDecl(vd.name,vd);
+			}
+		}
+		
+		for(ProcDecl pd: procOrFunc) {
+			pd.check(this,lib);
+		}
+		statmList.check(this,lib);
 	}
 	
-	private void addDecl(String id, PascalDecl d) {
+	void addDecl(String id, PascalDecl d) {
 		if(decls.containsKey(id)) {
 			d.error(id + " declared twice in same block!");
 		}

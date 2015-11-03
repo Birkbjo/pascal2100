@@ -8,7 +8,7 @@ import no.uio.ifi.pascal2100.scanner.*;
 public class ProcCallStatement extends Statement {
 	Token name;
 	ArrayList<Expression> exprList = new ArrayList<Expression>();
-	
+	ProcDecl procRef;
 	public ProcCallStatement(int n) {
 		super(n);
 	}
@@ -51,5 +51,15 @@ public class ProcCallStatement extends Statement {
 		
 		leaveParser("proc call");
 		return ps;
+	}
+
+	@Override
+	void check(Block curScope, Library lib) {
+		PascalDecl d = curScope.findDecl(name.id, this);
+		procRef = (ProcDecl)d;
+		for(Expression e: exprList) {
+			e.check(curScope, lib);
+		}
+		
 	}
 }

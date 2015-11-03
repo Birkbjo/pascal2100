@@ -31,7 +31,16 @@ public class ProcDecl extends PascalDecl {
 		Main.log.prettyPrintLn(";");
 		
 	}
-
+	
+	void check(Block curScope, Library lib) {
+		for(ParamDecl pd: paramList.paramDeclList) {
+			curScope.addDecl(pd.name,pd);
+		}
+		if(typeName != null) {
+			typeName.check(curScope,lib);
+		}
+		block.check(curScope,lib);
+	}
 	
 	public static ProcDecl parse(Scanner s) {
 		

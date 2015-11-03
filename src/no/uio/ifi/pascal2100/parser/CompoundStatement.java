@@ -33,4 +33,10 @@ class CompoundStatement extends Statement {
 		return cs;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		statmList.check(curScope, lib);
+		
+	}
+
 }

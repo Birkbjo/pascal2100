@@ -34,5 +34,5 @@ abstract class Statement extends PascalSyntax {
 		leaveParser("statement");
 		return st;
 	}
-
+	abstract void check(Block curScope,Library lib);
 }

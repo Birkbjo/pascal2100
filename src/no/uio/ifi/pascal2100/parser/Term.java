@@ -40,4 +40,11 @@ public class Term extends PascalSyntax {
 		return t;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(Factor f: factorList) {
+			f.check(curScope,lib);
+		}
+		
+	}
+
 }

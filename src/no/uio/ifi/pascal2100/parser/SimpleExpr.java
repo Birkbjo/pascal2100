@@ -51,4 +51,11 @@ public class SimpleExpr extends PascalSyntax {
 		return se;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(Term t: termList) {
+			t.check(curScope,lib);
+		}
+		
+	}
+
 }

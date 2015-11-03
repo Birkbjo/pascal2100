@@ -8,7 +8,6 @@ class VarDecl extends PascalDecl {
 	Type type;
 	VarDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

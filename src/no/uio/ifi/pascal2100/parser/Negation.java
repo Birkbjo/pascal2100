@@ -35,4 +35,12 @@ public class Negation extends Factor {
 		
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		factor.check(curScope,lib);
+		
+	}
+	
+	
+
 }

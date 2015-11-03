@@ -36,4 +36,10 @@ class AssignStatement extends Statement {
 		return as;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		var.check(curScope,lib);
+		expr.check(curScope,lib);
+	}
+
 }
