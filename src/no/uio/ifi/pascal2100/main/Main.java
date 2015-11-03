@@ -7,7 +7,7 @@ import static no.uio.ifi.pascal2100.scanner.TokenKind.*;
 import java.io.*;
 
 public class Main {
-	public static final String version = "2015-08-18";
+	public static final String version = "2015-11-03";
 
 	public static Library library;
 	public static LogFile log = new LogFile();
@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String arg[]) {
 		System.out.println("This is the Ifi Pascal2100 compiler (" + version
 				+ ")");
-
+		System.out.println("Implemented by Odd-Torres Lunde and Birk Johansson.");
 		int exitStatus = 0;
 		try {
 			readArgs(arg);

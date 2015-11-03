@@ -37,7 +37,7 @@ public class ProcDecl extends PascalDecl {
 		if(paramList != null) {
 			paramList.check(curScope,lib);
 			for(ParamDecl pd: paramList.paramDeclList) {
-				curScope.addDecl(pd.name,pd);
+				block.addDecl(pd.name,pd);
 			}
 		}
 		if(typeName != null) {
