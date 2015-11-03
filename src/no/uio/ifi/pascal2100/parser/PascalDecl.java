@@ -10,7 +10,7 @@ public abstract class PascalDecl extends PascalSyntax {
 		super(lNum);
 		name = id;
 	}
-
+	//abstract void check(Block curScope, Library lib);
 	/**
 	 * checkWhetherAssignable: Utility method to check whether this PascalDecl
 	 * is assignable, i.e., may be used to the left of a :=. The compiler must
