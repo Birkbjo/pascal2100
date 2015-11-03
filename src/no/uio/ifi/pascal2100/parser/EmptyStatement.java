@@ -25,4 +25,10 @@ class EmptyStatement extends Statement {
 		leaveParser("empty statm");
 		return es;
 	}
+
+	@Override
+	void check(Block curScope, Library lib) {
+		// TODO Auto-generated method stub
+		
+	}
 }

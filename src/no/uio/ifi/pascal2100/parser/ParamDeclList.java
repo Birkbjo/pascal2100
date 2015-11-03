@@ -46,4 +46,11 @@ public class ParamDeclList extends PascalSyntax {
 		return pdl;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(ParamDecl pd: paramDeclList) {
+			pd.check(curScope,lib);
+		}
+		
+	}
+
 }

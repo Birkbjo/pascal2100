@@ -42,4 +42,11 @@ class StatementList extends PascalSyntax {
 		return sl;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(Statement s: statmList) {
+			s.check(curScope,lib);
+		}
+		
+	}
+
 }

@@ -8,13 +8,11 @@ class VarDecl extends PascalDecl {
 	Type type;
 	VarDecl(String id, int lNum) {
 		super(id, lNum);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<var-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -22,7 +20,7 @@ class VarDecl extends PascalDecl {
 		Main.log.prettyPrint(name);
 		Main.log.prettyPrint(": ");
 		type.prettyPrint();
-		Main.log.prettyPrint("; ");
+		Main.log.prettyPrintLn("; ");
 	}
 
 	public static VarDecl parse(Scanner s) {
@@ -35,6 +33,11 @@ class VarDecl extends PascalDecl {
 		s.skip(TokenKind.semicolonToken);
 		leaveParser("var decl");
 		return vd;
+	}
+
+	public void check(Block curScope, Library lib) {
+		type.check(curScope,lib);
+		
 	}
 
 }

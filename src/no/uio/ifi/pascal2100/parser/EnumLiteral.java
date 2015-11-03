@@ -6,18 +6,23 @@ import no.uio.ifi.pascal2100.scanner.*;
 public class EnumLiteral extends PascalDecl {
 
 	Token t;
+	
+	
 	EnumLiteral(String id, int n) {
 		super(id, n);
 	}
 
 	@Override
 	public String identify() {
-		return "<enum-literal> " + name + " on line " + lineNum;
+		return "<enum-literal> " + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
 	void prettyPrint() {
 		Main.log.prettyPrint(t.id);
+	}
+	
+	void check(Block curScope, Library lib) {
 	}
 
 	public static EnumLiteral parse(Scanner s) {

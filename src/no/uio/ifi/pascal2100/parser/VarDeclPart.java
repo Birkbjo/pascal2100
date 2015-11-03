@@ -19,7 +19,7 @@ public class VarDeclPart extends PascalSyntax {
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("var ");
+		Main.log.prettyPrintLn("var ");
 		for(VarDecl vd : varDeclList) {
 			vd.prettyPrint();
 		}
@@ -35,6 +35,13 @@ public class VarDeclPart extends PascalSyntax {
 		}
 		leaveParser("var decl part");
 		return vdp;
+	}
+
+	public void check(Block curScope, Library lib) {
+		for(VarDecl vd: varDeclList) {
+			vd.check(curScope,lib);
+		}
+		
 	}
 
 }

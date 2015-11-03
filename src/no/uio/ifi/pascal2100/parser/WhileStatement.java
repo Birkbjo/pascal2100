@@ -41,4 +41,11 @@ public class WhileStatement extends Statement {
 		return ws;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		expr.check(curScope, lib);
+		statm.check(curScope, lib);
+		
+	}
+
 }

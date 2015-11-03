@@ -53,4 +53,14 @@ class IfStatement extends Statement {
 		
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		expr.check(curScope, lib);
+		ifstatm.check(curScope, lib);
+		if(elsestatm != null) {
+			elsestatm.check(curScope, lib);
+		}
+		
+	}
+
 }

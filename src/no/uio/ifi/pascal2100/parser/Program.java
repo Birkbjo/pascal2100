@@ -21,7 +21,9 @@ public class Program extends PascalDecl {
 		block.prettyPrint();
 		Main.log.prettyPrint(".");
 	}
-	
+	public void check(Block curScope, Library lib) {
+		block.check(curScope,lib);
+	}
 	public static Program parse(Scanner s) {
 		enterParser("program");
 		s.skip(TokenKind.programToken);

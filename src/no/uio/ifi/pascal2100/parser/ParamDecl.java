@@ -35,4 +35,9 @@ class ParamDecl extends PascalDecl {
 		return pd;
 	}
 
+	public void check(Block curScope, Library lib) {
+		typeName.check(curScope,lib);
+		
+	}
+
 }

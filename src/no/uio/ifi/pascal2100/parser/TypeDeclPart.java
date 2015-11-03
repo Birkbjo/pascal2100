@@ -22,6 +22,7 @@ public class TypeDeclPart extends PascalSyntax {
 		Main.log.prettyPrint("type ");
 		for(TypeDecl td : typeDeclList) {
 			td.prettyPrint();
+			Main.log.prettyPrintLn();
 		}
 		Main.log.prettyPrintLn();
 	}
@@ -36,6 +37,13 @@ public class TypeDeclPart extends PascalSyntax {
 		}
 		leaveParser("type-decl-part");
 		return tdp;
+	}
+
+	public void check(Block curScope, Library lib) {
+		for(TypeDecl td: typeDeclList) {
+			td.check(curScope, lib);
+		}
+		
 	}
 
 }

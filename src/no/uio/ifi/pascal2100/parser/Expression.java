@@ -42,4 +42,13 @@ public class Expression extends PascalSyntax {
 		return expr;
 	}
 
+	public void check(Block curScope, Library lib) {
+		expr1.check(curScope,lib);
+		if(exp2 != null) {
+			exp2.check(curScope,lib);
+		}
+		
+		
+	}
+
 }

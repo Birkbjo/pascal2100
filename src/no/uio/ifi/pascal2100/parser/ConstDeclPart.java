@@ -19,7 +19,7 @@ public class ConstDeclPart extends PascalSyntax{
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("const ");
+		Main.log.prettyPrintLn("const ");
 		
 		for(ConstDecl cd : constDecl) {
 			cd.prettyPrint();
@@ -40,6 +40,13 @@ public class ConstDeclPart extends PascalSyntax{
 		
 		leaveParser("const decl part");
 		return c;
+	}
+
+	public void check(Block curScope, Library lib) {
+		for(ConstDecl cd : constDecl) {
+			cd.check(curScope,lib);
+		}
+		
 	}
 	
 	

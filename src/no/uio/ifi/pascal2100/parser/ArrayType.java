@@ -41,4 +41,10 @@ public class ArrayType extends Type {
 		return at;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		t1.check(curScope, lib);
+		t2.check(curScope, lib);
+	}
+
 }

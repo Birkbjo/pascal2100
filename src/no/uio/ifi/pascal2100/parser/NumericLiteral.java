@@ -32,4 +32,10 @@ public class NumericLiteral extends Constant {
 		return nl;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -14,7 +14,7 @@ public class ProcDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		return "<proc-decl> " + name + " on line " + lineNum;
+		return "<proc-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -31,7 +31,20 @@ public class ProcDecl extends PascalDecl {
 		Main.log.prettyPrintLn(";");
 		
 	}
-
+	
+	void check(Block curScope, Library lib) {
+		
+		if(paramList != null) {
+			paramList.check(curScope,lib);
+			for(ParamDecl pd: paramList.paramDeclList) {
+				block.addDecl(pd.name,pd);
+			}
+		}
+		if(typeName != null) {
+			typeName.check(curScope,lib);
+		}
+		block.check(curScope,lib);
+	}
 	
 	public static ProcDecl parse(Scanner s) {
 		

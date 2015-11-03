@@ -31,4 +31,10 @@ public class StringLiteral extends Constant {
 		return sl;
 	}
 
+	@Override
+	void check(Block curScope, Library lib) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

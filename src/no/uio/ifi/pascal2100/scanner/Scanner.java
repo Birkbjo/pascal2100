@@ -265,6 +265,7 @@ public class Scanner {
 					sourceLine = "";
 				} else {
 					sourceLine += " ";
+					sourceLine = sourceLine.toLowerCase();
 				}
 				sourcePos = 0;
 			} catch (IOException e) {

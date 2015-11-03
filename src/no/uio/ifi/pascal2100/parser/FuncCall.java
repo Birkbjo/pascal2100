@@ -9,13 +9,15 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 public class FuncCall extends Factor {
 	ArrayList<Expression> exprList = new ArrayList<Expression>();
 	String name;
+	ProcDecl ref;
+	
 	public FuncCall(int n) {
 		super(n);
 	}
 
 	@Override
 	public String identify() {
-		return "<func-call> on line " + lineNum;
+		return "<func-call>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -29,6 +31,14 @@ public class FuncCall extends Factor {
 					Main.log.prettyPrint(",");
 			}
 			Main.log.prettyPrint(")");
+		}
+	}
+	
+	void check(Block curScope, Library lib) {
+		PascalDecl d = curScope.findDecl(name, this);
+		ref = (ProcDecl)d;
+		for(Expression e: exprList) {
+			e.check(curScope, lib);
 		}
 	}
 
