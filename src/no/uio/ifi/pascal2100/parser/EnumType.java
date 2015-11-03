@@ -42,4 +42,7 @@ public class EnumType extends Type {
 		leaveParser("enum type");
 		return et;
 	}
+
+	@Override
+	void check(Block curScope, Library lib) {}
 }

@@ -9,6 +9,8 @@ abstract public class Type extends PascalSyntax {
 	}
 
 	public abstract String identify();
+	
+	abstract void check(Block curScope, Library lib);
 
 	public static Type parse(Scanner s) {
 		enterParser("type");

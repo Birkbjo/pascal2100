@@ -6,6 +6,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 class ConstDecl extends PascalDecl {
 	Constant con;
+	
 	ConstDecl(String id, int lNum) {
 		super(id, lNum);
 	}

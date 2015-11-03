@@ -22,6 +22,7 @@ public class TypeDeclPart extends PascalSyntax {
 		Main.log.prettyPrint("type ");
 		for(TypeDecl td : typeDeclList) {
 			td.prettyPrint();
+			Main.log.prettyPrintLn();
 		}
 		Main.log.prettyPrintLn();
 	}

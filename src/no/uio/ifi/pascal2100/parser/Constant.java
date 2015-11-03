@@ -7,6 +7,8 @@ abstract public class Constant extends Factor{
 	Constant(int lnum) {
 		super(lnum);
 	}
+	
+	abstract void check(Block curScope,Library lib);
 
 	public static Constant parse(Scanner s) {
 		enterParser("constant");

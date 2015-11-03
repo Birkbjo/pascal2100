@@ -19,7 +19,7 @@ public class ConstDeclPart extends PascalSyntax{
 
 	@Override
 	void prettyPrint() {
-		Main.log.prettyPrint("const ");
+		Main.log.prettyPrintLn("const ");
 		
 		for(ConstDecl cd : constDecl) {
 			cd.prettyPrint();

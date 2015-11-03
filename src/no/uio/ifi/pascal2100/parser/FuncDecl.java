@@ -5,6 +5,7 @@ import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 class FuncDecl extends ProcDecl {
+	ProcDecl ref;
 
 	FuncDecl(String id, int lNum) {
 		super(id, lNum);
@@ -27,6 +28,11 @@ class FuncDecl extends ProcDecl {
 		Main.log.prettyPrintLn(";");
 		block.prettyPrint();
 		Main.log.prettyPrintLn(";");
+	}
+	
+	void check(Block curScope, Library lib) {
+		PascalDecl d = curScope.findDecl(name, this);
+		ref = (ProcDecl)d;
 	}
 	
 	public static FuncDecl parse(Scanner s) {
