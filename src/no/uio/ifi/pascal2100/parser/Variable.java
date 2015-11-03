@@ -7,7 +7,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 public class Variable extends Factor {
 	Expression expr;
 	String name;
-	VarDecl ref;
+	PascalDecl ref;
 	public Variable(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -48,8 +48,11 @@ public class Variable extends Factor {
 
 	public void check(Block curScope, Library lib) {
 		PascalDecl d = curScope.findDecl(name, this);
-		ref = (VarDecl) d;
-		expr.check(curScope,lib);
+		ref = d;
+		if(expr != null) {
+			expr.check(curScope,lib);
+		}
+		
 		
 	}
 

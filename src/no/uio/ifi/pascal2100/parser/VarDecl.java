@@ -12,8 +12,7 @@ class VarDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		// TODO Auto-generated method stub
-		return null;
+		return "<var-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -34,6 +33,11 @@ class VarDecl extends PascalDecl {
 		s.skip(TokenKind.semicolonToken);
 		leaveParser("var decl");
 		return vd;
+	}
+
+	public void check(Block curScope, Library lib) {
+		type.check(curScope,lib);
+		
 	}
 
 }

@@ -37,4 +37,11 @@ public class VarDeclPart extends PascalSyntax {
 		return vdp;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(VarDecl vd: varDeclList) {
+			vd.check(curScope,lib);
+		}
+		
+	}
+
 }

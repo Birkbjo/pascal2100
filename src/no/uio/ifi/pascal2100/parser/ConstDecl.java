@@ -13,7 +13,7 @@ class ConstDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		return "<const-decl> " + name + " on line " + lineNum;
+		return "<const-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ class ConstDecl extends PascalDecl {
 		s.skip(TokenKind.semicolonToken);
 		leaveParser("const decl");
 		return cd;
+	}
+
+	public void check(Block curScope, Library lib) {
+		con.check(curScope,lib);
+		
 	}
 
 }

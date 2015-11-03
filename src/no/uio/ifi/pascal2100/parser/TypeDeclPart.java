@@ -39,4 +39,11 @@ public class TypeDeclPart extends PascalSyntax {
 		return tdp;
 	}
 
+	public void check(Block curScope, Library lib) {
+		for(TypeDecl td: typeDeclList) {
+			td.check(curScope, lib);
+		}
+		
+	}
+
 }

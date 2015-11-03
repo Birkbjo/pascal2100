@@ -13,7 +13,7 @@ class FuncDecl extends ProcDecl {
 	
 	@Override
 	public String identify() {
-		return "<func-decl> " + name + " on line " + lineNum;
+		return "<func-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 	
 	@Override
@@ -30,10 +30,6 @@ class FuncDecl extends ProcDecl {
 		Main.log.prettyPrintLn(";");
 	}
 	
-	void check(Block curScope, Library lib) {
-		PascalDecl d = curScope.findDecl(name, this);
-		ref = (ProcDecl)d;
-	}
 	
 	public static FuncDecl parse(Scanner s) {
 		
@@ -54,4 +50,15 @@ class FuncDecl extends ProcDecl {
 		leaveParser("func decl");
 		return fd;
 	}
+	/*
+	void check(Block curScope, Library lib) {
+		paramList.check(curScope,lib);
+		for(ParamDecl pd: paramList.paramDeclList) {
+			curScope.addDecl(pd.name,pd);
+		}
+		if(typeName != null) {
+			typeName.check(curScope,lib);
+		}
+		block.check(curScope,lib);
+	} */
 }

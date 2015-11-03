@@ -14,7 +14,7 @@ public class ProcDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		return "<proc-decl> " + name + " on line " + lineNum;
+		return "<proc-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -33,8 +33,12 @@ public class ProcDecl extends PascalDecl {
 	}
 	
 	void check(Block curScope, Library lib) {
-		for(ParamDecl pd: paramList.paramDeclList) {
-			curScope.addDecl(pd.name,pd);
+		
+		if(paramList != null) {
+			paramList.check(curScope,lib);
+			for(ParamDecl pd: paramList.paramDeclList) {
+				curScope.addDecl(pd.name,pd);
+			}
 		}
 		if(typeName != null) {
 			typeName.check(curScope,lib);

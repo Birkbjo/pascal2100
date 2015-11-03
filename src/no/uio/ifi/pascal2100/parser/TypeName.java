@@ -37,9 +37,4 @@ public class TypeName extends Type {
 		return tn;
 	}
 
-	public void check(Block curScope, Library lib) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

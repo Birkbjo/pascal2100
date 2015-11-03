@@ -14,7 +14,7 @@ public class EnumLiteral extends PascalDecl {
 
 	@Override
 	public String identify() {
-		return "<enum-literal> " + name + " on line " + lineNum;
+		return "<enum-literal> " + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override

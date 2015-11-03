@@ -41,6 +41,13 @@ public class ConstDeclPart extends PascalSyntax{
 		leaveParser("const decl part");
 		return c;
 	}
+
+	public void check(Block curScope, Library lib) {
+		for(ConstDecl cd : constDecl) {
+			cd.check(curScope,lib);
+		}
+		
+	}
 	
 	
 }

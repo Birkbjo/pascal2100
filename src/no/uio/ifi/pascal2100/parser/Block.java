@@ -75,22 +75,27 @@ public class Block extends PascalSyntax {
 	void check(Block curScope, Library lib) {
 		outerScope = curScope;
 		if(constDeclPart != null) {
+			constDeclPart.check(this,lib);
 			for(ConstDecl cd:  constDeclPart.constDecl) {
 				addDecl(cd.name,cd);
 			}
 		}
 		if(typeDeclPart != null) {
+			typeDeclPart.check(this,lib);
 			for(TypeDecl td: typeDeclPart.typeDeclList) {
 				addDecl(td.name,td);
 			}
 		}
+		
 		if(varDeclPart != null) {
+			varDeclPart.check(this,lib);
 			for(VarDecl vd: varDeclPart.varDeclList) {
 				addDecl(vd.name,vd);
 			}
 		}
 		
 		for(ProcDecl pd: procOrFunc) {
+			addDecl(pd.name, pd);
 			pd.check(this,lib);
 		}
 		statmList.check(this,lib);

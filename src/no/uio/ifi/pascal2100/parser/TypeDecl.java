@@ -13,7 +13,7 @@ class TypeDecl extends PascalDecl {
 
 	@Override
 	public String identify() {
-		return "<type-decl> " + name +" on line " + lineNum;
+		return "<type-decl>" + (isInLibrary() ? " in the library" : " on line " + lineNum);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ class TypeDecl extends PascalDecl {
 	}
 	
 	void check(Block curScope,Library lib) {
-		
+		type.check(curScope,lib);
 	}
 
 	public static TypeDecl parse(Scanner s) {
