@@ -103,7 +103,7 @@ public class Main {
 		System.out.print(" checking...");
 		library = new Library();
 		prog.check(library, library);
-		/*
+		
 		System.out.print(" generating code...");
 		CodeFile code = new CodeFile(baseFileName + ".s");
 		library.genCode(code);
@@ -111,7 +111,7 @@ public class Main {
 		code.finish();
 		System.out.println("OK");
 
-		assembleCode(); */
+		assembleCode(); 
 	}
 
 	private static void assembleCode() {
