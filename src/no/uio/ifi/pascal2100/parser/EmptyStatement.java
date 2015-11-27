@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 
 class EmptyStatement extends Statement {
@@ -29,6 +30,12 @@ class EmptyStatement extends Statement {
 	@Override
 	void check(Block curScope, Library lib) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		//do nothing
 		
 	}
 }

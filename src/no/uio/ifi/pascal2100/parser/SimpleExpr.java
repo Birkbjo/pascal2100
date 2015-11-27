@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
 
@@ -55,6 +56,12 @@ public class SimpleExpr extends PascalSyntax {
 		for(Term t: termList) {
 			t.check(curScope,lib);
 		}
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		// TODO Auto-generated method stub
 		
 	}
 

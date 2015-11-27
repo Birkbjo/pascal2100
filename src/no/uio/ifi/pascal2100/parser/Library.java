@@ -1,4 +1,5 @@
 package no.uio.ifi.pascal2100.parser;
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.parser.Type;
 public class Library extends Block {
 	
@@ -35,6 +36,15 @@ public class Library extends Block {
 		this.addDecl("char",charD);
 		this.addDecl("false",falseE);
 		this.addDecl("true",trueE);
+	}
+	
+	@Override
+	public void genCode(CodeFile f) {
+		f.genInstr("", ".extern write_char", "", "");
+		f.genInstr("", ".extern write_int", "", "");
+		f.genInstr("", ".extern write_string", "", "");
+		f.genInstr("", ".globl _main", "", "");
+		f.genInstr("", ".globl main", "", "");
 	}
 
 }

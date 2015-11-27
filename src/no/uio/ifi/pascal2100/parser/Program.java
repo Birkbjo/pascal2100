@@ -43,8 +43,14 @@ public class Program extends PascalDecl {
 
 	@Override
 	public void genCode(CodeFile f) {
-		// TODO Auto-generated method stub
+		f.genInstr("_main", "", "", "");
+		f.genInstr("main","call","prog$"+f.getLabel(name),"");
+		f.genInstr("", "movl", "$0,%eax", "# set status 0 and ");
+		f.genInstr("", "ret", "", "# terminate program");
+		label = "prog$" + f.getLabel(name);
+		block.genCode(f);
 		
+	
 	}
 
 }

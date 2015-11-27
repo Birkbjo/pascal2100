@@ -62,6 +62,7 @@ public class ProcDecl extends PascalDecl {
 			}
 			s.skip(TokenKind.semicolonToken);
 			pc.block = Block.parse(s);
+			pc.block.context = pc;
 			s.skip(TokenKind.semicolonToken);
 			leaveParser("proc decl");
 		}

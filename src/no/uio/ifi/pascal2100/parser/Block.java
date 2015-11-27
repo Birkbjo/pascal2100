@@ -3,6 +3,7 @@ package no.uio.ifi.pascal2100.parser;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -15,8 +16,8 @@ public class Block extends PascalSyntax {
 	VarDeclPart varDeclPart;
 	ArrayList<ProcDecl> procOrFunc = new ArrayList<ProcDecl>();
 	StatementList statmList;
-	PascalSyntax context = null;
-
+	PascalDecl context = null;
+	
 	public Block(int n) {
 		super(n);
 	}
@@ -119,6 +120,25 @@ public class Block extends PascalSyntax {
 		}
 		where.error("Name " + id + " is unknown!");
 		return null;
+	}
+	@Override
+	public void genCode(CodeFile f) {
+		
+		for(ProcDecl pd: procOrFunc) {
+			pd.declLevel = context.declLevel + 1;
+			pd.genCode(f);
+		}
+		int start = 32;
+		if(varDeclPart != null) {
+			start += varDeclPart.varDeclList.size();
+		}
+		context.declLevel++;
+		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "");
+	
+		statmList.genCode(f);
+	
+		f.genInstr("","leave","","");
+		f.genInstr("", "ret", "", "");
 	}
 
 }

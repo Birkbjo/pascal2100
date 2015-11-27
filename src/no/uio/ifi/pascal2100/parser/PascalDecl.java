@@ -1,7 +1,9 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
+
 public abstract class PascalDecl extends PascalSyntax {
-	String name, progProcFuncName;
+	String name, label;
 	int declLevel = 0, declOffset = 0;
 
 	// Del 3: Type type = null;
@@ -10,6 +12,12 @@ public abstract class PascalDecl extends PascalSyntax {
 		super(lNum);
 		name = id;
 	}
+	
+	@Override
+	public void genCode(CodeFile f) {
+		
+	}
+	
 	//abstract void check(Block curScope, Library lib);
 	/**
 	 * checkWhetherAssignable: Utility method to check whether this PascalDecl

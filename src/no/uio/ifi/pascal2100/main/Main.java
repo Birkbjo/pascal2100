@@ -111,7 +111,8 @@ public class Main {
 		code.finish();
 		System.out.println("OK");
 
-		assembleCode(); 
+	
+		//assembleCode(); 
 	}
 
 	private static void assembleCode() {

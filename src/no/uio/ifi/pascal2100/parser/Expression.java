@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -49,6 +50,16 @@ public class Expression extends PascalSyntax {
 		}
 		
 		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		expr1.genCode(f);
+		if (relopr != null) {
+		    f.genInstr("", "pushl", "%eax", "");
+		    exp2.genCode(f);
+		    relopr.genCode(f);
+		}
 	}
 
 }

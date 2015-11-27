@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.*;
 
@@ -61,5 +62,22 @@ public class ProcCallStatement extends Statement {
 			e.check(curScope, lib);
 		}
 		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		if(procRef.isInLibrary()) { //write
+			genCodeWrite(f);
+		}
+		
+	}
+	
+	private void genCodeWrite(CodeFile f) {
+		for(Expression e: exprList) {
+		//	e.
+		}
+		f.genInstr("", "pushl", "%eax", "");
+		f.genInstr("", "call", "write_char", "");
+		f.genInstr("", "addl", "$4,%esp", "");
 	}
 }

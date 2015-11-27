@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.*;
 
@@ -33,6 +34,17 @@ public class PrefixOperator extends Operator {
 		
 		leaveParser("prefix operator");
 		return preopr;
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+
+		if(t.kind == TokenKind.addToken) {
+			f.genInstr("", "addl", "%ecx,%eax", "");
+			
+		} else {
+			f.genInstr("","subl","%ecx,%eax","");;
+		}		
 	}
 
 }
