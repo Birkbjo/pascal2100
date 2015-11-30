@@ -6,7 +6,7 @@ public abstract class PascalDecl extends PascalSyntax {
 	String name, label;
 	int declLevel = 0, declOffset = 0;
 
-	// Del 3: Type type = null;
+	Type type = null;
 
 	PascalDecl(String id, int lNum) {
 		super(lNum);

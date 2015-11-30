@@ -40,9 +40,16 @@ public class StringLiteral extends Constant {
 
 	@Override
 	public void genCode(CodeFile f) {
-		System.out.println("StringLiteral");
-		f.genInstr("", "movl", "$120,%eax", "char 120");
-		f.genString("", slit, "char");
+		if(slit.length() == 1) {
+			int charByte = (int) slit.charAt(0);
+			f.genInstr("", "movl", "$"+charByte+",%eax", "char "+charByte);
+		} else {
+			String lab = f.getLocalLabel();
+			f.genString(lab, slit, "");
+			f.genInstr("","leal",lab+",%eax","Addr(\""+slit+"\")");
+		}
+	//	f.genInstr("", "movl", "$120,%eax", "char 120");
+	//	f.genString("", slit, "char");
 		
 	}
 

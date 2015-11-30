@@ -61,7 +61,6 @@ public class SimpleExpr extends PascalSyntax {
 
 	@Override
 	public void genCode(CodeFile f) {
-		System.out.println("Simple Expr");
 		for(Term t1 : termList){
 			t1.genCode(f);
 		}

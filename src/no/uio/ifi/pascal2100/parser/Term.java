@@ -50,13 +50,8 @@ public class Term extends PascalSyntax {
 
 	@Override
 	public void genCode(CodeFile f) {
-		System.out.println("Term");
 		for(Factor fl: factorList){
-			System.out.println("Factor test");
-			fl.identify();
 			fl.genCode(f);
-
-			System.out.println("Factor end");
 		}
 		
 	}
