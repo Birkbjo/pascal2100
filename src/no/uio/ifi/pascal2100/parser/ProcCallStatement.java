@@ -1,6 +1,7 @@
 package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
@@ -68,19 +69,25 @@ public class ProcCallStatement extends Statement {
 	@Override
 	public void genCode(CodeFile f) {
 		if (procRef.isInLibrary()) { // write
-			genCodeWrite(f);
+			for (Expression e : exprList) {
+				genWriteType(e, f);
+			}
+		} else {
+			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
+					iterator.hasPrevious();) {
+				Expression e = iterator.previous();
+				e.genCode(f);
+				f.genInstr("","pushl","%eax","");
+			}
+			f.genInstr("", "call", procRef.label, "");
+			f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
 		}
 
-	}
-
-	private void genCodeWrite(CodeFile f) {
-		for (Expression e : exprList) {
-			genWriteType(e, f);
-		}
 	}
 
 	/**
 	 * Ad-hoc solution for type-checking as we did not implement it in part 3.
+	 * Generates the needed code for write, per parameter given to write.
 	 * 
 	 * @param e
 	 * @return

@@ -46,7 +46,6 @@ class AssignStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		var.genCode(f);
 		expr.genCode(f);
 	}
 }

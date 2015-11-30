@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -60,6 +61,24 @@ class IfStatement extends Statement {
 		if(elsestatm != null) {
 			elsestatm.check(curScope, lib);
 		}
+		
+	}
+	
+	@Override
+	public void genCode(CodeFile f) {
+		String endLabel = f.getLocalLabel();
+		expr.genCode(f);
+		f.genInstr("", "cmpl", "$0,%eax", "");
+		f.genInstr("", "je", endLabel, "");
+		ifstatm.genCode(f);
+		
+		if(elsestatm != null) {
+			String iflabel = f.getLocalLabel();
+			f.genInstr("", "jmp", iflabel, "");
+			f.genInstr(iflabel, "", "", "# else-label");
+			elsestatm.genCode(f);
+		}
+		f.genInstr(endLabel, "", "", "End if-statement");
 		
 	}
 

@@ -1,7 +1,9 @@
 package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -62,5 +64,18 @@ public class FuncCall extends Factor {
 		
 		leaveParser("func call");
 		return fc;
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
+				iterator.hasPrevious();) {
+			Expression e = iterator.previous();
+			e.genCode(f);
+			f.genInstr("","pushl","%eax","");
+		}
+		f.genInstr("", "proc$"+ref.label, "", "");
+		f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
+		
 	}
 }
