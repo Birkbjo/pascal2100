@@ -73,8 +73,11 @@ public class ProcCallStatement extends Statement {
 	}
 	
 	private void genCodeWrite(CodeFile f) {
+		
 		for(Expression e: exprList) {
-		//	e.
+			e.genCode(f);
+			//if(e.expr1.)
+			//else if(param.typeName)
 		}
 		f.genInstr("", "pushl", "%eax", "");
 		f.genInstr("", "call", "write_char", "");
