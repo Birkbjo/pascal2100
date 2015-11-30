@@ -133,7 +133,7 @@ public class Block extends PascalSyntax {
 			start += (varDeclPart.varDeclList.size()*4);
 		}
 		context.declLevel++;
-		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "");
+		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "Start block");
 	
 		statmList.genCode(f);
 	

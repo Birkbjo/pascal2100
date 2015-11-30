@@ -41,7 +41,8 @@ public class StringLiteral extends Constant {
 	@Override
 	public void genCode(CodeFile f) {
 		System.out.println("StringLiteral");
-		// TODO Auto-generated method stub
+		f.genInstr("", "movl", "$120,%eax", "char 120");
+		f.genString("", slit, "char");
 		
 	}
 
