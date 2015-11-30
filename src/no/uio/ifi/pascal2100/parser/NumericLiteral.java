@@ -41,6 +41,7 @@ public class NumericLiteral extends Constant {
 
 	@Override
 	public void genCode(CodeFile f) {
+	//	System.out.println(t.intVal);
 		f.genInstr("", "movl", "$"+t.intVal+",%eax", ""+ t.intVal);
 		
 	}

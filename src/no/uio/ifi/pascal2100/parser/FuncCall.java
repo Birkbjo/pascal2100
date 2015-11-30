@@ -74,7 +74,7 @@ public class FuncCall extends Factor {
 			e.genCode(f);
 			f.genInstr("","pushl","%eax","");
 		}
-		f.genInstr("", "proc$"+ref.label, "", "");
+		f.genInstr("", "call", ref.label, "");
 		f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
 		
 	}

@@ -15,7 +15,10 @@ public abstract class PascalDecl extends PascalSyntax {
 	
 	@Override
 	public void genCode(CodeFile f) {
-		
+		int off1 = -4*declLevel;
+		int off2 = declOffset;
+		f.genInstr("", "movl", off1+"(%ebp),%edx", "");
+		f.genInstr("", "movl", off2+"(%edx),%eax", "");
 	}
 	
 	//abstract void check(Block curScope, Library lib);

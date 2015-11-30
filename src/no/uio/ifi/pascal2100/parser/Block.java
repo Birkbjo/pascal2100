@@ -129,10 +129,17 @@ public class Block extends PascalSyntax {
 			pd.genCode(f);
 		}
 		int start = 32;
+		
 		if(varDeclPart != null) {
 			start += (varDeclPart.varDeclList.size()*4);
+			int varoff = -36;
+			for(VarDecl v: varDeclPart.varDeclList) {
+				varoff -= 4;
+				v.declOffset = varoff;
+			}
 		}
-		context.declLevel++;
+	
+		
 		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "Start block");
 		statmList.genCode(f);
 		if(context instanceof FuncDecl) {

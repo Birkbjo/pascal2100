@@ -60,7 +60,12 @@ public class Variable extends Factor {
 		if(expr != null){
 			expr.genCode(f);
 		}
-		
+		ref.genCode(f);
+	
+	/*	int off1 = -4*ref.declLevel;
+		int off2 = -ref.declOffset;
+		f.genInstr("", "movl", off1+"(%ebp),%edx", "");
+		f.genInstr("", "movl", off2+"(%edx),%eax", ""); */
 	}
 	
 	

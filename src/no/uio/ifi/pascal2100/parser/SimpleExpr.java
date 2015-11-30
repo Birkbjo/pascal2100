@@ -61,8 +61,18 @@ public class SimpleExpr extends PascalSyntax {
 
 	@Override
 	public void genCode(CodeFile f) {
+		int count = 0;
 		for(Term t1 : termList){
 			t1.genCode(f);
+			if(preOpr != null) {
+				preOpr.genCode(f);
+			}
+			if(termOprList.size() < count) {
+				TermOperator opr = termOprList.get(count);
+				opr.genCode(f);
+			}
+
+			count++;
 		}
 		
 	}

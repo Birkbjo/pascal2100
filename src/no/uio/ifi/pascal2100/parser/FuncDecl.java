@@ -68,7 +68,14 @@ class FuncDecl extends ProcDecl {
 	public void genCode(CodeFile f) {
 		String labl = f.getLabel(name);
 		label = "func$"+labl;
+		int off = 4;
+		for(ParamDecl p: paramList.paramDeclList) {
+			off +=4;
+			p.declOffset = off;
+			p.declLevel = declLevel;
+		}
 		block.genCode(f);
+		//f.genInstr("", "movl","%eax,-32(%ebp)" , "");
 	}
 	
 	
