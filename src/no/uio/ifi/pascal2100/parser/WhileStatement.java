@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -48,4 +49,16 @@ public class WhileStatement extends Statement {
 		
 	}
 
+	@Override
+	public void genCode(CodeFile f) {
+		String testLabel = f.getLocalLabel(),
+		endLabel = f.getLocalLabel();
+		f.genInstr(testLabel, "", "", "Start while-statement");
+		expr.genCode(f);
+		f.genInstr("", "cmpl", "$0,%eax", "");
+		f.genInstr("", "je", endLabel, "");
+		statm.genCode(f);
+		f.genInstr("", "jmp", testLabel, "");
+		f.genInstr(endLabel, "", "", "End while-statement");
+	}
 }

@@ -38,6 +38,7 @@ public class FactorOperator extends Operator {
 
 	@Override
 	public void genCode(CodeFile f) {
+		System.out.println("Factor Opreator");
 		if(t.kind != TokenKind.divToken && t.kind != TokenKind.modToken) {
 			f.genInstr("", "movl", "%eax,%ecx", "");
 			f.genInstr("", "popl", "%eax", "");

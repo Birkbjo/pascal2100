@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.Token;
@@ -35,6 +36,13 @@ public class NumericLiteral extends Constant {
 	@Override
 	void check(Block curScope, Library lib) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		System.out.println("Numeric");
+		f.genInstr("", "movl", "$"+t.intVal+",%eax", ""+ t.intVal);
 		
 	}
 

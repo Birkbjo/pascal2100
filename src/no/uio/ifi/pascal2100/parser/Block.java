@@ -130,10 +130,10 @@ public class Block extends PascalSyntax {
 		}
 		int start = 32;
 		if(varDeclPart != null) {
-			start += varDeclPart.varDeclList.size();
+			start += (varDeclPart.varDeclList.size()*4);
 		}
 		context.declLevel++;
-		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "");
+		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "Start block");
 	
 		statmList.genCode(f);
 	

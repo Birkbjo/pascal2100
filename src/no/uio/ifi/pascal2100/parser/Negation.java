@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -38,6 +39,12 @@ public class Negation extends Factor {
 	@Override
 	void check(Block curScope, Library lib) {
 		factor.check(curScope,lib);
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		System.out.println("Negation");
 		
 	}
 	
