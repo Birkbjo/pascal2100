@@ -46,8 +46,7 @@ class AssignStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		if(var != null){
-			var.genCode(f);
-		}
+		var.genCode(f);
+		expr.genCode(f);
 	}
 }

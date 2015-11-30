@@ -3,6 +3,7 @@ package no.uio.ifi.pascal2100.parser;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
+import no.uio.ifi.pascal2100.main.CodeFile;
 
 class ConstDecl extends PascalDecl {
 	Constant con;
@@ -40,6 +41,12 @@ class ConstDecl extends PascalDecl {
 	public void check(Block curScope, Library lib) {
 		con.check(curScope,lib);
 		
+	}
+	
+	public void genCode(CodeFile f) {
+		if(con != null){
+			con.genCode(f);
+		}
 	}
 
 }

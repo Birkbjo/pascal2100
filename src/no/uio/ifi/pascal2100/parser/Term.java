@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 
 public class Term extends PascalSyntax {
@@ -43,6 +44,19 @@ public class Term extends PascalSyntax {
 	public void check(Block curScope, Library lib) {
 		for(Factor f: factorList) {
 			f.check(curScope,lib);
+		}
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		System.out.println("Term");
+		for(Factor fl: factorList){
+			System.out.println("Factor test");
+			fl.identify();
+			fl.genCode(f);
+
+			System.out.println("Factor end");
 		}
 		
 	}

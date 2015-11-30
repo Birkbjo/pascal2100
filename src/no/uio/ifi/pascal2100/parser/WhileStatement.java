@@ -57,7 +57,7 @@ public class WhileStatement extends Statement {
 		expr.genCode(f);
 		f.genInstr("", "cmpl", "$0,%eax", "");
 		f.genInstr("", "je", endLabel, "");
-		expr.genCode(f);
+		statm.genCode(f);
 		f.genInstr("", "jmp", testLabel, "");
 		f.genInstr(endLabel, "", "", "End while-statement");
 	}

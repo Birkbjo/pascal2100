@@ -2,6 +2,7 @@ package no.uio.ifi.pascal2100.parser;
 
 import java.util.ArrayList;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -45,6 +46,14 @@ public class ConstDeclPart extends PascalSyntax{
 	public void check(Block curScope, Library lib) {
 		for(ConstDecl cd : constDecl) {
 			cd.check(curScope,lib);
+		}
+		
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		for(ConstDecl cd1 : constDecl) {
+			cd1.genCode(f);
 		}
 		
 	}
