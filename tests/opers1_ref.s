@@ -1,9 +1,9 @@
-# Code file created by Pascal2100 compiler 2015-12-01 23:11:46
-        .extern write_char                         
-        .extern write_int                         
-        .extern write_string                         
-        .globl  _main                         
-        .globl  main                         
+# Code file created by Pascal2100 compiler 2015-12-01 22:44:56
+        .extern write_char     
+        .extern write_int      
+        .extern write_string   
+        .globl  _main          
+        .globl  main           
 _main:                                  
 main:   call    prog$operatortest_1     # Start program
         movl    $0,%eax                 # Set status 0 and
@@ -64,7 +64,6 @@ proc$test_3:
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        addl    %ecx,%eax               #   +
         pushl   %eax                    # Push param #4.
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
@@ -292,91 +291,6 @@ proc$test_9:
         .align  2              
         .text                  
         leal    .L0020,%eax             # Addr(" = ")
-        pushl   %eax                    # Push param #4.
-        call    write_string            
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    8(%edx),%eax            #   x
-        pushl   %eax                    
-        movl    -12(%ebp),%edx          
-        movl    12(%edx),%eax           #   y
-        movl    %eax,%ecx               
-        popl    %eax                    
-        cdq                             
-        idivl   %ecx                    
-        movl    %edx,%eax               #   mod
-        pushl   %eax                    # Push param #5.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
-        call    write_char              
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        .data                  
-.L0021: .asciz   " div "
-        .align  2              
-        .text                  
-        leal    .L0021,%eax             # Addr(" div ")
-        pushl   %eax                    # Push param #2.
-        call    write_string            
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        .data                  
-.L0022: .asciz   " = "
-        .align  2              
-        .text                  
-        leal    .L0022,%eax             # Addr(" = ")
-        pushl   %eax                    # Push param #4.
-        call    write_string            
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    8(%edx),%eax            #   x
-        pushl   %eax                    
-        movl    -12(%ebp),%edx          
-        movl    12(%edx),%eax           #   y
-        movl    %eax,%ecx               
-        popl    %eax                    
-        cdq                             
-        idivl   %ecx                    #   /
-        pushl   %eax                    # Push param #5.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
-        call    write_char              
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        .data                  
-.L0023: .asciz   " mod "
-        .align  2              
-        .text                  
-        leal    .L0023,%eax             # Addr(" mod ")
-        pushl   %eax                    # Push param #2.
-        call    write_string            
-        addl    $4,%esp                 # Pop parameter.
-        movl    -12(%ebp),%edx          
-        movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        .data                  
-.L0024: .asciz   " = "
-        .align  2              
-        .text                  
-        leal    .L0024,%eax             # Addr(" = ")
         pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.

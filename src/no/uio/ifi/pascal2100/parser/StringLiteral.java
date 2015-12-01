@@ -47,10 +47,7 @@ public class StringLiteral extends Constant {
 			String lab = f.getLocalLabel();
 			f.genString(lab, slit, "");
 			f.genInstr("","leal",lab+",%eax","Addr(\""+slit+"\")");
-		}
-	//	f.genInstr("", "movl", "$120,%eax", "char 120");
-	//	f.genString("", slit, "char");
-		
+		}		
 	}
 
 }

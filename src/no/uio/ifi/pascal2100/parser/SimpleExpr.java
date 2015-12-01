@@ -67,9 +67,7 @@ public class SimpleExpr extends PascalSyntax {
 			preOpr.genCode(f);
 		}
 		if(termOprList.size() > 0) {
-			System.out.println("TermOpr is it true?");
 			for(int i = 0;i<termOprList.size();i++) {
-				
 				f.genInstr("", "pushl", "%eax", "");
 				termList.get(i+1).genCode(f);
 				termOprList.get(i).genCode(f);

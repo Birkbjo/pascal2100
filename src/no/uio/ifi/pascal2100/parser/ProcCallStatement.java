@@ -74,12 +74,10 @@ public class ProcCallStatement extends Statement {
 			count = 0;
 		}
 		if (procRef.isInLibrary()) { // write 
-			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
-					iterator.hasPrevious();) {
-				Expression e = iterator.previous();
-				
+			count = 0;
+			for (Expression e : exprList) {
+				count++;
 				genWriteType(e, f, count);
-				count--;
 			}
 		} else {
 			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
