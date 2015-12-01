@@ -7,6 +7,7 @@ import no.uio.ifi.pascal2100.scanner.TokenKind;
 
 class AssignStatement extends Statement {
 	Variable var;
+	PascalDecl varRef;
 	Expression expr;
 
 	AssignStatement(int n) {
@@ -40,6 +41,7 @@ class AssignStatement extends Statement {
 
 	@Override
 	void check(Block curScope, Library lib) {
+		varRef = curScope.findDecl(var.name, this);
 		var.check(curScope, lib);
 		expr.check(curScope, lib);
 	}
@@ -47,6 +49,12 @@ class AssignStatement extends Statement {
 	@Override
 	public void genCode(CodeFile f) {
 		expr.genCode(f);
+		if(varRef instanceof VarDecl) {
+			// implenmentert ein anna plass (ukjent)
+		} else if(varRef instanceof FuncDecl) { // funcdecl
+			f.genInstr("", "movl", "eax,-32(%edp)", "func decl i assignStatm");
+		}
+		
 		
 	}
 }

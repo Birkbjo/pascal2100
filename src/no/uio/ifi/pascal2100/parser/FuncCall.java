@@ -72,10 +72,10 @@ public class FuncCall extends Factor {
 				iterator.hasPrevious();) {
 			Expression e = iterator.previous();
 			e.genCode(f);
-			f.genInstr("","pushl","%eax","");
+			if(ref instanceof )
+			f.genInstr("","pushl","%eax","FuncCall");
 		}
 		f.genInstr("", "call", ref.label, "");
-		f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
-		
+		//f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "Fetch return value");
 	}
 }

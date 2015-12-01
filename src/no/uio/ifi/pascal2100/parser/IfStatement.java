@@ -66,6 +66,7 @@ class IfStatement extends Statement {
 	
 	@Override
 	public void genCode(CodeFile f) {
+		f.genInstr("", "", "", "Start if-statement");
 		String endLabel = f.getLocalLabel();
 		expr.genCode(f);
 		f.genInstr("", "cmpl", "$0,%eax", "");

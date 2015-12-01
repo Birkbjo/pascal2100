@@ -81,6 +81,7 @@ public class ProcCallStatement extends Statement {
 			}
 			f.genInstr("", "call", procRef.label, "");
 			f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
+			f.genInstr("", "movl", "%eax,32(%ebp)", ""+ name);
 		}
 
 	}

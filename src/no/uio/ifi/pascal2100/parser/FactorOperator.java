@@ -56,6 +56,7 @@ public class FactorOperator extends Operator {
 				f.genInstr("","idivl","%ecx","");
 			} else if(t.kind == TokenKind.modToken) {
 				f.genInstr("","idivl","%edx","");
+				f.genInstr("", "movl", "%edx,%eax", "mod in class factor Opr");
 			}
 		}
 	}

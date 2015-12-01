@@ -43,7 +43,6 @@ public class InnerExpr extends Factor {
 
 	@Override
 	public void genCode(CodeFile f) {
-		System.out.println("Inner Expr");
 		if(expr != null) {
 			expr.genCode(f);
 		}
