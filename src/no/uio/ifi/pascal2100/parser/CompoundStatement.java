@@ -43,7 +43,7 @@ class CompoundStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		statmList.genCode(f);
+		//statmList.genCode(f);
 		if(statmList != null) {
 			statmList.genCode(f);
 		}

@@ -57,7 +57,5 @@ class AssignStatement extends Statement {
 		} else if(varRef instanceof FuncDecl) { // funcdecl
 			f.genInstr("", "movl", "%eax,-32(%edp)", "");
 		}
-		
-		
 	}
 }

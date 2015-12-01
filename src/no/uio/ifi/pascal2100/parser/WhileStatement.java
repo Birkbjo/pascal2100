@@ -51,8 +51,8 @@ public class WhileStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		String testLabel = f.getLocalLabel(),
-		endLabel = f.getLocalLabel();
+		String testLabel = f.getLocalLabel();
+		String endLabel = f.getLocalLabel();
 		f.genInstr(testLabel, "", "", "Start while-statement");
 		expr.genCode(f);
 		f.genInstr("", "cmpl", "$0,%eax", "");
