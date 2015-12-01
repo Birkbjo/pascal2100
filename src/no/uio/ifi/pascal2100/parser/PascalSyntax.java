@@ -4,7 +4,8 @@ import no.uio.ifi.pascal2100.main.*;
 
 public abstract class PascalSyntax {
 	public int lineNum;
-
+	public static int count = 0;
+	
 	PascalSyntax(int n) {
 		lineNum = n;
 	}

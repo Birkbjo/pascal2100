@@ -68,10 +68,11 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		int count = 0;
-		if (procRef.isInLibrary()) { // write
+		count = 0;
+		if (procRef.isInLibrary()) { // write 
 			for (Expression e : exprList) {
 				count++;
+				System.out.println("Param : " + count);
 				genWriteType(e, f, count);
 			}
 		} else {
@@ -79,13 +80,16 @@ public class ProcCallStatement extends Statement {
 					iterator.hasPrevious();) {
 				Expression e = iterator.previous();
 				e.genCode(f);
-				f.genInstr("","pushl","%eax","");
+				count++;
+				f.genInstr("","pushl","%eax","Push param #" + count);
 			}
 			f.genInstr("", "call", procRef.label, "");
-			f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
-			f.genInstr("", "movl", "%eax,32(%ebp)", "  "+ name);
+			
+			if(!exprList.isEmpty()) {
+				f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
+				f.genInstr("", "movl", "%eax,32(%ebp)", "");
+			}
 		}
-
 	}
 
 	/**
@@ -121,13 +125,17 @@ public class ProcCallStatement extends Statement {
 		} else if (fac instanceof StringLiteral) {
 			if (((StringLiteral) fac).slit.length() == 1) {
 				e.genCode(f);
-				f.genInstr("", "pushl", "%eax", "");
+				f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
 				f.genInstr("", "call", "write_char", "");
 			} else { // string
 				e.genCode(f);
-				f.genInstr("", "pushl", "%eax", "");
+				f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
 				f.genInstr("", "call", "write_string", "");
 			}
+		} else if (fac instanceof Negation) {
+			e.genCode(f);
+			f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
+			f.genInstr("", "call", "write_int", "");
 		}
 		f.genInstr("", "addl", "$4,%esp", "Pop parameter.");
 	}

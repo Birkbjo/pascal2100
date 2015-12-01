@@ -48,7 +48,7 @@ public class TermOperator extends Operator {
 			f.genInstr("", "addl", "%ecx,%eax", "  +");
 			break;
 		case subtractToken:
-			f.genInstr("", "negl", "%eax", "  -");
+			f.genInstr("", "subl", "%ecx,%eax", "  -");
 			break;
 		}
 		

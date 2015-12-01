@@ -76,10 +76,14 @@ public class ProcDecl extends PascalDecl {
 		String labl = f.getLabel(name);
 		label = "proc$"+labl;
 		int off = 4;
-		for(ParamDecl p: paramList.paramDeclList) {
-			off +=4;
-			p.declOffset = off;
-			p.declLevel = declLevel;
+		if(paramList != null) {
+			if(!paramList.paramDeclList.isEmpty()) {
+				for(ParamDecl p: paramList.paramDeclList) {
+					off +=4;
+					p.declOffset = off;
+					p.declLevel = declLevel;
+				}
+			}
 		}
 		block.genCode(f);
 	}

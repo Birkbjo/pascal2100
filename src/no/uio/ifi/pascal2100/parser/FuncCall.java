@@ -74,7 +74,7 @@ public class FuncCall extends Factor {
 			Expression e = iterator.previous();
 			count++;
 			e.genCode(f);
-			f.genInstr("","pushl","%eax","Push param #" + count);
+			f.genInstr("","pushl","%eax","Push param #" + count + ".");
 		}
 		f.genInstr("", "call", ref.label, "");
 		f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "Pop parameters");

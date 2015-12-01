@@ -25,8 +25,8 @@ public class Library extends Block {
 		
 		TypeDecl bool = new TypeDecl("boolean",-1);
 		EnumType etype = new EnumType(-1);
-		EnumLiteral falseE = new EnumLiteral("false",-1);
-		EnumLiteral trueE = new EnumLiteral("true",-1);
+		EnumLiteral falseE = new EnumLiteral("enum value false (=0)",-1);
+		EnumLiteral trueE = new EnumLiteral("enum value true (=1)",-1);
 		etype.eLiteral.add(falseE);
 		etype.eLiteral.add(trueE);
 		bool.type = etype;
