@@ -68,19 +68,28 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
-		count = 0;
+		if(exprList.size() > 0) {
+			count = exprList.size();
+		} else{
+			count = 0;
+		}
 		if (procRef.isInLibrary()) { // write 
-			for (Expression e : exprList) {
-				count++;
+			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
+					iterator.hasPrevious();) {
+				Expression e = iterator.previous();
+				
 				genWriteType(e, f, count);
+				count--;
 			}
 		} else {
 			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
 					iterator.hasPrevious();) {
 				Expression e = iterator.previous();
+				
 				e.genCode(f);
-				count++;
+				
 				f.genInstr("","pushl","%eax","Push param #" + count + ".");
+				count--;
 			}
 			f.genInstr("", "call", procRef.label, "");
 			
@@ -113,7 +122,7 @@ public class ProcCallStatement extends Statement {
 		} else if (fac instanceof Variable) {
 			Variable v = (Variable) fac;
 		//	v.genCode(f);
-			f.genInstr("", "pushl", "%eax", "");
+			f.genInstr("", "pushl", "%eax", "Push param #"+ count + ".");
 			if(v.ref instanceof ConstDecl) {
 				ConstDecl cd = (ConstDecl) v.ref;
 				if(cd.con instanceof NumericLiteral) {

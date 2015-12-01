@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 17:36:39
+# Code file created by Pascal2100 compiler 2015-12-01 22:33:57
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -36,12 +36,12 @@ func$gcd_2:
         cdq                             
         idivl   %ecx                    
         movl    %edx,%eax               #   mod
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #2.
         movl    -8(%ebp),%edx           
         movl    12(%edx),%eax           #   n
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #1.
         call    func$gcd_2              
-        addl    $8,%esp                 # Pop parameters
+        addl    $8,%esp                 # Pop parameter.
         movl    %eax,-32(%edp)          
 .L0004:                                 # End if-statement
         movl    -32(%ebp),%eax          
@@ -50,49 +50,49 @@ func$gcd_2:
 prog$gcd_1:
         enter   $36,$1                  # Start of gcd
         movl    $462,%eax               #   462
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #2.
         movl    $1071,%eax              #   1071
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #1.
         call    func$gcd_2              
-        addl    $8,%esp                 # Pop parameters
+        addl    $8,%esp                 # Pop parameter.
         movl    -4(%ebp),%edx           
         movl    %eax,-36(%edx)          # res :=
-        .data                  
-.L0005: .asciz   "gcd("
-        .align  2              
-        .text                  
-        leal    .L0005,%eax             # Addr("gcd(")
-        pushl   %eax                    
-        call    write_string            
-        addl    $4,%esp                 # Pop parameter.
-        movl    $1071,%eax              #   1071
-        pushl   %eax                    # Push param #2.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        movl    $44,%eax                #   char 44
-        pushl   %eax                    
+        movl    $10,%eax                #   char 10
+        pushl   %eax                    # Push param #7.
         call    write_char              
-        addl    $4,%esp                 # Pop parameter.
-        movl    $462,%eax               #   462
-        pushl   %eax                    # Push param #4.
-        call    write_int               
-        addl    $4,%esp                 # Pop parameter.
-        .data                  
-.L0006: .asciz   ") = "
-        .align  2              
-        .text                  
-        leal    .L0006,%eax             # Addr(") = ")
-        pushl   %eax                    
-        call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -4(%ebp),%edx           
         movl    -36(%edx),%eax          #   res
         pushl   %eax                    # Push param #6.
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
-        movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #7.
+        .data                  
+.L0005: .asciz   ") = "
+        .align  2              
+        .text                  
+        leal    .L0005,%eax             # Addr(") = ")
+        pushl   %eax                    # Push param #5.
+        call    write_string            
+        addl    $4,%esp                 # Pop parameter.
+        movl    $462,%eax               #   462
+        pushl   %eax                    # Push param #4.
+        call    write_int               
+        addl    $4,%esp                 # Pop parameter.
+        movl    $44,%eax                #   char 44
+        pushl   %eax                    # Push param #3.
         call    write_char              
+        addl    $4,%esp                 # Pop parameter.
+        movl    $1071,%eax              #   1071
+        pushl   %eax                    # Push param #2.
+        call    write_int               
+        addl    $4,%esp                 # Pop parameter.
+        .data                  
+.L0006: .asciz   "gcd("
+        .align  2              
+        .text                  
+        leal    .L0006,%eax             # Addr("gcd(")
+        pushl   %eax                    # Push param #1.
+        call    write_string            
         addl    $4,%esp                 # Pop parameter.
         leave                           # End of gcd
         ret                             

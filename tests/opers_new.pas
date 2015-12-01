@@ -39,3 +39,4 @@ end; { TestBinaryNumeric }
 begin
 	TestUnaryNumeric; TestBinaryNumeric;
 end.
+

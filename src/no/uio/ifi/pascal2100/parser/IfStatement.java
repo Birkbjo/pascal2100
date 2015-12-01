@@ -68,22 +68,22 @@ class IfStatement extends Statement {
 	public void genCode(CodeFile f) {
 		String endLabel = "";
 		f.genInstr("", "", "", "Start if-statement");
-		if(elsestatm == null) {
+		if(elsestatm != null) {
+			String elselabel = f.getLocalLabel();
+			endLabel = f.getLocalLabel();
+			expr.genCode(f);
+			f.genInstr("", "cmpl", "$0,%eax", "");
+			f.genInstr("", "je", elselabel, "");
+			ifstatm.genCode(f);
+			f.genInstr("", "jmp", endLabel, "");
+			f.genInstr(elselabel, "", "", "");
+			elsestatm.genCode(f);
+		} else {
 			endLabel = f.getLocalLabel();
 			expr.genCode(f);
 			f.genInstr("", "cmpl", "$0,%eax", "");
 			f.genInstr("", "je", endLabel, "");
 			ifstatm.genCode(f);
-		} else {
-			String iflabel = f.getLocalLabel();
-			endLabel = f.getLocalLabel();
-			expr.genCode(f);
-			f.genInstr("", "cmpl", "$0,%eax", "");
-			f.genInstr("", "je", iflabel, "");
-			ifstatm.genCode(f);
-			f.genInstr("", "jmp", endLabel, "");
-			f.genInstr(iflabel, "", "", "");
-			elsestatm.genCode(f);
 		}
 		f.genInstr(endLabel, "", "", "End if-statement");
 		
