@@ -99,12 +99,28 @@ public class ProcCallStatement extends Statement {
 			e.genCode(f);
 			f.genInstr("", "pushl", "%eax", "");
 			f.genInstr("", "call", "write_int", "");
+		} else if (fac instanceof Variable) {
+			Variable v = (Variable) fac;
+			v.genCode(f);
+			f.genInstr("", "pushl", "%eax", "var in proccall");
+			if(v.ref instanceof ConstDecl) {
+				ConstDecl cd = (ConstDecl) v.ref;
+				if(cd.con instanceof NumericLiteral) {
+					f.genInstr("", "call", "write_int", "const in proccall");
+				} else if(cd.con instanceof StringLiteral) {
+					
+					f.genInstr("", "call", "write_char", "char in proccall");
+				} else {
+					f.genInstr("", "", "", "Proccall nono");
+				}
+			} else {
+				f.genInstr("", "call", "write_int", "variable in proccall");
+			}
 		} else if (fac instanceof StringLiteral) {
 			if (((StringLiteral) fac).slit.length() == 1) {
 				e.genCode(f);
 				f.genInstr("", "pushl", "%eax", "");
 				f.genInstr("", "call", "write_char", "");
-
 			} else { // string
 				e.genCode(f);
 				f.genInstr("", "pushl", "%eax", "");

@@ -42,7 +42,7 @@ class AssignStatement extends Statement {
 	@Override
 	void check(Block curScope, Library lib) {
 		varRef = (PascalDecl) curScope.findDecl(var.name, this);
-		System.out.println(varRef);
+		//System.out.println(varRef);
 		var.check(curScope, lib);
 		expr.check(curScope, lib);
 	}

@@ -17,8 +17,9 @@ public class Library extends Block {
 		ProcDecl write = new ProcDecl("write",-1);
 		
 		ConstDecl eol = new ConstDecl("eol",-1);
-		Name con = new Name(-1);
-		con.name = "eol";
+
+		StringLiteral con = new StringLiteral(-1);
+		con.slit = "\n";
 		eol.con = con;
 		
 		

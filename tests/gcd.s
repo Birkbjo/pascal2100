@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 15:23:53
+# Code file created by Pascal2100 compiler 2015-12-01 16:25:31
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -64,11 +64,17 @@ prog$gcd_1:
         pushl   %eax                    
         call    write_string            
         addl    $4,%esp                 
+        movl    $1071,%eax              # 1071
+        pushl   %eax                    # var in proccall
+        call    write_int               # const in proccall
         addl    $4,%esp                 
         movl    $44,%eax                # char 44
         pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 
+        movl    $462,%eax               # 462
+        pushl   %eax                    # var in proccall
+        call    write_int               # const in proccall
         addl    $4,%esp                 
         .data                  
 .L0006: .asciz   ") = "
@@ -78,7 +84,14 @@ prog$gcd_1:
         pushl   %eax                    
         call    write_string            
         addl    $4,%esp                 
+        movl    -4(%ebp),%edx           
+        movl    -36(%edx),%eax          
+        pushl   %eax                    # var in proccall
+        call    write_int               # variable in proccall
         addl    $4,%esp                 
+        movl    $10,%eax                # char 10
+        pushl   %eax                    # var in proccall
+        call    write_char              # char in proccall
         addl    $4,%esp                 
         leave                           
         ret                             
