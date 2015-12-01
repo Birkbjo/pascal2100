@@ -146,7 +146,7 @@ public class Block extends PascalSyntax {
 		if(context instanceof FuncDecl) {
 			f.genInstr("","movl","-32(%ebp),%eax","");
 		}
-		f.genInstr("","leave","","");
+		f.genInstr("","leave","","End of " + context.name);
 		f.genInstr("", "ret", "", "");
 	}
 

@@ -53,8 +53,8 @@ class AssignStatement extends Statement {
 		if(varRef instanceof VarDecl) {
 			int off1 = -4*varRef.declLevel;
 			int off2 = varRef.declOffset;
-			f.genInstr("", "movl", off1+"(%ebp),%edx", "assign");
-			f.genInstr("", "movl", "%eax,"+off2+"(%edx)","assign");
+			f.genInstr("", "movl", off1+"(%ebp),%edx", "");
+			f.genInstr("", "movl", "%eax,"+off2+"(%edx)","");
 		} else if(varRef instanceof FuncDecl) { // funcdecl
 			f.genInstr("", "movl", "eax,-32(%edp)", "func decl i assignStatm");
 		}

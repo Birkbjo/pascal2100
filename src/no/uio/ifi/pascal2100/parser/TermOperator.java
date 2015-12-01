@@ -38,14 +38,14 @@ public class TermOperator extends Operator {
 
 	@Override
 	public void genCode(CodeFile f) {
-		f.genInstr("", "movl", "%al", "TermOpr");
-		f.genInstr("", "popl", "%eax", "TermOpr");
+		f.genInstr("", "movl", "%eax,%ecx", "");
+		f.genInstr("", "popl", "%eax", "");
 		switch (operator.kind) {
 		case orToken:
-			f.genInstr("", "orl", "%", "Test >=");
+			f.genInstr("", "orl", "%ecx,%eax", "");
 			break;
 		case addToken:
-
+			f.genInstr("", "addl", "%ecx,%eax", " +");
 			break;
 		case subtractToken:
 			f.genInstr("", "negl", "%eax", " negation");
