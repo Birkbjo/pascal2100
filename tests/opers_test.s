@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 19:44:08
+# Code file created by Pascal2100 compiler 2015-12-01 19:57:14
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -45,18 +45,14 @@ proc$test_3:
         ret                             
 proc$testunaryboolean_2:
         enter   $32,$2                  # Start of testunaryboolean
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   enum value false (=0)
+        movl    $0,%eax                 #   enum value false (=0)
         pushl   %eax                    # Push param #1
         call    proc$test_3             
         addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   enum value true (=1)
+        movl    $1,%eax                 #   enum value true (=1)
         pushl   %eax                    # Push param #1
         call    proc$test_3             
         addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
         leave                           # End of testunaryboolean
         ret                             
 prog$operatortest_1:

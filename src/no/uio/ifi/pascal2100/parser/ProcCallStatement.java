@@ -81,13 +81,18 @@ public class ProcCallStatement extends Statement {
 				Expression e = iterator.previous();
 				e.genCode(f);
 				count++;
-				f.genInstr("","pushl","%eax","Push param #" + count);
+				f.genInstr("","pushl","%eax","Push param #" + count + ".");
 			}
 			f.genInstr("", "call", procRef.label, "");
 			
 			if(!exprList.isEmpty()) {
-				f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
-				f.genInstr("", "movl", "%eax,32(%ebp)", "");
+				f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "Pop parameters.");
+				if(procRef != null) {
+					
+				} else {
+					f.genInstr("", "movl", "%eax,32(%ebp)", "");
+				}
+				
 			}
 		}
 	}

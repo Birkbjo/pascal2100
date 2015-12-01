@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.*;
 
@@ -34,6 +35,17 @@ public class EnumLiteral extends PascalDecl {
 
 		leaveParser("enum-literal");
 		return el;
+	}
+	
+	@Override
+	public void genCode(CodeFile f) {
+		if(name == "enum value false (=0)"){
+			f.genInstr("", "movl", "$" + 0 + ",%eax", "  " + name);	
+		} else {
+			f.genInstr("", "movl", "$" + 1 + ",%eax", "  " + name);
+		}
+		
+		//f.genInstr("", "pushl","%eax", "PascalDecl");
 	}
 
 }

@@ -43,7 +43,7 @@ public class PrefixOperator extends Operator {
 			f.genInstr("", "addl", "%ecx,%eax", "  +");
 			
 		} else {
-			f.genInstr("","subl","%ecx,%eax","  -");;
+			f.genInstr("","negl","%eax","  - (prefix)");
 		}		
 	}
 
