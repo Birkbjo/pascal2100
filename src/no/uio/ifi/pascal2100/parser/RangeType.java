@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.Scanner;
 import no.uio.ifi.pascal2100.scanner.TokenKind;
@@ -38,5 +39,11 @@ public class RangeType extends Type {
 	void check(Block curScope, Library lib) {
 		c1.check(curScope,lib);
 		c2.check(curScope,lib);
+	}
+
+	@Override
+	public void genCode(CodeFile f) {
+		//shouldnt reach this
+		
 	}
 }

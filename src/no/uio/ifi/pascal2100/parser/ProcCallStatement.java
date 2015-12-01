@@ -68,10 +68,9 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
+		int count = 0;
 		if(exprList.size() > 0) {
 			count = exprList.size();
-		} else{
-			count = 0;
 		}
 		if (procRef.isInLibrary()) { // write 
 			count = 0;
