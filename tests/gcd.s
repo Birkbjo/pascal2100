@@ -1,61 +1,62 @@
-# Code file created by Pascal2100 compiler 2015-12-01 16:25:31
+# Code file created by Pascal2100 compiler 2015-12-01 17:36:39
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
-        .globl _main                         
-        .globl main                         
+        .globl  _main                         
+        .globl  main                         
 _main:                                  
-main:   call    prog$gcd_1              
-        movl    $0,%eax                 # set status 0 and 
-        ret                             # terminate program
+main:   call    prog$gcd_1              # Start program
+        movl    $0,%eax                 # Set status 0 and
+        ret                             # terminate the program
 func$gcd_2:
-        enter   $32,$2                  # Start block
-        movl    -8(%ebp),%edx           # paramdecl n
-        movl    12(%edx),%eax           # paramdecl
-        pushl   %eax                    # Expression
-        movl    $0,%eax                 # 0
+        enter   $32,$2                  # Start of gcd
+                                        # Start if-statement
+        movl    -8(%ebp),%edx           
+        movl    12(%edx),%eax           #   n
+        pushl   %eax                    
+        movl    $0,%eax                 #   0
         popl    %ecx                    
         cmpl    %eax,%ecx               
         movl    $0,%eax                 
         sete    %al                     # Test =
         cmpl    $0,%eax                 
         je      .L0003                  
-        movl    -8(%ebp),%edx           # paramdecl m
-        movl    8(%edx),%eax            # paramdecl
-        movl    eax,-32(%edp)           # func decl i assignStatm
+        movl    -8(%ebp),%edx           
+        movl    8(%edx),%eax            #   m
+        movl    %eax,-32(%edp)          
         jmp     .L0004                  
-.L0003:                                 # # else-label
-        movl    -8(%ebp),%edx           # paramdecl m
-        movl    8(%edx),%eax            # paramdecl
-        pushl   %eax                    # term
-        movl    -8(%ebp),%edx           # paramdecl n
-        movl    12(%edx),%eax           # paramdecl
+.L0003:                                 
+        movl    -8(%ebp),%edx           
+        movl    8(%edx),%eax            #   m
+        pushl   %eax                    
+        movl    -8(%ebp),%edx           
+        movl    12(%edx),%eax           #   n
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    
-        movl    %edx,%eax               # mod in class factor Opr
-        pushl   %eax                    # FuncCall
-        movl    -8(%ebp),%edx           # paramdecl n
-        movl    12(%edx),%eax           # paramdecl
-        pushl   %eax                    # FuncCall
+        movl    %edx,%eax               #   mod
+        pushl   %eax                    # Push param #1
+        movl    -8(%ebp),%edx           
+        movl    12(%edx),%eax           #   n
+        pushl   %eax                    # Push param #2
         call    func$gcd_2              
-        addl    $8,%esp                 # Fetch return value
-        movl    eax,-32(%edp)           # func decl i assignStatm
+        addl    $8,%esp                 # Pop parameters
+        movl    %eax,-32(%edp)          
 .L0004:                                 # End if-statement
         movl    -32(%ebp),%eax          
-        leave                           
+        leave                           # End of gcd
         ret                             
 prog$gcd_1:
-        enter   $36,$1                  # Start block
-        movl    $462,%eax               # 462
-        pushl   %eax                    # FuncCall
-        movl    $1071,%eax              # 1071
-        pushl   %eax                    # FuncCall
+        enter   $36,$1                  # Start of gcd
+        movl    $462,%eax               #   462
+        pushl   %eax                    # Push param #1
+        movl    $1071,%eax              #   1071
+        pushl   %eax                    # Push param #2
         call    func$gcd_2              
-        addl    $8,%esp                 # Fetch return value
-        movl    -4(%ebp),%edx           # assign
-        movl    %eax,-36(%edx)          # assign
+        addl    $8,%esp                 # Pop parameters
+        movl    -4(%ebp),%edx           
+        movl    %eax,-36(%edx)          # res :=
         .data                  
 .L0005: .asciz   "gcd("
         .align  2              
@@ -63,19 +64,19 @@ prog$gcd_1:
         leal    .L0005,%eax             # Addr("gcd(")
         pushl   %eax                    
         call    write_string            
-        addl    $4,%esp                 
-        movl    $1071,%eax              # 1071
-        pushl   %eax                    # var in proccall
-        call    write_int               # const in proccall
-        addl    $4,%esp                 
-        movl    $44,%eax                # char 44
+        addl    $4,%esp                 # Pop parameter.
+        movl    $1071,%eax              #   1071
+        pushl   %eax                    # Push param #2.
+        call    write_int               
+        addl    $4,%esp                 # Pop parameter.
+        movl    $44,%eax                #   char 44
         pushl   %eax                    
         call    write_char              
-        addl    $4,%esp                 
-        movl    $462,%eax               # 462
-        pushl   %eax                    # var in proccall
-        call    write_int               # const in proccall
-        addl    $4,%esp                 
+        addl    $4,%esp                 # Pop parameter.
+        movl    $462,%eax               #   462
+        pushl   %eax                    # Push param #4.
+        call    write_int               
+        addl    $4,%esp                 # Pop parameter.
         .data                  
 .L0006: .asciz   ") = "
         .align  2              
@@ -83,15 +84,15 @@ prog$gcd_1:
         leal    .L0006,%eax             # Addr(") = ")
         pushl   %eax                    
         call    write_string            
-        addl    $4,%esp                 
+        addl    $4,%esp                 # Pop parameter.
         movl    -4(%ebp),%edx           
-        movl    -36(%edx),%eax          
-        pushl   %eax                    # var in proccall
-        call    write_int               # variable in proccall
-        addl    $4,%esp                 
-        movl    $10,%eax                # char 10
-        pushl   %eax                    # var in proccall
-        call    write_char              # char in proccall
-        addl    $4,%esp                 
-        leave                           
+        movl    -36(%edx),%eax          #   res
+        pushl   %eax                    # Push param #6.
+        call    write_int               
+        addl    $4,%esp                 # Pop parameter.
+        movl    $10,%eax                #   char 10
+        pushl   %eax                    # Push param #7.
+        call    write_char              
+        addl    $4,%esp                 # Pop parameter.
+        leave                           # End of gcd
         ret                             

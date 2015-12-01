@@ -68,9 +68,11 @@ public class ProcCallStatement extends Statement {
 
 	@Override
 	public void genCode(CodeFile f) {
+		int count = 0;
 		if (procRef.isInLibrary()) { // write
 			for (Expression e : exprList) {
-				genWriteType(e, f);
+				count++;
+				genWriteType(e, f, count);
 			}
 		} else {
 			for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
@@ -81,7 +83,7 @@ public class ProcCallStatement extends Statement {
 			}
 			f.genInstr("", "call", procRef.label, "");
 			f.genInstr("", "addl", "$"+exprList.size()*4+",%esp", "");
-			f.genInstr("", "movl", "%eax,32(%ebp)", ""+ name);
+			f.genInstr("", "movl", "%eax,32(%ebp)", "  "+ name);
 		}
 
 	}
@@ -93,28 +95,28 @@ public class ProcCallStatement extends Statement {
 	 * @param e
 	 * @return
 	 */
-	private void genWriteType(Expression e, CodeFile f) {
+	private void genWriteType(Expression e, CodeFile f, int count) {
 		Factor fac = e.expr1.termList.get(0).factorList.get(0);
 		if (fac instanceof NumericLiteral) {
 			e.genCode(f);
-			f.genInstr("", "pushl", "%eax", "");
+			f.genInstr("", "pushl", "%eax", "Push param #"+ count + ".");
 			f.genInstr("", "call", "write_int", "");
 		} else if (fac instanceof Variable) {
 			Variable v = (Variable) fac;
 			v.genCode(f);
-			f.genInstr("", "pushl", "%eax", "var in proccall");
+			f.genInstr("", "pushl", "%eax", "Push param #" + count + ".");
 			if(v.ref instanceof ConstDecl) {
 				ConstDecl cd = (ConstDecl) v.ref;
 				if(cd.con instanceof NumericLiteral) {
-					f.genInstr("", "call", "write_int", "const in proccall");
+					f.genInstr("", "call", "write_int", "");
 				} else if(cd.con instanceof StringLiteral) {
 					
-					f.genInstr("", "call", "write_char", "char in proccall");
+					f.genInstr("", "call", "write_char", "");
 				} else {
 					f.genInstr("", "", "", "Proccall nono");
 				}
 			} else {
-				f.genInstr("", "call", "write_int", "variable in proccall");
+				f.genInstr("", "call", "write_int", "");
 			}
 		} else if (fac instanceof StringLiteral) {
 			if (((StringLiteral) fac).slit.length() == 1) {
@@ -127,6 +129,6 @@ public class ProcCallStatement extends Statement {
 				f.genInstr("", "call", "write_string", "");
 			}
 		}
-		f.genInstr("", "addl", "$4,%esp", "");
+		f.genInstr("", "addl", "$4,%esp", "Pop parameter.");
 	}
 }

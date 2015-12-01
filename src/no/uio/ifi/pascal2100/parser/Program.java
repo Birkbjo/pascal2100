@@ -45,9 +45,9 @@ public class Program extends PascalDecl {
 	public void genCode(CodeFile f) {
 		String progLab = f.getLabel(name);
 		f.genInstr("_main", "", "", "");
-		f.genInstr("main","call","prog$"+progLab,"");
-		f.genInstr("", "movl", "$0,%eax", "set status 0 and ");
-		f.genInstr("", "ret", "", "terminate program");
+		f.genInstr("main","call","prog$"+progLab,"Start program");
+		f.genInstr("", "movl", "$0,%eax", "Set status 0 and");
+		f.genInstr("", "ret", "", "terminate the program");
 		label = "prog$" + progLab;
 		declLevel = 1;
 		block.genCode(f);

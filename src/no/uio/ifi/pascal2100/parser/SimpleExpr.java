@@ -68,25 +68,11 @@ public class SimpleExpr extends PascalSyntax {
 		}
 		if(termOprList.size() > 0) {
 			for(int i = 0;i<termOprList.size();i++) {
-				f.genInstr("", "pushl", "%eax", "simpleexpr");
+				f.genInstr("", "pushl", "%eax", "");
 				termList.get(i+1).genCode(f);
 				termOprList.get(i).genCode(f);
 			}
 		}
-		
-		/*int count = 0;
-		for(Term t1 : termList){
-			t1.genCode(f);
-			if(preOpr != null) {
-				preOpr.genCode(f);
-			}
-			if(termOprList.size() > count) {
-				TermOperator opr = termOprList.get(count);
-				opr.genCode(f);
-			}
-
-			count++;
-		}*/
 		
 	} 
 

@@ -44,8 +44,8 @@ public class Library extends Block {
 		f.genInstr("", ".extern write_char", "", "");
 		f.genInstr("", ".extern write_int", "", "");
 		f.genInstr("", ".extern write_string", "", "");
-		f.genInstr("", ".globl _main", "", "");
-		f.genInstr("", ".globl main", "", "");
+		f.genInstr("", ".globl  _main", "", "");
+		f.genInstr("", ".globl  main", "", "");
 	}
 
 }

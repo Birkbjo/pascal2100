@@ -43,7 +43,7 @@ public class FactorOperator extends Operator {
 			f.genInstr("", "movl", "%eax,%ecx", "");
 			f.genInstr("", "popl", "%eax", "");
 			if(t.kind == TokenKind.multiplyToken) {
-				f.genInstr("", "imull", "%ecx,%eax", "");
+				f.genInstr("", "imull", "%ecx,%eax", "  *");
 			} else if (t.kind == TokenKind.andToken) {
 				f.genInstr("", "andl", "%ecx,%eax", "");
 			}
@@ -53,10 +53,10 @@ public class FactorOperator extends Operator {
 			f.genInstr("", "popl", "%eax", "");
 			f.genInstr("", "cdq", "", "");
 			if(t.kind == TokenKind.divToken) {
-				f.genInstr("","idivl","%ecx","");
+				f.genInstr("","idivl","%ecx","  /");
 			} else if(t.kind == TokenKind.modToken) {
 				f.genInstr("","idivl","%ecx","");
-				f.genInstr("", "movl", "%edx,%eax", "mod in class factor Opr");
+				f.genInstr("", "movl", "%edx,%eax", "  mod");
 			}
 		}
 	}

@@ -44,8 +44,8 @@ class ParamDecl extends PascalDecl {
 	public void genCode(CodeFile f) {
 		int off1 = -4*declLevel;
 		int off2 = declOffset;
-		f.genInstr("", "movl", off1+"(%ebp),%edx", "paramdecl "+t.id);
-		f.genInstr("", "movl", off2+"(%edx),%eax", "paramdecl");
+		f.genInstr("", "movl", off1+"(%ebp),%edx","");
+		f.genInstr("", "movl", off2+"(%edx),%eax", "  " + t.id);
 		//f.genInstr("", "pushl","%eax", "paramdecl");
 	}
 }

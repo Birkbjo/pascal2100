@@ -40,10 +40,10 @@ public class PrefixOperator extends Operator {
 	public void genCode(CodeFile f) {
 
 		if(t.kind == TokenKind.addToken) {
-			f.genInstr("", "addl", "%ecx,%eax", "");
+			f.genInstr("", "addl", "%ecx,%eax", "  +");
 			
 		} else {
-			f.genInstr("","subl","%ecx,%eax","");;
+			f.genInstr("","subl","%ecx,%eax","  -");;
 		}		
 	}
 

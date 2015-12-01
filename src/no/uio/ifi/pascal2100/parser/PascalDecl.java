@@ -18,7 +18,7 @@ public abstract class PascalDecl extends PascalSyntax {
 		int off1 = -4*declLevel;
 		int off2 = declOffset;
 		f.genInstr("", "movl", off1+"(%ebp),%edx", "");
-		f.genInstr("", "movl", off2+"(%edx),%eax", "");
+		f.genInstr("", "movl", off2+"(%edx),%eax", "  " + name);
 		//f.genInstr("", "pushl","%eax", "PascalDecl");
 	}
 	

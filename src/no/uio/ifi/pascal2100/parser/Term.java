@@ -54,7 +54,7 @@ public class Term extends PascalSyntax {
 		fac.genCode(f);
 		if(factorList.size() > 0) {
 			for(int i = 0;i<facOprList.size();i++) {
-				f.genInstr("", "pushl", "%eax", "term");
+				f.genInstr("", "pushl", "%eax", "");
 				factorList.get(i+1).genCode(f);
 				facOprList.get(i).genCode(f);
 			}

@@ -42,7 +42,7 @@ public class StringLiteral extends Constant {
 	public void genCode(CodeFile f) {
 		if(slit.length() == 1) {
 			int charByte = (int) slit.charAt(0);
-			f.genInstr("", "movl", "$"+charByte+",%eax", "char "+charByte);
+			f.genInstr("", "movl", "$"+charByte+",%eax", "  char "+charByte);
 		} else {
 			String lab = f.getLocalLabel();
 			f.genString(lab, slit, "");

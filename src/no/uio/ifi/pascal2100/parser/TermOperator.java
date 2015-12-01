@@ -45,10 +45,10 @@ public class TermOperator extends Operator {
 			f.genInstr("", "orl", "%ecx,%eax", "");
 			break;
 		case addToken:
-			f.genInstr("", "addl", "%ecx,%eax", " +");
+			f.genInstr("", "addl", "%ecx,%eax", "  +");
 			break;
 		case subtractToken:
-			f.genInstr("", "negl", "%eax", " negation");
+			f.genInstr("", "negl", "%eax", "  -");
 			break;
 		}
 		
