@@ -50,9 +50,24 @@ public class Term extends PascalSyntax {
 
 	@Override
 	public void genCode(CodeFile f) {
+		Factor fac = factorList.get(0);
+		fac.genCode(f);
+		if(factorList.size() > 0) {
+			for(int i = 0;i<facOprList.size();i++) {
+				f.genInstr("", "pushl", "%eax", "term");
+				factorList.get(i+1).genCode(f);
+				facOprList.get(i).genCode(f);
+			}
+		} /*
 		for(Factor fl: factorList){
 			fl.genCode(f);
-		}
+			if(facOprList.size() > count) {
+				System.out.println("asf");
+				FactorOperator opr = facOprList.get(count);
+				opr.genCode(f);
+			}
+			count++;
+		} */
 		
 	}
 

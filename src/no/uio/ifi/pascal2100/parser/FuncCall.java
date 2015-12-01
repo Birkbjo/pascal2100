@@ -68,11 +68,12 @@ public class FuncCall extends Factor {
 
 	@Override
 	public void genCode(CodeFile f) {
+		System.out.println(exprList.size());
 		for (ListIterator<Expression> iterator = exprList.listIterator(exprList.size());
 				iterator.hasPrevious();) {
 			Expression e = iterator.previous();
 			e.genCode(f);
-			if(ref instanceof )
+		//	if(ref instanceof )
 			f.genInstr("","pushl","%eax","FuncCall");
 		}
 		f.genInstr("", "call", ref.label, "");

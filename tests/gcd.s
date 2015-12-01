@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 13:30:11
+# Code file created by Pascal2100 compiler 2015-12-01 14:47:55
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -10,11 +10,9 @@ main:   call    prog$gcd_1
         ret                             # terminate program
 func$gcd_2:
         enter   $32,$2                  # Start block
-                                        # Start if-statement
-        movl    -8(%ebp),%edx           
-        movl    12(%edx),%eax           
-        pushl   %eax                    # PascalDecl
-        pushl   %eax                    
+        movl    -8(%ebp),%edx           # paramdecl n
+        movl    12(%edx),%eax           # paramdecl
+        pushl   %eax                    # Expression
         movl    $0,%eax                 # 0
         popl    %ecx                    
         cmpl    %eax,%ecx               
@@ -22,26 +20,28 @@ func$gcd_2:
         sete    %al                     # Test =
         cmpl    $0,%eax                 
         je      .L0003                  
-        movl    -8(%ebp),%edx           
-        movl    8(%edx),%eax            
-        pushl   %eax                    # PascalDecl
+        movl    -8(%ebp),%edx           # paramdecl m
+        movl    8(%edx),%eax            # paramdecl
         movl    eax,-32(%edp)           # func decl i assignStatm
         jmp     .L0004                  
-.L0004:                                 # # else-label
-        movl    -8(%ebp),%edx           
-        movl    8(%edx),%eax            
-        pushl   %eax                    # PascalDecl
-        movl    -8(%ebp),%edx           
-        movl    12(%edx),%eax           
-        pushl   %eax                    # PascalDecl
+.L0003:                                 # # else-label
+        movl    -8(%ebp),%edx           # paramdecl m
+        movl    8(%edx),%eax            # paramdecl
+        pushl   %eax                    # term
+        movl    -8(%ebp),%edx           # paramdecl n
+        movl    12(%edx),%eax           # paramdecl
+        movl    %eax,%ecx               
+        popl    %eax                    
+        cdq                             
+        idivl   %edx                    
+        movl    %edx,%eax               # mod in class factor Opr
         pushl   %eax                    # FuncCall
-        movl    -8(%ebp),%edx           
-        movl    12(%edx),%eax           
-        pushl   %eax                    # PascalDecl
+        movl    -8(%ebp),%edx           # paramdecl n
+        movl    12(%edx),%eax           # paramdecl
         pushl   %eax                    # FuncCall
         call    func$gcd_2              
         movl    eax,-32(%edp)           # func decl i assignStatm
-.L0003:                                 # End if-statement
+.L0004:                                 # End if-statement
         movl    -32(%ebp),%eax          
         leave                           
         ret                             

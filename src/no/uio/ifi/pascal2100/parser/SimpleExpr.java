@@ -67,7 +67,7 @@ public class SimpleExpr extends PascalSyntax {
 			if(preOpr != null) {
 				preOpr.genCode(f);
 			}
-			if(termOprList.size() < count) {
+			if(termOprList.size() > count) {
 				TermOperator opr = termOprList.get(count);
 				opr.genCode(f);
 			}

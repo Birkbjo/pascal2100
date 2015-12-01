@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.*;
 
@@ -37,7 +38,14 @@ class ParamDecl extends PascalDecl {
 
 	public void check(Block curScope, Library lib) {
 		typeName.check(curScope,lib);
-		
 	}
-
+	
+	@Override
+	public void genCode(CodeFile f) {
+		int off1 = -4*declLevel;
+		int off2 = declOffset;
+		f.genInstr("", "movl", off1+"(%ebp),%edx", "paramdecl "+t.id);
+		f.genInstr("", "movl", off2+"(%edx),%eax", "paramdecl");
+		//f.genInstr("", "pushl","%eax", "paramdecl");
+	}
 }
