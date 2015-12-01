@@ -143,9 +143,9 @@ public class Block extends PascalSyntax {
 		
 		f.genInstr(context.label, "enter","$"+start+",$"+context.declLevel, "Start of " + context.name);
 		statmList.genCode(f);
-		/*if(context instanceof FuncDecl) {
+		if(context instanceof FuncDecl) {
 			f.genInstr("","movl","-32(%ebp),%eax","");
-		}*/
+		}
 		f.genInstr("","leave","","End of " + context.name);
 		f.genInstr("", "ret", "", "");
 	}
