@@ -41,7 +41,8 @@ class AssignStatement extends Statement {
 
 	@Override
 	void check(Block curScope, Library lib) {
-		varRef = curScope.findDecl(var.name, this);
+		varRef = (PascalDecl) curScope.findDecl(var.name, this);
+		System.out.println(varRef);
 		var.check(curScope, lib);
 		expr.check(curScope, lib);
 	}
@@ -50,7 +51,10 @@ class AssignStatement extends Statement {
 	public void genCode(CodeFile f) {
 		expr.genCode(f);
 		if(varRef instanceof VarDecl) {
-			// implenmentert ein anna plass (ukjent)
+			int off1 = -4*varRef.declLevel;
+			int off2 = varRef.declOffset;
+			f.genInstr("", "movl", off1+"(%ebp),%edx", "assign");
+			f.genInstr("", "movl", "%eax,"+off2+"(%edx)","assign");
 		} else if(varRef instanceof FuncDecl) { // funcdecl
 			f.genInstr("", "movl", "eax,-32(%edp)", "func decl i assignStatm");
 		}

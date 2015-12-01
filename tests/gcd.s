@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 14:47:55
+# Code file created by Pascal2100 compiler 2015-12-01 15:23:53
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -33,13 +33,14 @@ func$gcd_2:
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
-        idivl   %edx                    
+        idivl   %ecx                    
         movl    %edx,%eax               # mod in class factor Opr
         pushl   %eax                    # FuncCall
         movl    -8(%ebp),%edx           # paramdecl n
         movl    12(%edx),%eax           # paramdecl
         pushl   %eax                    # FuncCall
         call    func$gcd_2              
+        addl    $8,%esp                 # Fetch return value
         movl    eax,-32(%edp)           # func decl i assignStatm
 .L0004:                                 # End if-statement
         movl    -32(%ebp),%eax          
@@ -52,6 +53,9 @@ prog$gcd_1:
         movl    $1071,%eax              # 1071
         pushl   %eax                    # FuncCall
         call    func$gcd_2              
+        addl    $8,%esp                 # Fetch return value
+        movl    -4(%ebp),%edx           # assign
+        movl    %eax,-36(%edx)          # assign
         .data                  
 .L0005: .asciz   "gcd("
         .align  2              

@@ -134,8 +134,9 @@ public class Block extends PascalSyntax {
 			start += (varDeclPart.varDeclList.size()*4);
 			int varoff = -36;
 			for(VarDecl v: varDeclPart.varDeclList) {
-				varoff -= 4;
+				v.declLevel = context.declLevel;
 				v.declOffset = varoff;
+				varoff -= 4;
 			}
 		}
 	
