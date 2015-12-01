@@ -41,7 +41,6 @@ public class PrefixOperator extends Operator {
 
 		if(t.kind == TokenKind.addToken) {
 			f.genInstr("", "addl", "%ecx,%eax", "  +");
-			
 		} else {
 			f.genInstr("","negl","%eax","  - (prefix)");
 		}		

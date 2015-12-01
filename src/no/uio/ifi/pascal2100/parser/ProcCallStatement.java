@@ -72,7 +72,6 @@ public class ProcCallStatement extends Statement {
 		if (procRef.isInLibrary()) { // write 
 			for (Expression e : exprList) {
 				count++;
-				System.out.println("Param : " + count);
 				genWriteType(e, f, count);
 			}
 		} else {
@@ -113,7 +112,7 @@ public class ProcCallStatement extends Statement {
 		} else if (fac instanceof Variable) {
 			Variable v = (Variable) fac;
 			v.genCode(f);
-			f.genInstr("", "pushl", "%eax", "Push param #" + count + ".");
+			f.genInstr("", "pushl", "%eax", "");
 			if(v.ref instanceof ConstDecl) {
 				ConstDecl cd = (ConstDecl) v.ref;
 				if(cd.con instanceof NumericLiteral) {

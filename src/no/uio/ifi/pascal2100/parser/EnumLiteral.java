@@ -39,7 +39,7 @@ public class EnumLiteral extends PascalDecl {
 	
 	@Override
 	public void genCode(CodeFile f) {
-		if(name == "enum value false (=0)"){
+		if(name.equals("enum value false (=0)")){
 			f.genInstr("", "movl", "$" + 0 + ",%eax", "  " + name);	
 		} else {
 			f.genInstr("", "movl", "$" + 1 + ",%eax", "  " + name);

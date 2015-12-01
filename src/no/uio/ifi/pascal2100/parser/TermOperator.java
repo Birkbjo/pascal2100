@@ -41,8 +41,10 @@ public class TermOperator extends Operator {
 		f.genInstr("", "movl", "%eax,%ecx", "");
 		f.genInstr("", "popl", "%eax", "");
 		switch (operator.kind) {
+		case andToken:
+			f.genInstr("", "andl", "%ecx,%eax", "  and");
 		case orToken:
-			f.genInstr("", "orl", "%ecx,%eax", "");
+			f.genInstr("", "orl", "%ecx,%eax", "  or");
 			break;
 		case addToken:
 			f.genInstr("", "addl", "%ecx,%eax", "  +");

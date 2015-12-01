@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 18:58:05
+# Code file created by Pascal2100 compiler 2015-12-01 20:36:28
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -7,9 +7,7 @@
 _main:                                  
 main:   call    prog$operatortest_1     # Start program
         movl    $0,%eax                 # Set status 0 and
-        ret                             # terminate the program 
-
-                                        
+        ret                             # terminate the program
 proc$test_3:
         enter   $32,$3                  # Start of test
         .data                  
@@ -17,12 +15,12 @@ proc$test_3:
         .align  2              
         .text                  
         leal    .L0004,%eax             # Addr("not ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #1.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #2.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -30,37 +28,38 @@ proc$test_3:
         .align  2              
         .text                  
         leal    .L0005,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #3.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
+        movl    -12(%ebp),%edx          
+        movl    8(%edx),%eax            #   x
+        xorl    $0x1,%eax               #   not
+        pushl   %eax                    # Push param #4.
+        call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         leave                           # End of test
         ret                             
 proc$testunaryboolean_2:
         enter   $32,$2                  # Start of testunaryboolean
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   false
-        pushl   %eax                    # Push param #1
+        movl    $0,%eax                 #   enum value false (=0)
+        pushl   %eax                    # Push param #1.
         call    proc$test_3             
-        addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   true
-        pushl   %eax                    # Push param #1
+        addl    $4,%esp                 # Pop parameters.
+        movl    $1,%eax                 #   enum value true (=1)
+        pushl   %eax                    # Push param #1.
         call    proc$test_3             
-        addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $4,%esp                 # Pop parameters.
         leave                           # End of testunaryboolean
         ret                             
 proc$test_7:
         enter   $32,$3                  # Start of test
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -68,12 +67,12 @@ proc$test_7:
         .align  2              
         .text                  
         leal    .L0008,%eax             # Addr(" and ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -81,21 +80,21 @@ proc$test_7:
         .align  2              
         .text                  
         leal    .L0009,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -103,12 +102,12 @@ proc$test_7:
         .align  2              
         .text                  
         leal    .L0010,%eax             # Addr(" or ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -116,58 +115,46 @@ proc$test_7:
         .align  2              
         .text                  
         leal    .L0011,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         leave                           # End of test
         ret                             
 proc$testbinaryboolean_6:
         enter   $32,$2                  # Start of testbinaryboolean
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   false
-        pushl   %eax                    # Push param #1
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   false
-        pushl   %eax                    # Push param #2
+        movl    $0,%eax                 #   enum value false (=0)
+        pushl   %eax                    # Push param #1.
+        movl    $0,%eax                 #   enum value false (=0)
+        pushl   %eax                    # Push param #2.
         call    proc$test_7             
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   true
-        pushl   %eax                    # Push param #1
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   false
-        pushl   %eax                    # Push param #2
+        addl    $8,%esp                 # Pop parameters.
+        movl    $1,%eax                 #   enum value true (=1)
+        pushl   %eax                    # Push param #1.
+        movl    $0,%eax                 #   enum value false (=0)
+        pushl   %eax                    # Push param #2.
         call    proc$test_7             
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   false
-        pushl   %eax                    # Push param #1
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   true
-        pushl   %eax                    # Push param #2
+        addl    $8,%esp                 # Pop parameters.
+        movl    $0,%eax                 #   enum value false (=0)
+        pushl   %eax                    # Push param #1.
+        movl    $1,%eax                 #   enum value true (=1)
+        pushl   %eax                    # Push param #2.
         call    proc$test_7             
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   true
-        pushl   %eax                    # Push param #1
-        movl    0(%ebp),%edx            
-        movl    0(%edx),%eax            #   true
-        pushl   %eax                    # Push param #2
+        addl    $8,%esp                 # Pop parameters.
+        movl    $1,%eax                 #   enum value true (=1)
+        pushl   %eax                    # Push param #1.
+        movl    $1,%eax                 #   enum value true (=1)
+        pushl   %eax                    # Push param #2.
         call    proc$test_7             
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         leave                           # End of testbinaryboolean
         ret                             
 proc$test_13:
@@ -177,12 +164,12 @@ proc$test_13:
         .align  2              
         .text                  
         leal    .L0014,%eax             # Addr("- ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #1.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #2.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -190,16 +177,16 @@ proc$test_13:
         .align  2              
         .text                  
         leal    .L0015,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #3.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #4.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -207,12 +194,12 @@ proc$test_13:
         .align  2              
         .text                  
         leal    .L0016,%eax             # Addr("+ ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #1.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #2.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -220,16 +207,16 @@ proc$test_13:
         .align  2              
         .text                  
         leal    .L0017,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #3.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #4.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         leave                           # End of test
@@ -237,28 +224,25 @@ proc$test_13:
 proc$testunarynumeric_12:
         enter   $32,$2                  # Start of testunarynumeric
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         call    proc$test_13            
-        addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $4,%esp                 # Pop parameters.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #1
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #1.
         call    proc$test_13            
-        addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $4,%esp                 # Pop parameters.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         call    proc$test_13            
-        addl    $4,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $4,%esp                 # Pop parameters.
         leave                           # End of testunarynumeric
         ret                             
 proc$test_19:
         enter   $32,$3                  # Start of test
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -266,12 +250,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0020,%eax             # Addr(" + ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -279,21 +263,21 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0021,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -301,12 +285,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0022,%eax             # Addr(" - ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -314,21 +298,21 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0023,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -336,12 +320,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0024,%eax             # Addr(" * ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -349,22 +333,22 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0025,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
                                         # Start if-statement
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    
+        pushl   %eax                    # Push Param
         movl    $0,%eax                 #   0
         popl    %ecx                    
         cmpl    %eax,%ecx               
@@ -374,7 +358,7 @@ proc$test_19:
         je      .L0026                  
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -382,12 +366,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0027,%eax             # Addr(" div ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -395,21 +379,21 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0028,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -417,12 +401,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0029,%eax             # Addr(" mod ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -430,21 +414,21 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0030,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -452,12 +436,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0031,%eax             # Addr(" div ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -465,21 +449,21 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0032,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #1.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -487,12 +471,12 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0033,%eax             # Addr(" mod ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #2.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    12(%edx),%eax           #   y
-        pushl   %eax                    # Push param #3.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         .data                  
@@ -500,16 +484,16 @@ proc$test_19:
         .align  2              
         .text                  
         leal    .L0034,%eax             # Addr(" = ")
-        pushl   %eax                    
+        pushl   %eax                    # Push param #4.
         call    write_string            
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        pushl   %eax                    # Push param #5.
+        pushl   %eax                    
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
         movl    $10,%eax                #   char 10
-        pushl   %eax                    # Push param #6.
+        pushl   %eax                    
         call    write_char              
         addl    $4,%esp                 # Pop parameter.
 .L0026:                                 # End if-statement
@@ -518,73 +502,64 @@ proc$test_19:
 proc$testbinarynumeric_18:
         enter   $32,$2                  # Start of testbinarynumeric
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #1
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #1.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #2
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #1
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #1.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #2
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $17,%eax                #   17
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $11,%eax                #   11
-        subl    %ecx,%eax               #   -
-        pushl   %eax                    # Push param #1
+        negl    %eax                    #   - (prefix)
+        pushl   %eax                    # Push param #1.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #1
+        pushl   %eax                    # Push param #1.
         movl    $0,%eax                 #   0
-        pushl   %eax                    # Push param #2
+        pushl   %eax                    # Push param #2.
         call    proc$test_19            
-        addl    $8,%esp                 
-        movl    %eax,32(%ebp)           
+        addl    $8,%esp                 # Pop parameters.
         leave                           # End of testbinarynumeric
         ret                             
 prog$operatortest_1:

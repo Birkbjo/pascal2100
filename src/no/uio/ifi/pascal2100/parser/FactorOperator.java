@@ -44,7 +44,8 @@ public class FactorOperator extends Operator {
 			if(t.kind == TokenKind.multiplyToken) {
 				f.genInstr("", "imull", "%ecx,%eax", "  *");
 			} else if (t.kind == TokenKind.andToken) {
-				f.genInstr("", "andl", "%ecx,%eax", "");
+				System.out.println("Test");
+				f.genInstr("", "andl", "%ecx,%eax", "  and");
 			}
 			
 		} else {
