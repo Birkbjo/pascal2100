@@ -105,13 +105,14 @@ public class ProcCallStatement extends Statement {
 	 */
 	private void genWriteType(Expression e, CodeFile f, int count) {
 		Factor fac = e.expr1.termList.get(0).factorList.get(0);
+		e.genCode(f);
 		if (fac instanceof NumericLiteral) {
-			e.genCode(f);
+		//	e.genCode(f);
 			f.genInstr("", "pushl", "%eax", "Push param #"+ count + ".");
 			f.genInstr("", "call", "write_int", "");
 		} else if (fac instanceof Variable) {
 			Variable v = (Variable) fac;
-			v.genCode(f);
+		//	v.genCode(f);
 			f.genInstr("", "pushl", "%eax", "");
 			if(v.ref instanceof ConstDecl) {
 				ConstDecl cd = (ConstDecl) v.ref;
@@ -128,16 +129,16 @@ public class ProcCallStatement extends Statement {
 			}
 		} else if (fac instanceof StringLiteral) {
 			if (((StringLiteral) fac).slit.length() == 1) {
-				e.genCode(f);
+			//	e.genCode(f);
 				f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
 				f.genInstr("", "call", "write_char", "");
 			} else { // string
-				e.genCode(f);
+			//	e.genCode(f);
 				f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
 				f.genInstr("", "call", "write_string", "");
 			}
 		} else if (fac instanceof Negation) {
-			e.genCode(f);
+			//e.genCode(f);
 			f.genInstr("", "pushl", "%eax", "Push param #"+ count+".");
 			f.genInstr("", "call", "write_int", "");
 		}
