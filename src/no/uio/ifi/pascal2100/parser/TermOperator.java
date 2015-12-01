@@ -1,5 +1,6 @@
 package no.uio.ifi.pascal2100.parser;
 
+import no.uio.ifi.pascal2100.main.CodeFile;
 import no.uio.ifi.pascal2100.main.Main;
 import no.uio.ifi.pascal2100.scanner.*;
 
@@ -35,4 +36,22 @@ public class TermOperator extends Operator {
 		
 	}
 
+	@Override
+	public void genCode(CodeFile f) {
+		f.genInstr("", "movl", "%al", "TermOpr");
+		f.genInstr("", "popl", "%eax", "TermOpr");
+		switch (operator.kind) {
+		case orToken:
+			f.genInstr("", "orl", "%", "Test >=");
+			break;
+		case addToken:
+
+			break;
+		case subtractToken:
+			f.genInstr("", "negl", "%eax", " negation");
+			break;
+		}
+		
+			
+	}
 }
