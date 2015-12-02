@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-01 23:49:46
+# Code file created by Pascal2100 compiler 2015-12-02 01:02:38
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -44,6 +44,7 @@ func$gcd_2:
         addl    $8,%esp                 # Pop parameter.
         movl    %eax,-32(%edp)          
 .L0004:                                 # End if-statement
+        movl    -32(%ebp),%eax          
         leave                           # End of gcd
         ret                             
 prog$gcd_1:

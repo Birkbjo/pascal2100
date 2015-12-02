@@ -1,4 +1,4 @@
-# Code file created by Pascal2100 compiler 2015-12-02 00:26:59
+# Code file created by Pascal2100 compiler 2015-12-02 00:59:58
         .extern write_char                         
         .extern write_int                         
         .extern write_string                         
@@ -225,7 +225,6 @@ proc$test_13:
         addl    $4,%esp                 # Pop parameter.
         movl    -12(%ebp),%edx          
         movl    8(%edx),%eax            #   x
-        addl    %ecx,%eax               #   +
         pushl   %eax                    # Push param #4.
         call    write_int               
         addl    $4,%esp                 # Pop parameter.
