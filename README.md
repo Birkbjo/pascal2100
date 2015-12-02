@@ -5,9 +5,11 @@ Course INF2100 at University of Oslo.
 By Odd-Tørres Lunde and Birk Johansson.
 
 ##Progress
-Up to date with part 3 of assignment.
+Done with part 4. 
 
-NOTE: The optional checking will be implemented before delivery of part 4. 
+Tested files diffed with their reference:
+mini.s, gcd.s, easter.s and opers.s
+
 ## Usage
 ```
 ant compile
